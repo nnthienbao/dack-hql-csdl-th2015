@@ -64,6 +64,9 @@
     <Compile Include="NhanVien\Window_DatVe.xaml.cs">
       <DependentUpon>Window_DatVe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\slot.xaml.cs">
+      <DependentUpon>slot.xaml</DependentUpon>
+    </Compile>
     <Page Include="NhanVien.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -93,6 +96,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NhanVien\Window_DatVe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\slot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,6 +149,9 @@
   <ItemGroup>
     <Resource Include="Image\user-cog.png" />
     <Resource Include="Image\user-plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\slot.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
