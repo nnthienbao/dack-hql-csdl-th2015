@@ -1,0 +1,59 @@
+﻿<Window x:Class="DACK_HQTCSDL.Window_SuaKhachHang"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DACK_HQTCSDL"
+        mc:Ignorable="d"
+        Title="Window_SuaKhachHang" Height="400" Width="500"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+    <Border BorderBrush="#649EFF"  BorderThickness="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <Border x:Name="titleBar" Background="#649EFF">
+                <Label Content="Sửa thông tin Khách hàng" FontWeight="Bold" HorizontalAlignment="center" FontSize="20" Foreground="White"/>
+            </Border>
+            <Border Grid.Row="1" BorderBrush="#649EFF" BorderThickness="0 0 0 2" Padding="15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <Label Content="Mã khách hàng" Style="{StaticResource MyLabel}" />
+                        <Label Content="Họ và tên" Style="{StaticResource MyLabel}" />
+                        <Label Content="Giới tính" Style="{StaticResource MyLabel}" />
+                        <Label Content="Ngày sinh" Style="{StaticResource MyLabel}" />
+                        <Label Content="CMND" Style="{StaticResource MyLabel}" />
+                        <Label Content="Số điện thoại" Style="{StaticResource MyLabel}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBox x:Name="textbox_MaKhachHang" Width="150" HorizontalAlignment="Left" Style="{StaticResource MyTextBox}" />
+                        <TextBox x:Name="textbox_TenKhachHang" Style="{StaticResource MyTextBox}" />
+                        <StackPanel Height="32" Orientation="Horizontal" Margin="0 5 0 0" >
+                            <RadioButton Margin="0 10 0 0" Content="Nam" FontWeight="SemiBold" FontSize="13" />
+                            <RadioButton Margin="10 10 0 0" Content="Nữ" FontWeight="SemiBold" FontSize="13" />
+                        </StackPanel>
+                        <DatePicker x:Name="textbox_NgaySinh" Text="1/04/1990" Width="150" HorizontalAlignment="Left" Style="{StaticResource MyDatePicker}"/>
+                        <TextBox x:Name="textbox_CMND" Width="150" HorizontalAlignment="Left" Style="{StaticResource MyTextBox}" />
+                        <TextBox x:Name="textbox_SoDienThoai" Width="150" HorizontalAlignment="Left" Style="{StaticResource MyTextBox}" />
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+                <Button x:Name="button_SuaKhachHang" Click="button_SuaKhachHang_Click" Foreground="White" Background="#649EFF" Width="150" Margin="10" FontSize="14" FontWeight="SemiBold" Content="Thêm khách hàng" Style="{StaticResource MyButton}"/>
+                <Button x:Name="button_Cancel" Click="button_Cancel_Click" Foreground="White" Background="#649EFF" Width="80" Margin="10" FontSize="14" FontWeight="SemiBold" Content="Cancel" Style="{StaticResource MyButton}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
