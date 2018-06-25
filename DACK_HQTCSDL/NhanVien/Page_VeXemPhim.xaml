@@ -9,107 +9,125 @@
       Title="Page_VeXemPhim"
       Loaded="Page_Loaded">
 
-    <Border Padding="10 4 10 10" BorderBrush="#00AA8D" BorderThickness="0 2 0 0">
+    <Border Padding="10" BorderBrush="#00AA8D" BorderThickness="0 2 0 0">
         <Border.Background>
             <LinearGradientBrush StartPoint="0.5,-0.5" EndPoint="0.5,0.8">
                 <GradientStop Offset="0" Color="#7700AA8D" />
                 <GradientStop Offset="1" Color="White" />
             </LinearGradientBrush>
         </Border.Background>
+
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-                
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Tên phim" Style="{StaticResource MyLabel}"/>
-            <ComboBox Grid.Row="1" Grid.Column="0" Style="{StaticResource MyCombobox}"/>
-
-            <Label Grid.Row="0" Grid.Column="1" Content="Ngày chiếu" Style="{StaticResource MyLabel}"/>
-            <DatePicker x:Name="DatePicker_NgayXem" Grid.Row="1" Grid.Column="1" Style="{StaticResource MyDatePicker}"/>
-            
-            <Label Grid.Row="0" Grid.Column="2" Content="Suất chiếu" Style="{StaticResource MyLabel}"/>
-            <ComboBox Grid.Row="1" Grid.Column="2" Style="{StaticResource MyCombobox}"/>
-
-            <Grid Grid.Row="2" Grid.ColumnSpan="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="400"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Grid.Column="0" Background="White" Margin="0 10 0 0">
-                    <Label Content="Tìm kiếm" FontWeight="Bold" Style="{StaticResource MyLabel}"/>
-
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Giá vé cơ bản" Style="{StaticResource MyLabel}"/>
-                        <Label Content="0" Foreground="Red" Margin="20 5 0 0" Width="50" Style="{StaticResource MyLabel}" />
+            <TabControl Grid.Column="0">
+                <!--Tab Tìm kiếm phim-->
+                <TabItem Header="Tìm kiếm phim" FontSize="14" FontWeight="Bold">
+                    <StackPanel>
+                        <!--Combobox Lựa chọn tên phim-->
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="100" Margin="0" Content="Tên phim" Style="{StaticResource MyLabel}"/>
+                            <ComboBox Width="294" Margin="0" Style="{StaticResource MyCombobox}" />
+                        </StackPanel>
+                        <!--DatePicker lựa chọn ngày chiếu phim-->
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="100" Content="Ngày chiếu" Style="{StaticResource MyLabel}"/>
+                            <DatePicker x:Name="DatePicker_NgayXem" Margin="0 5 0 0" Width="150" Style="{StaticResource MyDatePicker}" BorderBrush="#00AA8D"/>
+                        </StackPanel>
+                        <!--Khu vực lựa chọn các option của phim-->
+                        <Grid Margin="0 5 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="294" />
+                            </Grid.ColumnDefinitions>
+                            <Label Width="100" Content="Thiết bị" Style="{StaticResource MyLabel}"/>
+                            <StackPanel Grid.Column="1" Width="300" Orientation="Vertical">
+                                <CheckBox Content="3D" FontSize="13" FontWeight="SemiBold" BorderBrush="#00AA8D" />
+                                <CheckBox Content="Âm thanh sống động" FontSize="13" FontWeight="SemiBold" BorderBrush="#00AA8D" />
+                                <CheckBox Content="Màn hình lớn" FontSize="13" FontWeight="SemiBold" BorderBrush="#00AA8D" />
+                            </StackPanel>
+                        </Grid>
+                        <!--Combobox lựa chọn suất chiếu phim--> 
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="100" Content="Suất chiếu" Style="{StaticResource MyLabel}"/>
+                            <ComboBox Width="294" Margin="0" Style="{StaticResource MyCombobox}"/>
+                        </StackPanel>
+                        <!--Button Đặt vé-->
+                        <StackPanel Orientation="Horizontal" Margin="0 15 0 0" HorizontalAlignment="Center">
+                            <Button x:Name="Button_DatVe" Click="Button_DatVe_Click" Content="Đặt vé" Background="#00AA8D" Width="100" Height="40" Foreground="White" FontWeight="Bold" FontSize="14" Style="{StaticResource MyButton}" />
+                        </StackPanel>
                     </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Trang thiết bị chiếu phim" Style="{StaticResource MyLabel}"/>
-                        <Label Content="0" Foreground="Red" Margin="20 5 0 0" Width="50" Style="{StaticResource MyLabel}" />
+                </TabItem>
+                <!--END Tab tìm kiếm phim-->
+                
+                <!--Tab tìm kiếm vé-->
+                <TabItem Header="Tìm kiếm vé" FontSize="14" FontWeight="Bold">
+                    <StackPanel Background="White">
+                        <Label Content="Tìm kiếm" Margin="0" FontWeight="Bold" Style="{StaticResource MyLabel}"/>
+                        <!--Radio btn lựa chọn phương thức tìm kiếm-->
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton GroupName="Gr_RadioBtn_TimKiemVe" Width="220" Content="Tìm kiếm theo Mã vé" Margin="0 13 0 0" FontWeight="SemiBold" FontSize="14" />
+                            <TextBox Width="174" Style="{StaticResource MyTextBox}" BorderBrush="#00AA8D" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton GroupName="Gr_RadioBtn_TimKiemVe" Width="220" Content="Tìm kiếm theo Số điện thoại" Margin="0 13 0 0" FontWeight="SemiBold" FontSize="14" />
+                            <TextBox Width="174" Style="{StaticResource MyTextBox}" BorderBrush="#00AA8D" />
+                        </StackPanel>
+                        <!--Button xử lý tác vụ--> 
+                        <StackPanel Orientation="Horizontal" Margin="0 15 0 0" HorizontalAlignment="Center">
+                            <Button Content="Tìm kiếm" Background="#00AA8D" Margin="0 0 20 0"  Width="100" Height="40" Foreground="White" FontWeight="Bold" FontSize="14" Style="{StaticResource MyButton}" />
+                            <Button Content="Thanh toán" Background="#00AA8D" Width="100" Height="40" Foreground="White" FontWeight="Bold" FontSize="14" Style="{StaticResource MyButton}" />
+                        </StackPanel>
                     </StackPanel>
+                </TabItem>
+                <!--END Tab tìm kiếm vé-->
+            </TabControl>
 
-                    <Button Content="Tìm kiếm" Background="#00AA8D" Width="100" Height="50" Foreground="White" FontWeight="Bold" FontSize="14" Style="{StaticResource MyButton}" />
+            <!--Bảng hiện thị danh sách vé-->
+            <DataGrid x:Name="dataGrid_DanhSachVe" Grid.Column="1" IsReadOnly="True" Margin="10 0 0 0" 
+                    HorizontalGridLinesBrush="#7700AA8D" VerticalGridLinesBrush="#7700AA8D">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontWeight" Value="SemiBold" />
+                        <Setter Property="Height" Value="32" />
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="FontWeight" Value="SemiBold" />
+                        <Setter Property="Height" Value="32" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#7700AA8D" />
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="BorderBrush" Value="#00AA8D" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
 
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Số lượng vé" Style="{StaticResource MyLabel}"/>
-                        <Label Content="0" Foreground="Red" Margin="20 5 0 0" Width="50" Style="{StaticResource MyLabel}" />
-                    </StackPanel>
+                <!--Thông tin header từng cột và binding-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="100" Header="Mã vé" Binding="{Binding maVe}"/>
+                    <DataGridTextColumn Width="100" Header="Số điện thoại" Binding="{Binding soDienThoai}" />
+                    <DataGridTextColumn Width="100" Header="Giá vé" Binding="{Binding giaVe}" />
+                    <DataGridTextColumn Width="100" Header="Vị trí" Binding="{Binding tenChoNgoi}" />
+                    <DataGridTextColumn Width="100" Header="Tình trạng" Binding="{Binding tinhTrang}" />
+                    <DataGridTextColumn Width="100" Header="Mã Khách hàng" Binding="{Binding maKhachHang}" />
+                    <DataGridTextColumn Width="100" Header="Mã Suất chiếu" Binding="{Binding maSuatChieu}" />
+                    <DataGridTextColumn Width="100" Header="Chỗ ngồi đẹp" Binding="{Binding choNgoiDep}" />
+                </DataGrid.Columns>
 
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Tổng tiền" Style="{StaticResource MyLabel}"/>
-                        <Label Content="0 VNĐ" Foreground="Red" Margin="20 5 0 0" Width="100" Style="{StaticResource MyLabel}" />
-                    </StackPanel>
-
-                    <Button x:Name="Button_DatVe" Content="Chọn Vị trí ghế" />
-                </StackPanel>
-
-                <DataGrid x:Name="dataGrid_DanhSachVe" Grid.Column="1" IsReadOnly="True" Margin="10 10 0 0" 
-                      HorizontalGridLinesBrush="#77649EFF" VerticalGridLinesBrush="#77649EFF">
-                    <DataGrid.ColumnHeaderStyle>
-                        <Style TargetType="DataGridColumnHeader">
-                            <Setter Property="FontSize" Value="14"/>
-                            <Setter Property="FontWeight" Value="SemiBold" />
-                            <Setter Property="Height" Value="32" />
-                        </Style>
-                    </DataGrid.ColumnHeaderStyle>
-                    <DataGrid.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="FontSize" Value="13"/>
-                            <Setter Property="FontWeight" Value="SemiBold" />
-                            <Setter Property="Height" Value="32" />
-                            <Style.Triggers>
-                                <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Background" Value="#649EFF" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </DataGrid.CellStyle>
-
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Width="*" Header="Mã khách hàng" Binding="{Binding maKhachHang}"/>
-                        <DataGridTextColumn Width="*" Header="Tên khách hàng" Binding="{Binding tenKhachHang}" />
-                        <DataGridTextColumn Width="*" Header="Giới tính" Binding="{Binding gioiTinh}" />
-                        <DataGridTextColumn Width="*" Header="Ngày sinh" Binding="{Binding ngaySinh}" />
-                        <DataGridTextColumn Width="*" Header="CMND" Binding="{Binding CMND}" />
-                        <DataGridTextColumn Width="*" Header="Số điện thoại" Binding="{Binding soDienThoai}" />
-                    </DataGrid.Columns>
-
-                    <!--Phần này sẽ xóa đi do sau này load dữ liệu từ database, cái này chỉ dùng để demo thôi nhé-->
-                    <local:KhachHang maKhachHang="123" tenKhachHang="Fred" gioiTinh="Flintstone" ngaySinh="fred@noemail.org" CMND="272425165" soDienThoai="01666290456" />
-                    <local:KhachHang maKhachHang="456" tenKhachHang="Fred" gioiTinh="Flintstone" ngaySinh="fred@noemail.org" CMND="272425165" soDienThoai="01666290456" />
-                    <local:KhachHang maKhachHang="789" tenKhachHang="Fred" gioiTinh="Flintstone" ngaySinh="fred@noemail.org" CMND="272425165" soDienThoai="01666290456" />
-                    <!--END demo-->
-                </DataGrid>
-            </Grid>
+                <!--Phần này sẽ xóa đi do sau này load dữ liệu từ database, cái này chỉ dùng để demo thôi nhé-->
+                <local:VeXemPhim maVe="123" soDienThoai="01666290444" giaVe="1000000" tinhTrang="Đặt trước" tenChoNgoi="abcd1234" maKhachHang="KH0001" maSuatChieu="SC0001" choNgoiDep="Đẹp"  />
+                <!--END demo-->
+            </DataGrid>
         </Grid>
+        
     </Border>
 </Page>

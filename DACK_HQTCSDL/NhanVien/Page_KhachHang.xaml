@@ -44,11 +44,11 @@
             <Border Grid.Row="0" Grid.Column="1" Padding="10 0 0 0" Margin="0 -15 0 0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Label Margin="20 5 0 0" Content="Tìm kiếm theo Mã" Style="{StaticResource MyLabel}"/>
-                    <TextBox Width="100" Style="{StaticResource MyTextBox}"/>
+                    <TextBox Width="100" Style="{StaticResource MyTextBox}" BorderBrush="#649EFF" />
                     <Label Margin="20 5 0 0" Content="Theo CMND" Style="{StaticResource MyLabel}"/>
-                    <TextBox Width="100" Style="{StaticResource MyTextBox}"/>
+                    <TextBox Width="100" Style="{StaticResource MyTextBox}" BorderBrush="#649EFF" />
                     <Label Margin="20 5 0 0" Content="Theo SĐT" Style="{StaticResource MyLabel}"/>
-                    <TextBox Width="100" Style="{StaticResource MyTextBox}"/>
+                    <TextBox Width="100" Style="{StaticResource MyTextBox}" BorderBrush="#649EFF" />
                     <Button Margin="20 5 0 0" Height="32" Width="100" Foreground="White" Background="#649EFF" FontSize="14" FontWeight="SemiBold" Content="Tìm kiếm" Style="{StaticResource MyButton}"/>
                 </StackPanel>
             </Border>
@@ -71,12 +71,15 @@
                         <Setter Property="Height" Value="32" />
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="#649EFF" />
+                                <Setter Property="Background" Value="#77649EFF" />
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="BorderBrush" Value="#649EFF" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
                 </DataGrid.CellStyle>
 
+                <!--Thông tin header từng cột và binding-->
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="*" Header="Mã khách hàng" Binding="{Binding maKhachHang}"/>
                     <DataGridTextColumn Width="*" Header="Tên khách hàng" Binding="{Binding tenKhachHang}" />
