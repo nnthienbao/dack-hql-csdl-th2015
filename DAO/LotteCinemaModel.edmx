@@ -1,0 +1,992 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_LOTTECINEMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BANGTHAMSO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenThamSo" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="GiaTri" Type="char" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CHITIETSUATCHIEU_THIETBI">
+          <Key>
+            <PropertyRef Name="MaSuatChieu" />
+            <PropertyRef Name="MaThietBi" />
+          </Key>
+          <Property Name="MaSuatChieu" Type="int" Nullable="false" />
+          <Property Name="MaThietBi" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOHOTPHIM">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaDoHot" Type="varchar" MaxLength="8" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="TenDoHot" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TienPhuThem" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaKhachHang" Type="varchar" MaxLength="8" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="GioiTinh" Type="bit" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="CMND" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SoDienThoai" Type="varchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MaNhanVien" />
+          </Key>
+          <Property Name="MaNhanVien" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="GioiTinh" Type="bit" Nullable="false" />
+          <Property Name="ChucVu" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PHIM">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaPhim" Type="varchar" MaxLength="10" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="TenPhim" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ThoiLuong" Type="int" Nullable="false" />
+          <Property Name="MaDoHot" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaPhong" Type="varchar" MaxLength="9" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="TenPhong" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SUATCHIEU">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaSuatChieu" Type="varchar" MaxLength="15" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="NgayChieu" Type="date" Nullable="false" />
+          <Property Name="ThoiGianBatDau" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ThoiGianKetThuc" Type="time" Precision="7" Nullable="false" />
+          <Property Name="MaPhim" Type="int" Nullable="false" />
+          <Property Name="MaPhong" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRANGTHIETBI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaThietBi" Type="varchar" MaxLength="11" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="TenThietBi" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TienPhuThem" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VEXEMPHIM">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaVe" Type="varchar" MaxLength="8" StoreGeneratedPattern="Computed" />
+          <Property Name="MaKhachHang" Type="int" />
+          <Property Name="GiaVe" Type="int" Nullable="false" />
+          <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenChoNgoi" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaSuatChieu" Type="int" Nullable="false" />
+          <Property Name="ChoNgoiDep" Type="bit" Nullable="false" />
+          <Property Name="SDTDatVe" Type="varchar" MaxLength="11" />
+          <Property Name="NhanVienBanVe" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CHITIETSUATCHIEU_THIETBI_SUATCHIEU">
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="1" />
+          <End Role="CHITIETSUATCHIEU_THIETBI" Type="Self.CHITIETSUATCHIEU_THIETBI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUATCHIEU">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CHITIETSUATCHIEU_THIETBI">
+              <PropertyRef Name="MaSuatChieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETSUATCHIEU_THIETBI_TRANGTHIETBI">
+          <End Role="TRANGTHIETBI" Type="Self.TRANGTHIETBI" Multiplicity="1" />
+          <End Role="CHITIETSUATCHIEU_THIETBI" Type="Self.CHITIETSUATCHIEU_THIETBI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANGTHIETBI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CHITIETSUATCHIEU_THIETBI">
+              <PropertyRef Name="MaThietBi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHIM_DOHOTPHIM">
+          <End Role="DOHOTPHIM" Type="Self.DOHOTPHIM" Multiplicity="1" />
+          <End Role="PHIM" Type="Self.PHIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOHOTPHIM">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PHIM">
+              <PropertyRef Name="MaDoHot" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUATCHIEU_PHIM">
+          <End Role="PHIM" Type="Self.PHIM" Multiplicity="1" />
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIM">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SUATCHIEU">
+              <PropertyRef Name="MaPhim" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUATCHIEU_PHONG">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SUATCHIEU">
+              <PropertyRef Name="MaPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEXEMPHIM_KHACHHANG">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="VEXEMPHIM" Type="Self.VEXEMPHIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="VEXEMPHIM">
+              <PropertyRef Name="MaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEXEMPHIM_NHANVIEN">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="VEXEMPHIM" Type="Self.VEXEMPHIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="VEXEMPHIM">
+              <PropertyRef Name="NhanVienBanVe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEXEMPHIM_SUATCHIEU">
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="1" />
+          <End Role="VEXEMPHIM" Type="Self.VEXEMPHIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUATCHIEU">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="VEXEMPHIM">
+              <PropertyRef Name="MaSuatChieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CAPNHATGIAVECOBAN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GiaVeMoi" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CAPNHATKHACHHANG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MAKHACHHANG" Type="nvarchar" Mode="In" />
+          <Parameter Name="HOTEN" Type="nvarchar" Mode="In" />
+          <Parameter Name="GIOITINH" Type="bit" Mode="In" />
+          <Parameter Name="NGAYSINH" Type="date" Mode="In" />
+          <Parameter Name="CMND" Type="varchar" Mode="In" />
+          <Parameter Name="SODIENTHOAI" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CAPNHATPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaPhim" Type="varchar" Mode="In" />
+          <Parameter Name="TenPhim" Type="nvarchar" Mode="In" />
+          <Parameter Name="TinhTrang" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiLuong" Type="int" Mode="In" />
+          <Parameter Name="MaDoHot" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CAPNHATPHUTHUCHONGOIDEP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhuThuMoi" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CAPNHATVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaVe" Type="varchar" Mode="In" />
+          <Parameter Name="MaKhachHang" Type="int" Mode="In" />
+          <Parameter Name="TinhTrang" Type="nvarchar" Mode="In" />
+          <Parameter Name="TenChoNgoi" Type="varchar" Mode="In" />
+          <Parameter Name="MaSuatChieu" Type="int" Mode="In" />
+          <Parameter Name="ChoNgoiDep" Type="bit" Mode="In" />
+          <Parameter Name="SDTDatVe" Type="varchar" Mode="In" />
+          <Parameter Name="NhanVienBanVe" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="LAYDSKHACHHANG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LAYDSPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LAYDSSUATCHIEU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LAYGIAVECOBAN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="LAYNHANVIEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MANV" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="LAYPHIMTHEOMAPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaPhim" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="LAYSUATCHIEUTHEOMA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSuatChieu" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="LAYTIENPHUTHEM_CHONGOIDEP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="LAYVETHEOMAVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Mave" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="LAYVETHEOSDTDATVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SDTDatVe" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="TAOPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TenPhim" Type="nvarchar" Mode="In" />
+          <Parameter Name="TinhTrang" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThoiLuong" Type="int" Mode="In" />
+          <Parameter Name="MaDoHot" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TAOSUATCHIEU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NgayChieu" Type="date" Mode="In" />
+          <Parameter Name="ThoiGianBatDau" Type="time" Mode="In" />
+          <Parameter Name="ThoiGianKetThuc" Type="time" Mode="In" />
+          <Parameter Name="MaPhim" Type="varchar" Mode="In" />
+          <Parameter Name="MaPhong" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="TAOVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaKhachHang" Type="int" Mode="In" />
+          <Parameter Name="TinhTrang" Type="nvarchar" Mode="In" />
+          <Parameter Name="TenChoNgoi" Type="varchar" Mode="In" />
+          <Parameter Name="MaSuatChieu" Type="int" Mode="In" />
+          <Parameter Name="ChoNgoiDep" Type="bit" Mode="In" />
+          <Parameter Name="SDTDatVe" Type="varchar" Mode="In" />
+          <Parameter Name="NhanVienBanVe" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="THEMKHACHHANG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HOTEN" Type="nvarchar" Mode="In" />
+          <Parameter Name="GIOITINH" Type="bit" Mode="In" />
+          <Parameter Name="NGAYSINH" Type="date" Mode="In" />
+          <Parameter Name="CMND" Type="varchar" Mode="In" />
+          <Parameter Name="SODIENTHOAI" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="THONGKE_VEBANRATHEOPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NgayBatDau" Type="date" Mode="In" />
+          <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
+        </Function>
+        <Function Name="THONGKE_VEHUYTHEOPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NgayBatDau" Type="date" Mode="In" />
+          <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
+        </Function>
+        <Function Name="TRACUUSUATCHIEU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DB_LOTTECINEMAModelStoreContainer">
+          <EntitySet Name="BANGTHAMSO" EntityType="Self.BANGTHAMSO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHITIETSUATCHIEU_THIETBI" EntityType="Self.CHITIETSUATCHIEU_THIETBI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOHOTPHIM" EntityType="Self.DOHOTPHIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIM" EntityType="Self.PHIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUATCHIEU" EntityType="Self.SUATCHIEU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRANGTHIETBI" EntityType="Self.TRANGTHIETBI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VEXEMPHIM" EntityType="Self.VEXEMPHIM" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CHITIETSUATCHIEU_THIETBI_SUATCHIEU" Association="Self.FK_CHITIETSUATCHIEU_THIETBI_SUATCHIEU">
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEU" />
+            <End Role="CHITIETSUATCHIEU_THIETBI" EntitySet="CHITIETSUATCHIEU_THIETBI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETSUATCHIEU_THIETBI_TRANGTHIETBI" Association="Self.FK_CHITIETSUATCHIEU_THIETBI_TRANGTHIETBI">
+            <End Role="TRANGTHIETBI" EntitySet="TRANGTHIETBI" />
+            <End Role="CHITIETSUATCHIEU_THIETBI" EntitySet="CHITIETSUATCHIEU_THIETBI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHIM_DOHOTPHIM" Association="Self.FK_PHIM_DOHOTPHIM">
+            <End Role="DOHOTPHIM" EntitySet="DOHOTPHIM" />
+            <End Role="PHIM" EntitySet="PHIM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUATCHIEU_PHIM" Association="Self.FK_SUATCHIEU_PHIM">
+            <End Role="PHIM" EntitySet="PHIM" />
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUATCHIEU_PHONG" Association="Self.FK_SUATCHIEU_PHONG">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEXEMPHIM_KHACHHANG" Association="Self.FK_VEXEMPHIM_KHACHHANG">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="VEXEMPHIM" EntitySet="VEXEMPHIM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEXEMPHIM_NHANVIEN" Association="Self.FK_VEXEMPHIM_NHANVIEN">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="VEXEMPHIM" EntitySet="VEXEMPHIM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEXEMPHIM_SUATCHIEU" Association="Self.FK_VEXEMPHIM_SUATCHIEU">
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEU" />
+            <End Role="VEXEMPHIM" EntitySet="VEXEMPHIM" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_LOTTECINEMAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BANGTHAMSO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenThamSo" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GiaTri" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOHOTPHIM">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaDoHot" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="TenDoHot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TienPhuThem" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PHIMs" Relationship="Self.FK_PHIM_DOHOTPHIM" FromRole="DOHOTPHIM" ToRole="PHIM" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaKhachHang" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="HoTen" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GioiTinh" Type="Boolean" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CMND" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VEXEMPHIMs" Relationship="Self.FK_VEXEMPHIM_KHACHHANG" FromRole="KHACHHANG" ToRole="VEXEMPHIM" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MaNhanVien" />
+          </Key>
+          <Property Name="MaNhanVien" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GioiTinh" Type="Boolean" Nullable="false" />
+          <Property Name="ChucVu" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="VEXEMPHIMs" Relationship="Self.FK_VEXEMPHIM_NHANVIEN" FromRole="NHANVIEN" ToRole="VEXEMPHIM" />
+        </EntityType>
+        <EntityType Name="PHIM">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaPhim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="TenPhim" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ThoiLuong" Type="Int32" Nullable="false" />
+          <Property Name="MaDoHot" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DOHOTPHIM" Relationship="Self.FK_PHIM_DOHOTPHIM" FromRole="PHIM" ToRole="DOHOTPHIM" />
+          <NavigationProperty Name="SUATCHIEUx" Relationship="Self.FK_SUATCHIEU_PHIM" FromRole="PHIM" ToRole="SUATCHIEU" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaPhong" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="TenPhong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SUATCHIEUx" Relationship="Self.FK_SUATCHIEU_PHONG" FromRole="PHONG" ToRole="SUATCHIEU" />
+        </EntityType>
+        <EntityType Name="SUATCHIEU">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaSuatChieu" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="NgayChieu" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ThoiGianBatDau" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ThoiGianKetThuc" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="MaPhim" Type="Int32" Nullable="false" />
+          <Property Name="MaPhong" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PHIM" Relationship="Self.FK_SUATCHIEU_PHIM" FromRole="SUATCHIEU" ToRole="PHIM" />
+          <NavigationProperty Name="PHONG" Relationship="Self.FK_SUATCHIEU_PHONG" FromRole="SUATCHIEU" ToRole="PHONG" />
+          <NavigationProperty Name="VEXEMPHIMs" Relationship="Self.FK_VEXEMPHIM_SUATCHIEU" FromRole="SUATCHIEU" ToRole="VEXEMPHIM" />
+          <NavigationProperty Name="TRANGTHIETBIs" Relationship="Self.CHITIETSUATCHIEU_THIETBI" FromRole="SUATCHIEU" ToRole="TRANGTHIETBI" />
+        </EntityType>
+        <EntityType Name="TRANGTHIETBI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaThietBi" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="TenThietBi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TienPhuThem" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SUATCHIEUx" Relationship="Self.CHITIETSUATCHIEU_THIETBI" FromRole="TRANGTHIETBI" ToRole="SUATCHIEU" />
+        </EntityType>
+        <EntityType Name="VEXEMPHIM">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaVe" Type="String" MaxLength="8" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="MaKhachHang" Type="Int32" />
+          <Property Name="GiaVe" Type="Int32" Nullable="false" />
+          <Property Name="TinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenChoNgoi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaSuatChieu" Type="Int32" Nullable="false" />
+          <Property Name="ChoNgoiDep" Type="Boolean" Nullable="false" />
+          <Property Name="SDTDatVe" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="NhanVienBanVe" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_VEXEMPHIM_KHACHHANG" FromRole="VEXEMPHIM" ToRole="KHACHHANG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_VEXEMPHIM_NHANVIEN" FromRole="VEXEMPHIM" ToRole="NHANVIEN" />
+          <NavigationProperty Name="SUATCHIEU" Relationship="Self.FK_VEXEMPHIM_SUATCHIEU" FromRole="VEXEMPHIM" ToRole="SUATCHIEU" />
+        </EntityType>
+        <Association Name="FK_PHIM_DOHOTPHIM">
+          <End Role="DOHOTPHIM" Type="Self.DOHOTPHIM" Multiplicity="1" />
+          <End Role="PHIM" Type="Self.PHIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOHOTPHIM">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PHIM">
+              <PropertyRef Name="MaDoHot" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEXEMPHIM_KHACHHANG">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="VEXEMPHIM" Type="Self.VEXEMPHIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="VEXEMPHIM">
+              <PropertyRef Name="MaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEXEMPHIM_NHANVIEN">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+          <End Role="VEXEMPHIM" Type="Self.VEXEMPHIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="VEXEMPHIM">
+              <PropertyRef Name="NhanVienBanVe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUATCHIEU_PHIM">
+          <End Role="PHIM" Type="Self.PHIM" Multiplicity="1" />
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIM">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SUATCHIEU">
+              <PropertyRef Name="MaPhim" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUATCHIEU_PHONG">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SUATCHIEU">
+              <PropertyRef Name="MaPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEXEMPHIM_SUATCHIEU">
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="1" />
+          <End Role="VEXEMPHIM" Type="Self.VEXEMPHIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUATCHIEU">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="VEXEMPHIM">
+              <PropertyRef Name="MaSuatChieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CHITIETSUATCHIEU_THIETBI">
+          <End Role="SUATCHIEU" Type="Self.SUATCHIEU" Multiplicity="*" />
+          <End Role="TRANGTHIETBI" Type="Self.TRANGTHIETBI" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DB_LOTTECINEMAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BANGTHAMSOes" EntityType="Self.BANGTHAMSO" />
+          <EntitySet Name="DOHOTPHIMs" EntityType="Self.DOHOTPHIM" />
+          <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+          <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+          <EntitySet Name="PHIMs" EntityType="Self.PHIM" />
+          <EntitySet Name="PHONGs" EntityType="Self.PHONG" />
+          <EntitySet Name="SUATCHIEUx" EntityType="Self.SUATCHIEU" />
+          <EntitySet Name="TRANGTHIETBIs" EntityType="Self.TRANGTHIETBI" />
+          <EntitySet Name="VEXEMPHIMs" EntityType="Self.VEXEMPHIM" />
+          <AssociationSet Name="FK_PHIM_DOHOTPHIM" Association="Self.FK_PHIM_DOHOTPHIM">
+            <End Role="DOHOTPHIM" EntitySet="DOHOTPHIMs" />
+            <End Role="PHIM" EntitySet="PHIMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEXEMPHIM_KHACHHANG" Association="Self.FK_VEXEMPHIM_KHACHHANG">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="VEXEMPHIM" EntitySet="VEXEMPHIMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEXEMPHIM_NHANVIEN" Association="Self.FK_VEXEMPHIM_NHANVIEN">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="VEXEMPHIM" EntitySet="VEXEMPHIMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUATCHIEU_PHIM" Association="Self.FK_SUATCHIEU_PHIM">
+            <End Role="PHIM" EntitySet="PHIMs" />
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEUx" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUATCHIEU_PHONG" Association="Self.FK_SUATCHIEU_PHONG">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEUx" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEXEMPHIM_SUATCHIEU" Association="Self.FK_VEXEMPHIM_SUATCHIEU">
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEUx" />
+            <End Role="VEXEMPHIM" EntitySet="VEXEMPHIMs" />
+          </AssociationSet>
+          <AssociationSet Name="CHITIETSUATCHIEU_THIETBI" Association="Self.CHITIETSUATCHIEU_THIETBI">
+            <End Role="SUATCHIEU" EntitySet="SUATCHIEUx" />
+            <End Role="TRANGTHIETBI" EntitySet="TRANGTHIETBIs" />
+          </AssociationSet>
+          <FunctionImport Name="CAPNHATGIAVECOBAN">
+            <Parameter Name="GiaVeMoi" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CAPNHATKHACHHANG">
+            <Parameter Name="MAKHACHHANG" Mode="In" Type="String" />
+            <Parameter Name="HOTEN" Mode="In" Type="String" />
+            <Parameter Name="GIOITINH" Mode="In" Type="Boolean" />
+            <Parameter Name="NGAYSINH" Mode="In" Type="DateTime" />
+            <Parameter Name="CMND" Mode="In" Type="String" />
+            <Parameter Name="SODIENTHOAI" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CAPNHATPHIM">
+            <Parameter Name="MaPhim" Mode="In" Type="String" />
+            <Parameter Name="TenPhim" Mode="In" Type="String" />
+            <Parameter Name="TinhTrang" Mode="In" Type="String" />
+            <Parameter Name="ThoiLuong" Mode="In" Type="Int32" />
+            <Parameter Name="MaDoHot" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CAPNHATPHUTHUCHONGOIDEP">
+            <Parameter Name="PhuThuMoi" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CAPNHATVE">
+            <Parameter Name="MaVe" Mode="In" Type="String" />
+            <Parameter Name="MaKhachHang" Mode="In" Type="Int32" />
+            <Parameter Name="TinhTrang" Mode="In" Type="String" />
+            <Parameter Name="TenChoNgoi" Mode="In" Type="String" />
+            <Parameter Name="MaSuatChieu" Mode="In" Type="Int32" />
+            <Parameter Name="ChoNgoiDep" Mode="In" Type="Boolean" />
+            <Parameter Name="SDTDatVe" Mode="In" Type="String" />
+            <Parameter Name="NhanVienBanVe" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LAYDSKHACHHANG" EntitySet="KHACHHANGs" ReturnType="Collection(DB_LOTTECINEMAModel.KHACHHANG)" />
+          <FunctionImport Name="LAYDSPHIM" ReturnType="Collection(DB_LOTTECINEMAModel.LAYDSPHIM_Result)" />
+          <FunctionImport Name="LAYDSSUATCHIEU" ReturnType="Collection(DB_LOTTECINEMAModel.LAYDSSUATCHIEU_Result)" />
+          <FunctionImport Name="LAYNHANVIEN" EntitySet="NHANVIENs" ReturnType="Collection(DB_LOTTECINEMAModel.NHANVIEN)">
+            <Parameter Name="MANV" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LAYPHIMTHEOMAPHIM" ReturnType="Collection(DB_LOTTECINEMAModel.LAYPHIMTHEOMAPHIM_Result)">
+            <Parameter Name="MaPhim" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LAYSUATCHIEUTHEOMA" ReturnType="Collection(DB_LOTTECINEMAModel.LAYSUATCHIEUTHEOMA_Result)">
+            <Parameter Name="MaSuatChieu" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LAYVETHEOMAVE" ReturnType="Collection(DB_LOTTECINEMAModel.LAYVETHEOMAVE_Result)">
+            <Parameter Name="Mave" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LAYVETHEOSDTDATVE" ReturnType="Collection(DB_LOTTECINEMAModel.LAYVETHEOSDTDATVE_Result)">
+            <Parameter Name="SDTDatVe" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TAOPHIM">
+            <Parameter Name="TenPhim" Mode="In" Type="String" />
+            <Parameter Name="TinhTrang" Mode="In" Type="String" />
+            <Parameter Name="ThoiLuong" Mode="In" Type="Int32" />
+            <Parameter Name="MaDoHot" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TAOSUATCHIEU">
+            <Parameter Name="NgayChieu" Mode="In" Type="DateTime" />
+            <Parameter Name="ThoiGianBatDau" Mode="In" Type="Time" />
+            <Parameter Name="ThoiGianKetThuc" Mode="In" Type="Time" />
+            <Parameter Name="MaPhim" Mode="In" Type="String" />
+            <Parameter Name="MaPhong" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TAOVE">
+            <Parameter Name="MaKhachHang" Mode="In" Type="Int32" />
+            <Parameter Name="TinhTrang" Mode="In" Type="String" />
+            <Parameter Name="TenChoNgoi" Mode="In" Type="String" />
+            <Parameter Name="MaSuatChieu" Mode="In" Type="Int32" />
+            <Parameter Name="ChoNgoiDep" Mode="In" Type="Boolean" />
+            <Parameter Name="SDTDatVe" Mode="In" Type="String" />
+            <Parameter Name="NhanVienBanVe" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="THEMKHACHHANG">
+            <Parameter Name="HOTEN" Mode="In" Type="String" />
+            <Parameter Name="GIOITINH" Mode="In" Type="Boolean" />
+            <Parameter Name="NGAYSINH" Mode="In" Type="DateTime" />
+            <Parameter Name="CMND" Mode="In" Type="String" />
+            <Parameter Name="SODIENTHOAI" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="THONGKE_VEBANRATHEOPHIM" ReturnType="Collection(DB_LOTTECINEMAModel.THONGKE_VEBANRATHEOPHIM_Result)">
+            <Parameter Name="NgayBatDau" Mode="In" Type="DateTime" />
+            <Parameter Name="NgayKetThuc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="THONGKE_VEHUYTHEOPHIM" ReturnType="Collection(DB_LOTTECINEMAModel.THONGKE_VEHUYTHEOPHIM_Result)">
+            <Parameter Name="NgayBatDau" Mode="In" Type="DateTime" />
+            <Parameter Name="NgayKetThuc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="TRACUUSUATCHIEU" />
+        </EntityContainer>
+        <ComplexType Name="LAYDSKHACHHANG_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaKhachHang" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="HoTen" Nullable="false" MaxLength="70" />
+          <Property Type="Boolean" Name="GioiTinh" Nullable="false" />
+          <Property Type="DateTime" Name="NgaySinh" Nullable="false" />
+          <Property Type="String" Name="CMND" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="SoDienThoai" Nullable="true" MaxLength="11" />
+        </ComplexType>
+        <ComplexType Name="LAYDSPHIM_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaPhim" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TenPhim" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="TinhTrang" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ThoiLuong" Nullable="false" />
+          <Property Type="Int32" Name="MaDoHot" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="LAYDSSUATCHIEU_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaSuatChieu" Nullable="true" MaxLength="15" />
+          <Property Type="DateTime" Name="NgayChieu" Nullable="false" />
+          <Property Type="Time" Name="ThoiGianBatDau" Nullable="false" />
+          <Property Type="Time" Name="ThoiGianKetThuc" Nullable="false" />
+          <Property Type="Int32" Name="MaPhim" Nullable="false" />
+          <Property Type="Int32" Name="MaPhong" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="LAYNHANVIEN_Result">
+          <Property Type="String" Name="MaNhanVien" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="HoTen" Nullable="false" MaxLength="70" />
+          <Property Type="DateTime" Name="NgaySinh" Nullable="false" />
+          <Property Type="Boolean" Name="GioiTinh" Nullable="false" />
+          <Property Type="String" Name="ChucVu" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="LAYPHIMTHEOMAPHIM_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaPhim" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TenPhim" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="TinhTrang" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ThoiLuong" Nullable="false" />
+          <Property Type="Int32" Name="MaDoHot" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="LAYSUATCHIEUTHEOMA_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaSuatChieu" Nullable="true" MaxLength="15" />
+          <Property Type="DateTime" Name="NgayChieu" Nullable="false" />
+          <Property Type="Time" Name="ThoiGianBatDau" Nullable="false" />
+          <Property Type="Time" Name="ThoiGianKetThuc" Nullable="false" />
+          <Property Type="Int32" Name="MaPhim" Nullable="false" />
+          <Property Type="Int32" Name="MaPhong" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="LAYVETHEOMAVE_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaVe" Nullable="true" MaxLength="8" />
+          <Property Type="Int32" Name="MaKhachHang" Nullable="true" />
+          <Property Type="Int32" Name="GiaVe" Nullable="false" />
+          <Property Type="String" Name="TinhTrang" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TenChoNgoi" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="MaSuatChieu" Nullable="false" />
+          <Property Type="Boolean" Name="ChoNgoiDep" Nullable="false" />
+          <Property Type="String" Name="SDTDatVe" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="NhanVienBanVe" Nullable="false" MaxLength="11" />
+        </ComplexType>
+        <ComplexType Name="LAYVETHEOSDTDATVE_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaVe" Nullable="true" MaxLength="8" />
+          <Property Type="Int32" Name="MaKhachHang" Nullable="true" />
+          <Property Type="Int32" Name="GiaVe" Nullable="false" />
+          <Property Type="String" Name="TinhTrang" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TenChoNgoi" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="MaSuatChieu" Nullable="false" />
+          <Property Type="Boolean" Name="ChoNgoiDep" Nullable="false" />
+          <Property Type="String" Name="SDTDatVe" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="NhanVienBanVe" Nullable="false" MaxLength="11" />
+        </ComplexType>
+        <ComplexType Name="THONGKE_VEBANRATHEOPHIM_Result">
+          <Property Type="String" Name="MaPhim" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TenPhim" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="THONGKE_VEHUYTHEOPHIM_Result">
+          <Property Type="String" Name="MaPhim" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TenPhim" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_LOTTECINEMAModelStoreContainer" CdmEntityContainer="DB_LOTTECINEMAEntities">
+          <EntitySetMapping Name="BANGTHAMSOes">
+            <EntityTypeMapping TypeName="DB_LOTTECINEMAModel.BANGTHAMSO">
+              <MappingFragment StoreEntitySet="BANGTHAMSO">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TenThamSo" ColumnName="TenThamSo" />
+                <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOHOTPHIMs">
+            <EntityTypeMapping TypeName="DB_LOTTECINEMAModel.DOHOTPHIM">
+              <MappingFragment StoreEntitySet="DOHOTPHIM">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaDoHot" ColumnName="MaDoHot" />
+                <ScalarProperty Name="TenDoHot" ColumnName="TenDoHot" />
+                <ScalarProperty Name="TienPhuThem" ColumnName="TienPhuThem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACHHANGs">
+            <EntityTypeMapping TypeName="DB_LOTTECINEMAModel.KHACHHANG">
+              <MappingFragment StoreEntitySet="KHACHHANG">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHANVIENs">
+            <EntityTypeMapping TypeName="DB_LOTTECINEMAModel.NHANVIEN">
+              <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIMs">
+            <EntityTypeMapping TypeName="DB_LOTTECINEMAModel.PHIM">
+              <MappingFragment StoreEntitySet="PHIM">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
+                <ScalarProperty Name="TenPhim" ColumnName="TenPhim" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="ThoiLuong" ColumnName="ThoiLuong" />
+                <ScalarProperty Name="MaDoHot" ColumnName="MaDoHot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHONGs">
+            <EntityTypeMapping TypeName="DB_LOTTECINEMAModel.PHONG">
+              <MappingFragment StoreEntitySet="PHONG">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+                <ScalarProperty Name="TenPhong" ColumnName="TenPhong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUATCHIEUx">
+            <EntityTypeMapping TypeName="DB_LOTTECINEMAModel.SUATCHIEU">
+              <MappingFragment StoreEntitySet="SUATCHIEU">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaSuatChieu" ColumnName="MaSuatChieu" />
+                <ScalarProperty Name="NgayChieu" ColumnName="NgayChieu" />
+                <ScalarProperty Name="ThoiGianBatDau" ColumnName="ThoiGianBatDau" />
+                <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
+                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANGTHIETBIs">
+            <EntityTypeMapping TypeName="DB_LOTTECINEMAModel.TRANGTHIETBI">
+              <MappingFragment StoreEntitySet="TRANGTHIETBI">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaThietBi" ColumnName="MaThietBi" />
+                <ScalarProperty Name="TenThietBi" ColumnName="TenThietBi" />
+                <ScalarProperty Name="TienPhuThem" ColumnName="TienPhuThem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VEXEMPHIMs">
+            <EntityTypeMapping TypeName="DB_LOTTECINEMAModel.VEXEMPHIM">
+              <MappingFragment StoreEntitySet="VEXEMPHIM">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaVe" ColumnName="MaVe" />
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+                <ScalarProperty Name="GiaVe" ColumnName="GiaVe" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="TenChoNgoi" ColumnName="TenChoNgoi" />
+                <ScalarProperty Name="MaSuatChieu" ColumnName="MaSuatChieu" />
+                <ScalarProperty Name="ChoNgoiDep" ColumnName="ChoNgoiDep" />
+                <ScalarProperty Name="SDTDatVe" ColumnName="SDTDatVe" />
+                <ScalarProperty Name="NhanVienBanVe" ColumnName="NhanVienBanVe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CHITIETSUATCHIEU_THIETBI" TypeName="DB_LOTTECINEMAModel.CHITIETSUATCHIEU_THIETBI" StoreEntitySet="CHITIETSUATCHIEU_THIETBI">
+            <EndProperty Name="SUATCHIEU">
+              <ScalarProperty Name="id" ColumnName="MaSuatChieu" />
+            </EndProperty>
+            <EndProperty Name="TRANGTHIETBI">
+              <ScalarProperty Name="id" ColumnName="MaThietBi" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="CAPNHATGIAVECOBAN" FunctionName="DB_LOTTECINEMAModel.Store.CAPNHATGIAVECOBAN" />
+          <FunctionImportMapping FunctionImportName="CAPNHATKHACHHANG" FunctionName="DB_LOTTECINEMAModel.Store.CAPNHATKHACHHANG" />
+          <FunctionImportMapping FunctionImportName="CAPNHATPHIM" FunctionName="DB_LOTTECINEMAModel.Store.CAPNHATPHIM" />
+          <FunctionImportMapping FunctionImportName="CAPNHATPHUTHUCHONGOIDEP" FunctionName="DB_LOTTECINEMAModel.Store.CAPNHATPHUTHUCHONGOIDEP" />
+          <FunctionImportMapping FunctionImportName="CAPNHATVE" FunctionName="DB_LOTTECINEMAModel.Store.CAPNHATVE" />
+          <FunctionImportMapping FunctionImportName="LAYDSKHACHHANG" FunctionName="DB_LOTTECINEMAModel.Store.LAYDSKHACHHANG">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LAYDSPHIM" FunctionName="DB_LOTTECINEMAModel.Store.LAYDSPHIM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.LAYDSPHIM_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
+                <ScalarProperty Name="TenPhim" ColumnName="TenPhim" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="ThoiLuong" ColumnName="ThoiLuong" />
+                <ScalarProperty Name="MaDoHot" ColumnName="MaDoHot" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LAYDSSUATCHIEU" FunctionName="DB_LOTTECINEMAModel.Store.LAYDSSUATCHIEU">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.LAYDSSUATCHIEU_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaSuatChieu" ColumnName="MaSuatChieu" />
+                <ScalarProperty Name="NgayChieu" ColumnName="NgayChieu" />
+                <ScalarProperty Name="ThoiGianBatDau" ColumnName="ThoiGianBatDau" />
+                <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
+                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LAYNHANVIEN" FunctionName="DB_LOTTECINEMAModel.Store.LAYNHANVIEN">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LAYPHIMTHEOMAPHIM" FunctionName="DB_LOTTECINEMAModel.Store.LAYPHIMTHEOMAPHIM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.LAYPHIMTHEOMAPHIM_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
+                <ScalarProperty Name="TenPhim" ColumnName="TenPhim" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="ThoiLuong" ColumnName="ThoiLuong" />
+                <ScalarProperty Name="MaDoHot" ColumnName="MaDoHot" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LAYSUATCHIEUTHEOMA" FunctionName="DB_LOTTECINEMAModel.Store.LAYSUATCHIEUTHEOMA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.LAYSUATCHIEUTHEOMA_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaSuatChieu" ColumnName="MaSuatChieu" />
+                <ScalarProperty Name="NgayChieu" ColumnName="NgayChieu" />
+                <ScalarProperty Name="ThoiGianBatDau" ColumnName="ThoiGianBatDau" />
+                <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
+                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LAYVETHEOMAVE" FunctionName="DB_LOTTECINEMAModel.Store.LAYVETHEOMAVE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.LAYVETHEOMAVE_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaVe" ColumnName="MaVe" />
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+                <ScalarProperty Name="GiaVe" ColumnName="GiaVe" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="TenChoNgoi" ColumnName="TenChoNgoi" />
+                <ScalarProperty Name="MaSuatChieu" ColumnName="MaSuatChieu" />
+                <ScalarProperty Name="ChoNgoiDep" ColumnName="ChoNgoiDep" />
+                <ScalarProperty Name="SDTDatVe" ColumnName="SDTDatVe" />
+                <ScalarProperty Name="NhanVienBanVe" ColumnName="NhanVienBanVe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LAYVETHEOSDTDATVE" FunctionName="DB_LOTTECINEMAModel.Store.LAYVETHEOSDTDATVE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.LAYVETHEOSDTDATVE_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaVe" ColumnName="MaVe" />
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+                <ScalarProperty Name="GiaVe" ColumnName="GiaVe" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="TenChoNgoi" ColumnName="TenChoNgoi" />
+                <ScalarProperty Name="MaSuatChieu" ColumnName="MaSuatChieu" />
+                <ScalarProperty Name="ChoNgoiDep" ColumnName="ChoNgoiDep" />
+                <ScalarProperty Name="SDTDatVe" ColumnName="SDTDatVe" />
+                <ScalarProperty Name="NhanVienBanVe" ColumnName="NhanVienBanVe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TAOPHIM" FunctionName="DB_LOTTECINEMAModel.Store.TAOPHIM" />
+          <FunctionImportMapping FunctionImportName="TAOSUATCHIEU" FunctionName="DB_LOTTECINEMAModel.Store.TAOSUATCHIEU" />
+          <FunctionImportMapping FunctionImportName="TAOVE" FunctionName="DB_LOTTECINEMAModel.Store.TAOVE" />
+          <FunctionImportMapping FunctionImportName="THEMKHACHHANG" FunctionName="DB_LOTTECINEMAModel.Store.THEMKHACHHANG" />
+          <FunctionImportMapping FunctionImportName="THONGKE_VEBANRATHEOPHIM" FunctionName="DB_LOTTECINEMAModel.Store.THONGKE_VEBANRATHEOPHIM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.THONGKE_VEBANRATHEOPHIM_Result">
+                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
+                <ScalarProperty Name="TenPhim" ColumnName="TenPhim" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="THONGKE_VEHUYTHEOPHIM" FunctionName="DB_LOTTECINEMAModel.Store.THONGKE_VEHUYTHEOPHIM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.THONGKE_VEHUYTHEOPHIM_Result">
+                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
+                <ScalarProperty Name="TenPhim" ColumnName="TenPhim" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TRACUUSUATCHIEU" FunctionName="DB_LOTTECINEMAModel.Store.TRACUUSUATCHIEU" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

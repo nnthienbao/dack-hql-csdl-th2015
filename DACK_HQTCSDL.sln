@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DACK_HQTCSDL", "DACK_HQTCSDL\DACK_HQTCSDL.csproj", "{911FD158-20DC-42AB-8C86-2F70EA70961D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO", "DAO\DAO.csproj", "{B2EAC500-4B73-4BE9-BD27-B6D1173C4C77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAOTests", "DAOTests\DAOTests.csproj", "{1866B449-C639-4777-B63D-D92CC3AA99D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{911FD158-20DC-42AB-8C86-2F70EA70961D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{911FD158-20DC-42AB-8C86-2F70EA70961D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{911FD158-20DC-42AB-8C86-2F70EA70961D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2EAC500-4B73-4BE9-BD27-B6D1173C4C77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2EAC500-4B73-4BE9-BD27-B6D1173C4C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2EAC500-4B73-4BE9-BD27-B6D1173C4C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2EAC500-4B73-4BE9-BD27-B6D1173C4C77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1866B449-C639-4777-B63D-D92CC3AA99D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1866B449-C639-4777-B63D-D92CC3AA99D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1866B449-C639-4777-B63D-D92CC3AA99D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1866B449-C639-4777-B63D-D92CC3AA99D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
