@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_LOTTECINEMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB_LOTTECINEMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BANGTHAMSO">
           <Key>
             <PropertyRef Name="id" />
@@ -238,6 +238,9 @@
         <Function Name="LAYDSPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="LAYDSSUATCHIEU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="LAYGIAVECOBAN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="LAYKHACHHANGTHEOMAKH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaKhachHang" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="LAYNHANVIEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MANV" Type="varchar" Mode="In" />
         </Function>
@@ -336,8 +339,7 @@
             <End Role="VEXEMPHIM" EntitySet="VEXEMPHIM" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_LOTTECINEMAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -564,7 +566,7 @@
             <End Role="TRANGTHIETBI" EntitySet="TRANGTHIETBIs" />
           </AssociationSet>
           <FunctionImport Name="CAPNHATGIAVECOBAN">
-            <Parameter Name="GiaVeMoi" Mode="In" Type="Int32" />
+          <Parameter Name="GiaVeMoi" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CAPNHATKHACHHANG">
             <Parameter Name="MAKHACHHANG" Mode="In" Type="String" />
@@ -582,7 +584,7 @@
             <Parameter Name="MaDoHot" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CAPNHATPHUTHUCHONGOIDEP">
-            <Parameter Name="PhuThuMoi" Mode="In" Type="Int32" />
+          <Parameter Name="PhuThuMoi" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CAPNHATVE">
             <Parameter Name="MaVe" Mode="In" Type="String" />
@@ -598,19 +600,19 @@
           <FunctionImport Name="LAYDSPHIM" ReturnType="Collection(DB_LOTTECINEMAModel.LAYDSPHIM_Result)" />
           <FunctionImport Name="LAYDSSUATCHIEU" ReturnType="Collection(DB_LOTTECINEMAModel.LAYDSSUATCHIEU_Result)" />
           <FunctionImport Name="LAYNHANVIEN" EntitySet="NHANVIENs" ReturnType="Collection(DB_LOTTECINEMAModel.NHANVIEN)">
-            <Parameter Name="MANV" Mode="In" Type="String" />
+          <Parameter Name="MANV" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LAYPHIMTHEOMAPHIM" ReturnType="Collection(DB_LOTTECINEMAModel.LAYPHIMTHEOMAPHIM_Result)">
-            <Parameter Name="MaPhim" Mode="In" Type="String" />
+          <Parameter Name="MaPhim" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LAYSUATCHIEUTHEOMA" ReturnType="Collection(DB_LOTTECINEMAModel.LAYSUATCHIEUTHEOMA_Result)">
-            <Parameter Name="MaSuatChieu" Mode="In" Type="String" />
+          <Parameter Name="MaSuatChieu" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LAYVETHEOMAVE" ReturnType="Collection(DB_LOTTECINEMAModel.LAYVETHEOMAVE_Result)">
-            <Parameter Name="Mave" Mode="In" Type="String" />
+          <Parameter Name="Mave" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LAYVETHEOSDTDATVE" ReturnType="Collection(DB_LOTTECINEMAModel.LAYVETHEOSDTDATVE_Result)">
-            <Parameter Name="SDTDatVe" Mode="In" Type="String" />
+          <Parameter Name="SDTDatVe" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="TAOPHIM">
             <Parameter Name="TenPhim" Mode="In" Type="String" />
@@ -650,6 +652,9 @@
             <Parameter Name="NgayKetThuc" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="TRACUUSUATCHIEU" />
+          <FunctionImport Name="LAYKHACHHANGTHEOMAKH" EntitySet="KHACHHANGs" ReturnType="Collection(DB_LOTTECINEMAModel.KHACHHANG)">
+            <Parameter Name="MaKhachHang" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="LAYDSKHACHHANG_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -734,6 +739,15 @@
           <Property Type="String" Name="MaPhim" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="TenPhim" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="LAYKHACHHANGTHEOMAKH_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaKhachHang" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="HoTen" Nullable="false" MaxLength="70" />
+          <Property Type="Boolean" Name="GioiTinh" Nullable="false" />
+          <Property Type="DateTime" Name="NgaySinh" Nullable="false" />
+          <Property Type="String" Name="CMND" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="SoDienThoai" Nullable="true" MaxLength="11" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -966,6 +980,8 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TRACUUSUATCHIEU" FunctionName="DB_LOTTECINEMAModel.Store.TRACUUSUATCHIEU" />
+          <FunctionImportMapping FunctionImportName="LAYKHACHHANGTHEOMAKH" FunctionName="DB_LOTTECINEMAModel.Store.LAYKHACHHANGTHEOMAKH">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

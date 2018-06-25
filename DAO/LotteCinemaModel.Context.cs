@@ -354,5 +354,23 @@ namespace DAO
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TRACUUSUATCHIEU");
         }
+    
+        public virtual ObjectResult<KHACHHANG> LAYKHACHHANGTHEOMAKH(string maKhachHang)
+        {
+            var maKhachHangParameter = maKhachHang != null ?
+                new ObjectParameter("MaKhachHang", maKhachHang) :
+                new ObjectParameter("MaKhachHang", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<KHACHHANG>("LAYKHACHHANGTHEOMAKH", maKhachHangParameter);
+        }
+    
+        public virtual ObjectResult<KHACHHANG> LAYKHACHHANGTHEOMAKH(string maKhachHang, MergeOption mergeOption)
+        {
+            var maKhachHangParameter = maKhachHang != null ?
+                new ObjectParameter("MaKhachHang", maKhachHang) :
+                new ObjectParameter("MaKhachHang", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<KHACHHANG>("LAYKHACHHANGTHEOMAKH", mergeOption, maKhachHangParameter);
+        }
     }
 }

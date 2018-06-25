@@ -47,5 +47,15 @@ namespace DAO.Tests
             result = khDAO.CapNhatKhachHang("KH_00043", "Thiên Bảo", true, DateTime.Now, "111111", "1234567");
             Assert.IsTrue(result);
         }
+
+        [TestMethod()]
+        public void LayKhachHangTheoMaKHTest()
+        {
+            KHACHHANG kh = khDAO.LayKhachHangTheoMaKH("aaaa");
+            Assert.IsNull(kh);
+
+            kh = khDAO.LayKhachHangTheoMaKH("KH_00043");
+            Assert.IsNotNull(kh);
+        }
     }
 }

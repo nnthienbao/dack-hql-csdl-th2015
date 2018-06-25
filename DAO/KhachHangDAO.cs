@@ -83,5 +83,27 @@ namespace DAO
                 }
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="maKhachHang"></param>
+        /// <returns>
+        ///     KHACHHANG: neu tim duoc duoc khach hang
+        ///     NULL: neu that bai
+        /// </returns>
+        public KHACHHANG LayKhachHangTheoMaKH(string maKhachHang)
+        {
+            try
+            {
+                using (var db = new DB_LOTTECINEMAEntities())
+                {
+                    return db.LAYKHACHHANGTHEOMAKH(maKhachHang).SingleOrDefault();
+                }
+            } catch
+            {
+                return null;
+            }
+        }
     }
 }
