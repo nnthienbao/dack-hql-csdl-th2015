@@ -27,7 +27,7 @@ GO
 -- THEM PHIM
 ALTER PROC TAOPHIM
 	@TenPhim NVARCHAR(200),
-	@TinhTrang NVARCHAR(50),
+	@TinhTrang int,
 	@ThoiLuong int,
 	@MaDoHot int
 AS
@@ -51,12 +51,14 @@ GO
 ALTER PROC CAPNHATPHIM
 	@MaPhim VARCHAR(10),
 	@TenPhim NVARCHAR(200),
-	@TinhTrang NVARCHAR(50),
+	@TinhTrang int,
 	@ThoiLuong int,
 	@MaDoHot int
 AS
 BEGIN
 	BEGIN TRY
+		IF NOT EXISTS (SELECT * FROM PHIM WHERE MaPhim=@MaPhim)
+			RAISERROR(N'Không tìm thấy phim', 16, 1)
 		BEGIN TRAN
 			UPDATE PHIM
 			SET TenPhim=ISNULL(@TenPhim, TenPhim),
