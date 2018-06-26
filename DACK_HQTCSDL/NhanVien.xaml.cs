@@ -22,6 +22,7 @@ namespace DACK_HQTCSDL
     {
         private Page_KhachHang page_KhachHang = new Page_KhachHang();
         private Page_VeXemPhim page_VeXemPhim = new Page_VeXemPhim();
+
         public NhanVien()
         {
             InitializeComponent();

@@ -5,8 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DACK_HQTCSDL"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="64" d:DesignWidth="72"
+             Loaded="UserControl_Loaded">
+
+    <Button x:Name="Btn_Slot" Click="Btn_Slot_Click" Background="#0fff" BorderThickness="0">
+        <StackPanel>
+            <Image x:Name="Image_Slot" Source="../Image/slotGreen.png" Width="32" Height="28"/>
+            <Label x:Name="Label_Slot" FontSize="20" FontWeight="Bold" />
+        </StackPanel>
+    </Button>
 </UserControl>
