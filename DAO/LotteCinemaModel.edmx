@@ -57,9 +57,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaPhim" Type="varchar" MaxLength="10" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="MaPhim" Type="varchar" MaxLength="10" StoreGeneratedPattern="Computed" />
           <Property Name="TenPhim" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TinhTrang" Type="int" Nullable="false" />
           <Property Name="ThoiLuong" Type="int" Nullable="false" />
           <Property Name="MaDoHot" Type="int" Nullable="false" />
         </EntityType>
@@ -222,7 +222,7 @@
         <Function Name="CAPNHATPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaPhim" Type="varchar" Mode="In" />
           <Parameter Name="TenPhim" Type="nvarchar" Mode="In" />
-          <Parameter Name="TinhTrang" Type="nvarchar" Mode="In" />
+          <Parameter Name="TinhTrang" Type="int" Mode="In" />
           <Parameter Name="ThoiLuong" Type="int" Mode="In" />
           <Parameter Name="MaDoHot" Type="int" Mode="In" />
         </Function>
@@ -272,7 +272,7 @@
         </Function>
         <Function Name="TAOPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TenPhim" Type="nvarchar" Mode="In" />
-          <Parameter Name="TinhTrang" Type="nvarchar" Mode="In" />
+          <Parameter Name="TinhTrang" Type="int" Mode="In" />
           <Parameter Name="ThoiLuong" Type="int" Mode="In" />
           <Parameter Name="MaDoHot" Type="int" Mode="In" />
         </Function>
@@ -403,9 +403,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaPhim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="MaPhim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="TenPhim" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TinhTrang" Type="Int32" Nullable="false" />
           <Property Name="ThoiLuong" Type="Int32" Nullable="false" />
           <Property Name="MaDoHot" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DOHOTPHIM" Relationship="Self.FK_PHIM_DOHOTPHIM" FromRole="PHIM" ToRole="DOHOTPHIM" />
@@ -592,7 +592,7 @@
           <FunctionImport Name="CAPNHATPHIM">
             <Parameter Name="MaPhim" Mode="In" Type="String" />
             <Parameter Name="TenPhim" Mode="In" Type="String" />
-            <Parameter Name="TinhTrang" Mode="In" Type="String" />
+            <Parameter Name="TinhTrang" Mode="In" Type="Int32" />
             <Parameter Name="ThoiLuong" Mode="In" Type="Int32" />
             <Parameter Name="MaDoHot" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -610,12 +610,12 @@
             <Parameter Name="NhanVienBanVe" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LAYDSKHACHHANG" EntitySet="KHACHHANGs" ReturnType="Collection(DB_LOTTECINEMAModel.KHACHHANG)" />
-          <FunctionImport Name="LAYDSPHIM" ReturnType="Collection(DB_LOTTECINEMAModel.LAYDSPHIM_Result)" />
+          <FunctionImport Name="LAYDSPHIM" EntitySet="PHIMs" ReturnType="Collection(DB_LOTTECINEMAModel.PHIM)" />
           <FunctionImport Name="LAYDSSUATCHIEU" ReturnType="Collection(DB_LOTTECINEMAModel.LAYDSSUATCHIEU_Result)" />
           <FunctionImport Name="LAYNHANVIEN" EntitySet="NHANVIENs" ReturnType="Collection(DB_LOTTECINEMAModel.NHANVIEN)">
           <Parameter Name="MANV" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="LAYPHIMTHEOMAPHIM" ReturnType="Collection(DB_LOTTECINEMAModel.LAYPHIMTHEOMAPHIM_Result)">
+          <FunctionImport Name="LAYPHIMTHEOMAPHIM" EntitySet="PHIMs" ReturnType="Collection(DB_LOTTECINEMAModel.PHIM)">
           <Parameter Name="MaPhim" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LAYSUATCHIEUTHEOMA" ReturnType="Collection(DB_LOTTECINEMAModel.LAYSUATCHIEUTHEOMA_Result)">
@@ -626,12 +626,6 @@
           </FunctionImport>
           <FunctionImport Name="LAYVETHEOSDTDATVE" ReturnType="Collection(DB_LOTTECINEMAModel.LAYVETHEOSDTDATVE_Result)">
           <Parameter Name="SDTDatVe" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="TAOPHIM">
-            <Parameter Name="TenPhim" Mode="In" Type="String" />
-            <Parameter Name="TinhTrang" Mode="In" Type="String" />
-            <Parameter Name="ThoiLuong" Mode="In" Type="Int32" />
-            <Parameter Name="MaDoHot" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="TAOSUATCHIEU">
             <Parameter Name="NgayChieu" Mode="In" Type="DateTime" />
@@ -674,12 +668,18 @@
             <Parameter Name="TienPhuThem" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="LAYDOHOTPHIMTHEOMA" EntitySet="DOHOTPHIMs" ReturnType="Collection(DB_LOTTECINEMAModel.DOHOTPHIM)">
-            <Parameter Name="MaDoHot" Mode="In" Type="String" />
+          <Parameter Name="MaDoHot" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LAYDSDOHOTPHIM" EntitySet="DOHOTPHIMs" ReturnType="Collection(DB_LOTTECINEMAModel.DOHOTPHIM)" />
           <FunctionImport Name="TAODOHOTPHIM">
             <Parameter Name="TenDoHot" Mode="In" Type="String" />
             <Parameter Name="TienPhuThem" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TAOPHIM">
+            <Parameter Name="TenPhim" Mode="In" Type="String" />
+            <Parameter Name="TinhTrang" Mode="In" Type="Int32" />
+            <Parameter Name="ThoiLuong" Mode="In" Type="Int32" />
+            <Parameter Name="MaDoHot" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="LAYDSKHACHHANG_Result">
@@ -787,6 +787,10 @@
           <Property Type="String" Name="TenDoHot" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="TienPhuThem" Nullable="false" />
         </ComplexType>
+        <EnumType Name="TINHTRANGPHIM" >
+          <Member Name="DANG_CHIEU" Value="0" />
+          <Member Name="HUY" Value="1" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -839,10 +843,10 @@
           <EntitySetMapping Name="PHIMs">
             <EntityTypeMapping TypeName="DB_LOTTECINEMAModel.PHIM">
               <MappingFragment StoreEntitySet="PHIM">
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
                 <ScalarProperty Name="TenPhim" ColumnName="TenPhim" />
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="ThoiLuong" ColumnName="ThoiLuong" />
                 <ScalarProperty Name="MaDoHot" ColumnName="MaDoHot" />
               </MappingFragment>
@@ -912,16 +916,6 @@
           <FunctionImportMapping FunctionImportName="LAYDSKHACHHANG" FunctionName="DB_LOTTECINEMAModel.Store.LAYDSKHACHHANG">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="LAYDSPHIM" FunctionName="DB_LOTTECINEMAModel.Store.LAYDSPHIM">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.LAYDSPHIM_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
-                <ScalarProperty Name="TenPhim" ColumnName="TenPhim" />
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-                <ScalarProperty Name="ThoiLuong" ColumnName="ThoiLuong" />
-                <ScalarProperty Name="MaDoHot" ColumnName="MaDoHot" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="LAYDSSUATCHIEU" FunctionName="DB_LOTTECINEMAModel.Store.LAYDSSUATCHIEU">
             <ResultMapping>
@@ -939,16 +933,6 @@
           <FunctionImportMapping FunctionImportName="LAYNHANVIEN" FunctionName="DB_LOTTECINEMAModel.Store.LAYNHANVIEN">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="LAYPHIMTHEOMAPHIM" FunctionName="DB_LOTTECINEMAModel.Store.LAYPHIMTHEOMAPHIM">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.LAYPHIMTHEOMAPHIM_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
-                <ScalarProperty Name="TenPhim" ColumnName="TenPhim" />
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-                <ScalarProperty Name="ThoiLuong" ColumnName="ThoiLuong" />
-                <ScalarProperty Name="MaDoHot" ColumnName="MaDoHot" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="LAYSUATCHIEUTHEOMA" FunctionName="DB_LOTTECINEMAModel.Store.LAYSUATCHIEUTHEOMA">
             <ResultMapping>
@@ -995,7 +979,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="TAOPHIM" FunctionName="DB_LOTTECINEMAModel.Store.TAOPHIM" />
           <FunctionImportMapping FunctionImportName="TAOSUATCHIEU" FunctionName="DB_LOTTECINEMAModel.Store.TAOSUATCHIEU" />
           <FunctionImportMapping FunctionImportName="TAOVE" FunctionName="DB_LOTTECINEMAModel.Store.TAOVE" />
           <FunctionImportMapping FunctionImportName="THEMKHACHHANG" FunctionName="DB_LOTTECINEMAModel.Store.THEMKHACHHANG" />
@@ -1026,6 +1009,7 @@
           <FunctionImportMapping FunctionImportName="LAYDSDOHOTPHIM" FunctionName="DB_LOTTECINEMAModel.Store.LAYDSDOHOTPHIM">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TAODOHOTPHIM" FunctionName="DB_LOTTECINEMAModel.Store.TAODOHOTPHIM" />
+          <FunctionImportMapping FunctionImportName="TAOPHIM" FunctionName="DB_LOTTECINEMAModel.Store.TAOPHIM" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

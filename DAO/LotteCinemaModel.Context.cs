@@ -75,7 +75,7 @@ namespace DAO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CAPNHATKHACHHANG", mAKHACHHANGParameter, hOTENParameter, gIOITINHParameter, nGAYSINHParameter, cMNDParameter, sODIENTHOAIParameter);
         }
     
-        public virtual int CAPNHATPHIM(string maPhim, string tenPhim, string tinhTrang, Nullable<int> thoiLuong, Nullable<int> maDoHot)
+        public virtual int CAPNHATPHIM(string maPhim, string tenPhim, Nullable<int> tinhTrang, Nullable<int> thoiLuong, Nullable<int> maDoHot)
         {
             var maPhimParameter = maPhim != null ?
                 new ObjectParameter("MaPhim", maPhim) :
@@ -85,9 +85,9 @@ namespace DAO
                 new ObjectParameter("TenPhim", tenPhim) :
                 new ObjectParameter("TenPhim", typeof(string));
     
-            var tinhTrangParameter = tinhTrang != null ?
+            var tinhTrangParameter = tinhTrang.HasValue ?
                 new ObjectParameter("TinhTrang", tinhTrang) :
-                new ObjectParameter("TinhTrang", typeof(string));
+                new ObjectParameter("TinhTrang", typeof(int));
     
             var thoiLuongParameter = thoiLuong.HasValue ?
                 new ObjectParameter("ThoiLuong", thoiLuong) :
@@ -156,9 +156,14 @@ namespace DAO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<KHACHHANG>("LAYDSKHACHHANG", mergeOption);
         }
     
-        public virtual ObjectResult<LAYDSPHIM_Result> LAYDSPHIM()
+        public virtual ObjectResult<PHIM> LAYDSPHIM()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LAYDSPHIM_Result>("LAYDSPHIM");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PHIM>("LAYDSPHIM");
+        }
+    
+        public virtual ObjectResult<PHIM> LAYDSPHIM(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PHIM>("LAYDSPHIM", mergeOption);
         }
     
         public virtual ObjectResult<LAYDSSUATCHIEU_Result> LAYDSSUATCHIEU()
@@ -184,13 +189,22 @@ namespace DAO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NHANVIEN>("LAYNHANVIEN", mergeOption, mANVParameter);
         }
     
-        public virtual ObjectResult<LAYPHIMTHEOMAPHIM_Result> LAYPHIMTHEOMAPHIM(string maPhim)
+        public virtual ObjectResult<PHIM> LAYPHIMTHEOMAPHIM(string maPhim)
         {
             var maPhimParameter = maPhim != null ?
                 new ObjectParameter("MaPhim", maPhim) :
                 new ObjectParameter("MaPhim", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LAYPHIMTHEOMAPHIM_Result>("LAYPHIMTHEOMAPHIM", maPhimParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PHIM>("LAYPHIMTHEOMAPHIM", maPhimParameter);
+        }
+    
+        public virtual ObjectResult<PHIM> LAYPHIMTHEOMAPHIM(string maPhim, MergeOption mergeOption)
+        {
+            var maPhimParameter = maPhim != null ?
+                new ObjectParameter("MaPhim", maPhim) :
+                new ObjectParameter("MaPhim", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PHIM>("LAYPHIMTHEOMAPHIM", mergeOption, maPhimParameter);
         }
     
         public virtual ObjectResult<LAYSUATCHIEUTHEOMA_Result> LAYSUATCHIEUTHEOMA(string maSuatChieu)
@@ -218,27 +232,6 @@ namespace DAO
                 new ObjectParameter("SDTDatVe", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LAYVETHEOSDTDATVE_Result>("LAYVETHEOSDTDATVE", sDTDatVeParameter);
-        }
-    
-        public virtual int TAOPHIM(string tenPhim, string tinhTrang, Nullable<int> thoiLuong, Nullable<int> maDoHot)
-        {
-            var tenPhimParameter = tenPhim != null ?
-                new ObjectParameter("TenPhim", tenPhim) :
-                new ObjectParameter("TenPhim", typeof(string));
-    
-            var tinhTrangParameter = tinhTrang != null ?
-                new ObjectParameter("TinhTrang", tinhTrang) :
-                new ObjectParameter("TinhTrang", typeof(string));
-    
-            var thoiLuongParameter = thoiLuong.HasValue ?
-                new ObjectParameter("ThoiLuong", thoiLuong) :
-                new ObjectParameter("ThoiLuong", typeof(int));
-    
-            var maDoHotParameter = maDoHot.HasValue ?
-                new ObjectParameter("MaDoHot", maDoHot) :
-                new ObjectParameter("MaDoHot", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAOPHIM", tenPhimParameter, tinhTrangParameter, thoiLuongParameter, maDoHotParameter);
         }
     
         public virtual int TAOSUATCHIEU(Nullable<System.DateTime> ngayChieu, Nullable<System.TimeSpan> thoiGianBatDau, Nullable<System.TimeSpan> thoiGianKetThuc, string maPhim, string maPhong)
@@ -429,6 +422,27 @@ namespace DAO
                 new ObjectParameter("TienPhuThem", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAODOHOTPHIM", tenDoHotParameter, tienPhuThemParameter);
+        }
+    
+        public virtual int TAOPHIM(string tenPhim, Nullable<int> tinhTrang, Nullable<int> thoiLuong, Nullable<int> maDoHot)
+        {
+            var tenPhimParameter = tenPhim != null ?
+                new ObjectParameter("TenPhim", tenPhim) :
+                new ObjectParameter("TenPhim", typeof(string));
+    
+            var tinhTrangParameter = tinhTrang.HasValue ?
+                new ObjectParameter("TinhTrang", tinhTrang) :
+                new ObjectParameter("TinhTrang", typeof(int));
+    
+            var thoiLuongParameter = thoiLuong.HasValue ?
+                new ObjectParameter("ThoiLuong", thoiLuong) :
+                new ObjectParameter("ThoiLuong", typeof(int));
+    
+            var maDoHotParameter = maDoHot.HasValue ?
+                new ObjectParameter("MaDoHot", maDoHot) :
+                new ObjectParameter("MaDoHot", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAOPHIM", tenPhimParameter, tinhTrangParameter, thoiLuongParameter, maDoHotParameter);
         }
     }
 }

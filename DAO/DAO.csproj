@@ -131,6 +131,9 @@
     <Compile Include="THONGKE_VEHUYTHEOPHIM_Result.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TINHTRANGPHIM.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TRANGTHIETBI.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>

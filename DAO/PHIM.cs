@@ -23,7 +23,7 @@ namespace DAO
         public int id { get; set; }
         public string MaPhim { get; set; }
         public string TenPhim { get; set; }
-        public string TinhTrang { get; set; }
+        public int TinhTrang { get; set; }
         public int ThoiLuong { get; set; }
         public int MaDoHot { get; set; }
     
