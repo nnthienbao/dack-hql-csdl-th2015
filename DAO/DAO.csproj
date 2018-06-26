@@ -77,6 +77,9 @@
     <Compile Include="LAYDSSUATCHIEU_Result.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LAYDSTRANGTHIETBI_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LAYKHACHHANGTHEOMAKH_Result.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
@@ -87,6 +90,9 @@
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LAYSUATCHIEUTHEOMA_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYTRANGTHIETBITHEOMA_Result.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LAYVETHEOMAVE_Result.cs">
@@ -137,6 +143,7 @@
     <Compile Include="TRANGTHIETBI.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TrangThietBiDAO.cs" />
     <Compile Include="VEXEMPHIM.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>

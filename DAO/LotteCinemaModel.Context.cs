@@ -444,5 +444,63 @@ namespace DAO
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAOPHIM", tenPhimParameter, tinhTrangParameter, thoiLuongParameter, maDoHotParameter);
         }
+    
+        public virtual int CAPNHATTRANGTHIETBI(string maThietBi, string tenThietBi, Nullable<int> tienPhuThem)
+        {
+            var maThietBiParameter = maThietBi != null ?
+                new ObjectParameter("MaThietBi", maThietBi) :
+                new ObjectParameter("MaThietBi", typeof(string));
+    
+            var tenThietBiParameter = tenThietBi != null ?
+                new ObjectParameter("TenThietBi", tenThietBi) :
+                new ObjectParameter("TenThietBi", typeof(string));
+    
+            var tienPhuThemParameter = tienPhuThem.HasValue ?
+                new ObjectParameter("TienPhuThem", tienPhuThem) :
+                new ObjectParameter("TienPhuThem", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CAPNHATTRANGTHIETBI", maThietBiParameter, tenThietBiParameter, tienPhuThemParameter);
+        }
+    
+        public virtual ObjectResult<TRANGTHIETBI> LAYDSTRANGTHIETBI()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TRANGTHIETBI>("LAYDSTRANGTHIETBI");
+        }
+    
+        public virtual ObjectResult<TRANGTHIETBI> LAYDSTRANGTHIETBI(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TRANGTHIETBI>("LAYDSTRANGTHIETBI", mergeOption);
+        }
+    
+        public virtual ObjectResult<TRANGTHIETBI> LAYTRANGTHIETBITHEOMA(string maThietBi)
+        {
+            var maThietBiParameter = maThietBi != null ?
+                new ObjectParameter("MaThietBi", maThietBi) :
+                new ObjectParameter("MaThietBi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TRANGTHIETBI>("LAYTRANGTHIETBITHEOMA", maThietBiParameter);
+        }
+    
+        public virtual ObjectResult<TRANGTHIETBI> LAYTRANGTHIETBITHEOMA(string maThietBi, MergeOption mergeOption)
+        {
+            var maThietBiParameter = maThietBi != null ?
+                new ObjectParameter("MaThietBi", maThietBi) :
+                new ObjectParameter("MaThietBi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TRANGTHIETBI>("LAYTRANGTHIETBITHEOMA", mergeOption, maThietBiParameter);
+        }
+    
+        public virtual int TAOTRANGTHIETBI(string tenThietBi, Nullable<int> tienPhuThem)
+        {
+            var tenThietBiParameter = tenThietBi != null ?
+                new ObjectParameter("TenThietBi", tenThietBi) :
+                new ObjectParameter("TenThietBi", typeof(string));
+    
+            var tienPhuThemParameter = tienPhuThem.HasValue ?
+                new ObjectParameter("TienPhuThem", tienPhuThem) :
+                new ObjectParameter("TienPhuThem", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAOTRANGTHIETBI", tenThietBiParameter, tienPhuThemParameter);
+        }
     }
 }
