@@ -57,10 +57,17 @@
     <Compile Include="DOHOTPHIM.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DoHotPhimDAO.cs" />
     <Compile Include="KHACHHANG.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhachHangDAO.cs" />
+    <Compile Include="LAYDOHOTPHIMTHEOMA_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYDSDOHOTPHIM_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LAYDSKHACHHANG_Result.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
@@ -110,6 +117,7 @@
     <Compile Include="PHIM.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PhimDAO.cs" />
     <Compile Include="PHONG.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>

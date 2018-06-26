@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DoHotPhimDAOTests.cs" />
     <Compile Include="KhachHangDAOTests.cs" />
     <Compile Include="NhanVienDAOTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

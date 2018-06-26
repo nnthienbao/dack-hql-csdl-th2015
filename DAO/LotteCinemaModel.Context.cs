@@ -372,5 +372,63 @@ namespace DAO
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<KHACHHANG>("LAYKHACHHANGTHEOMAKH", mergeOption, maKhachHangParameter);
         }
+    
+        public virtual int CAPNHATDOHOTPHIM(string maDoHot, string tenDoHot, Nullable<int> tienPhuThem)
+        {
+            var maDoHotParameter = maDoHot != null ?
+                new ObjectParameter("MaDoHot", maDoHot) :
+                new ObjectParameter("MaDoHot", typeof(string));
+    
+            var tenDoHotParameter = tenDoHot != null ?
+                new ObjectParameter("TenDoHot", tenDoHot) :
+                new ObjectParameter("TenDoHot", typeof(string));
+    
+            var tienPhuThemParameter = tienPhuThem.HasValue ?
+                new ObjectParameter("TienPhuThem", tienPhuThem) :
+                new ObjectParameter("TienPhuThem", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CAPNHATDOHOTPHIM", maDoHotParameter, tenDoHotParameter, tienPhuThemParameter);
+        }
+    
+        public virtual ObjectResult<DOHOTPHIM> LAYDOHOTPHIMTHEOMA(string maDoHot)
+        {
+            var maDoHotParameter = maDoHot != null ?
+                new ObjectParameter("MaDoHot", maDoHot) :
+                new ObjectParameter("MaDoHot", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DOHOTPHIM>("LAYDOHOTPHIMTHEOMA", maDoHotParameter);
+        }
+    
+        public virtual ObjectResult<DOHOTPHIM> LAYDOHOTPHIMTHEOMA(string maDoHot, MergeOption mergeOption)
+        {
+            var maDoHotParameter = maDoHot != null ?
+                new ObjectParameter("MaDoHot", maDoHot) :
+                new ObjectParameter("MaDoHot", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DOHOTPHIM>("LAYDOHOTPHIMTHEOMA", mergeOption, maDoHotParameter);
+        }
+    
+        public virtual ObjectResult<DOHOTPHIM> LAYDSDOHOTPHIM()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DOHOTPHIM>("LAYDSDOHOTPHIM");
+        }
+    
+        public virtual ObjectResult<DOHOTPHIM> LAYDSDOHOTPHIM(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DOHOTPHIM>("LAYDSDOHOTPHIM", mergeOption);
+        }
+    
+        public virtual int TAODOHOTPHIM(string tenDoHot, Nullable<int> tienPhuThem)
+        {
+            var tenDoHotParameter = tenDoHot != null ?
+                new ObjectParameter("TenDoHot", tenDoHot) :
+                new ObjectParameter("TenDoHot", typeof(string));
+    
+            var tienPhuThemParameter = tienPhuThem.HasValue ?
+                new ObjectParameter("TienPhuThem", tienPhuThem) :
+                new ObjectParameter("TienPhuThem", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAODOHOTPHIM", tenDoHotParameter, tienPhuThemParameter);
+        }
     }
 }
