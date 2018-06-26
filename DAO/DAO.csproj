@@ -138,6 +138,7 @@
     <Compile Include="SUATCHIEU.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SuatChieuDAO.cs" />
     <Compile Include="THONGKE_VEBANRATHEOPHIM_Result.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>

@@ -233,6 +233,14 @@
         <Function Name="CAPNHATPHUTHUCHONGOIDEP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PhuThuMoi" Type="int" Mode="In" />
         </Function>
+        <Function Name="CAPNHATSUATCHIEU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSuatChieu" Type="varchar" Mode="In" />
+          <Parameter Name="NgayChieu" Type="date" Mode="In" />
+          <Parameter Name="ThoiGianBatDau" Type="time" Mode="In" />
+          <Parameter Name="ThoiGianKetThuc" Type="time" Mode="In" />
+          <Parameter Name="MaPhim" Type="varchar" Mode="In" />
+          <Parameter Name="MaPhong" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="CAPNHATTRANGTHIETBI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaThietBi" Type="varchar" Mode="In" />
           <Parameter Name="TenThietBi" Type="nvarchar" Mode="In" />
@@ -331,7 +339,14 @@
           <Parameter Name="NgayBatDau" Type="date" Mode="In" />
           <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
         </Function>
-        <Function Name="TRACUUSUATCHIEU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TRACUUSUATCHIEU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NgayBatDau" Type="date" Mode="In" />
+          <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
+          <Parameter Name="ThoiGianBatDau" Type="time" Mode="In" />
+          <Parameter Name="ThoiGianKetThuc" Type="time" Mode="In" />
+          <Parameter Name="MaPhim" Type="int" Mode="In" />
+          <Parameter Name="MaPhong" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="DB_LOTTECINEMAModelStoreContainer">
           <EntitySet Name="BANGTHAMSO" EntityType="Self.BANGTHAMSO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHITIETSUATCHIEU_THIETBI" EntityType="Self.CHITIETSUATCHIEU_THIETBI" Schema="dbo" store:Type="Tables" />
@@ -635,14 +650,14 @@
           </FunctionImport>
           <FunctionImport Name="LAYDSKHACHHANG" EntitySet="KHACHHANGs" ReturnType="Collection(DB_LOTTECINEMAModel.KHACHHANG)" />
           <FunctionImport Name="LAYDSPHIM" EntitySet="PHIMs" ReturnType="Collection(DB_LOTTECINEMAModel.PHIM)" />
-          <FunctionImport Name="LAYDSSUATCHIEU" ReturnType="Collection(DB_LOTTECINEMAModel.LAYDSSUATCHIEU_Result)" />
+          <FunctionImport Name="LAYDSSUATCHIEU" EntitySet="SUATCHIEUx" ReturnType="Collection(DB_LOTTECINEMAModel.SUATCHIEU)" />
           <FunctionImport Name="LAYNHANVIEN" EntitySet="NHANVIENs" ReturnType="Collection(DB_LOTTECINEMAModel.NHANVIEN)">
           <Parameter Name="MANV" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LAYPHIMTHEOMAPHIM" EntitySet="PHIMs" ReturnType="Collection(DB_LOTTECINEMAModel.PHIM)">
           <Parameter Name="MaPhim" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="LAYSUATCHIEUTHEOMA" ReturnType="Collection(DB_LOTTECINEMAModel.LAYSUATCHIEUTHEOMA_Result)">
+          <FunctionImport Name="LAYSUATCHIEUTHEOMA" EntitySet="SUATCHIEUx" ReturnType="Collection(DB_LOTTECINEMAModel.SUATCHIEU)">
           <Parameter Name="MaSuatChieu" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LAYVETHEOMAVE" ReturnType="Collection(DB_LOTTECINEMAModel.LAYVETHEOMAVE_Result)">
@@ -682,7 +697,14 @@
             <Parameter Name="NgayBatDau" Mode="In" Type="DateTime" />
             <Parameter Name="NgayKetThuc" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="TRACUUSUATCHIEU" />
+          <FunctionImport Name="TRACUUSUATCHIEU" EntitySet="SUATCHIEUx" ReturnType="Collection(DB_LOTTECINEMAModel.SUATCHIEU)" >
+            <Parameter Name="NgayBatDau" Mode="In" Type="DateTime" />
+            <Parameter Name="NgayKetThuc" Mode="In" Type="DateTime" />
+            <Parameter Name="ThoiGianBatDau" Mode="In" Type="Time" />
+            <Parameter Name="ThoiGianKetThuc" Mode="In" Type="Time" />
+            <Parameter Name="MaPhim" Mode="In" Type="Int32" />
+            <Parameter Name="MaPhong" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="LAYKHACHHANGTHEOMAKH" EntitySet="KHACHHANGs" ReturnType="Collection(DB_LOTTECINEMAModel.KHACHHANG)">
           <Parameter Name="MaKhachHang" Mode="In" Type="String" />
           </FunctionImport>
@@ -724,10 +746,18 @@
           </FunctionImport>
           <FunctionImport Name="LAYDANHSACHPHONG" EntitySet="PHONGs" ReturnType="Collection(DB_LOTTECINEMAModel.PHONG)" />
           <FunctionImport Name="LAYPHONGTHEOMA" EntitySet="PHONGs" ReturnType="Collection(DB_LOTTECINEMAModel.PHONG)">
-            <Parameter Name="MaPhong" Mode="In" Type="String" />
+          <Parameter Name="MaPhong" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="TAOPHONG">
-            <Parameter Name="TenPhong" Mode="In" Type="String" />
+          <Parameter Name="TenPhong" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CAPNHATSUATCHIEU">
+            <Parameter Name="MaSuatChieu" Mode="In" Type="String" />
+            <Parameter Name="NgayChieu" Mode="In" Type="DateTime" />
+            <Parameter Name="ThoiGianBatDau" Mode="In" Type="Time" />
+            <Parameter Name="ThoiGianKetThuc" Mode="In" Type="Time" />
+            <Parameter Name="MaPhim" Mode="In" Type="String" />
+            <Parameter Name="MaPhong" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="LAYDSKHACHHANG_Result">
@@ -988,34 +1018,12 @@
           <FunctionImportMapping FunctionImportName="LAYDSPHIM" FunctionName="DB_LOTTECINEMAModel.Store.LAYDSPHIM">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="LAYDSSUATCHIEU" FunctionName="DB_LOTTECINEMAModel.Store.LAYDSSUATCHIEU">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.LAYDSSUATCHIEU_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="MaSuatChieu" ColumnName="MaSuatChieu" />
-                <ScalarProperty Name="NgayChieu" ColumnName="NgayChieu" />
-                <ScalarProperty Name="ThoiGianBatDau" ColumnName="ThoiGianBatDau" />
-                <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
-                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
-                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="LAYNHANVIEN" FunctionName="DB_LOTTECINEMAModel.Store.LAYNHANVIEN">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="LAYPHIMTHEOMAPHIM" FunctionName="DB_LOTTECINEMAModel.Store.LAYPHIMTHEOMAPHIM">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="LAYSUATCHIEUTHEOMA" FunctionName="DB_LOTTECINEMAModel.Store.LAYSUATCHIEUTHEOMA">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.LAYSUATCHIEUTHEOMA_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="MaSuatChieu" ColumnName="MaSuatChieu" />
-                <ScalarProperty Name="NgayChieu" ColumnName="NgayChieu" />
-                <ScalarProperty Name="ThoiGianBatDau" ColumnName="ThoiGianBatDau" />
-                <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
-                <ScalarProperty Name="MaPhim" ColumnName="MaPhim" />
-                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="LAYVETHEOMAVE" FunctionName="DB_LOTTECINEMAModel.Store.LAYVETHEOMAVE">
             <ResultMapping>
@@ -1092,6 +1100,7 @@
           <FunctionImportMapping FunctionImportName="LAYPHONGTHEOMA" FunctionName="DB_LOTTECINEMAModel.Store.LAYPHONGTHEOMA">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TAOPHONG" FunctionName="DB_LOTTECINEMAModel.Store.TAOPHONG" />
+          <FunctionImportMapping FunctionImportName="CAPNHATSUATCHIEU" FunctionName="DB_LOTTECINEMAModel.Store.CAPNHATSUATCHIEU" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

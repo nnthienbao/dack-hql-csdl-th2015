@@ -166,9 +166,14 @@ namespace DAO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PHIM>("LAYDSPHIM", mergeOption);
         }
     
-        public virtual ObjectResult<LAYDSSUATCHIEU_Result> LAYDSSUATCHIEU()
+        public virtual ObjectResult<SUATCHIEU> LAYDSSUATCHIEU()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LAYDSSUATCHIEU_Result>("LAYDSSUATCHIEU");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SUATCHIEU>("LAYDSSUATCHIEU");
+        }
+    
+        public virtual ObjectResult<SUATCHIEU> LAYDSSUATCHIEU(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SUATCHIEU>("LAYDSSUATCHIEU", mergeOption);
         }
     
         public virtual ObjectResult<NHANVIEN> LAYNHANVIEN(string mANV)
@@ -207,13 +212,22 @@ namespace DAO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PHIM>("LAYPHIMTHEOMAPHIM", mergeOption, maPhimParameter);
         }
     
-        public virtual ObjectResult<LAYSUATCHIEUTHEOMA_Result> LAYSUATCHIEUTHEOMA(string maSuatChieu)
+        public virtual ObjectResult<SUATCHIEU> LAYSUATCHIEUTHEOMA(string maSuatChieu)
         {
             var maSuatChieuParameter = maSuatChieu != null ?
                 new ObjectParameter("MaSuatChieu", maSuatChieu) :
                 new ObjectParameter("MaSuatChieu", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LAYSUATCHIEUTHEOMA_Result>("LAYSUATCHIEUTHEOMA", maSuatChieuParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SUATCHIEU>("LAYSUATCHIEUTHEOMA", maSuatChieuParameter);
+        }
+    
+        public virtual ObjectResult<SUATCHIEU> LAYSUATCHIEUTHEOMA(string maSuatChieu, MergeOption mergeOption)
+        {
+            var maSuatChieuParameter = maSuatChieu != null ?
+                new ObjectParameter("MaSuatChieu", maSuatChieu) :
+                new ObjectParameter("MaSuatChieu", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SUATCHIEU>("LAYSUATCHIEUTHEOMA", mergeOption, maSuatChieuParameter);
         }
     
         public virtual ObjectResult<LAYVETHEOMAVE_Result> LAYVETHEOMAVE(string mave)
@@ -343,9 +357,62 @@ namespace DAO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<THONGKE_VEHUYTHEOPHIM_Result>("THONGKE_VEHUYTHEOPHIM", ngayBatDauParameter, ngayKetThucParameter);
         }
     
-        public virtual int TRACUUSUATCHIEU()
+        public virtual ObjectResult<SUATCHIEU> TRACUUSUATCHIEU(Nullable<System.DateTime> ngayBatDau, Nullable<System.DateTime> ngayKetThuc, Nullable<System.TimeSpan> thoiGianBatDau, Nullable<System.TimeSpan> thoiGianKetThuc, Nullable<int> maPhim, Nullable<int> maPhong)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TRACUUSUATCHIEU");
+            var ngayBatDauParameter = ngayBatDau.HasValue ?
+                new ObjectParameter("NgayBatDau", ngayBatDau) :
+                new ObjectParameter("NgayBatDau", typeof(System.DateTime));
+    
+            var ngayKetThucParameter = ngayKetThuc.HasValue ?
+                new ObjectParameter("NgayKetThuc", ngayKetThuc) :
+                new ObjectParameter("NgayKetThuc", typeof(System.DateTime));
+    
+            var thoiGianBatDauParameter = thoiGianBatDau.HasValue ?
+                new ObjectParameter("ThoiGianBatDau", thoiGianBatDau) :
+                new ObjectParameter("ThoiGianBatDau", typeof(System.TimeSpan));
+    
+            var thoiGianKetThucParameter = thoiGianKetThuc.HasValue ?
+                new ObjectParameter("ThoiGianKetThuc", thoiGianKetThuc) :
+                new ObjectParameter("ThoiGianKetThuc", typeof(System.TimeSpan));
+    
+            var maPhimParameter = maPhim.HasValue ?
+                new ObjectParameter("MaPhim", maPhim) :
+                new ObjectParameter("MaPhim", typeof(int));
+    
+            var maPhongParameter = maPhong.HasValue ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SUATCHIEU>("TRACUUSUATCHIEU", ngayBatDauParameter, ngayKetThucParameter, thoiGianBatDauParameter, thoiGianKetThucParameter, maPhimParameter, maPhongParameter);
+        }
+    
+        public virtual ObjectResult<SUATCHIEU> TRACUUSUATCHIEU(Nullable<System.DateTime> ngayBatDau, Nullable<System.DateTime> ngayKetThuc, Nullable<System.TimeSpan> thoiGianBatDau, Nullable<System.TimeSpan> thoiGianKetThuc, Nullable<int> maPhim, Nullable<int> maPhong, MergeOption mergeOption)
+        {
+            var ngayBatDauParameter = ngayBatDau.HasValue ?
+                new ObjectParameter("NgayBatDau", ngayBatDau) :
+                new ObjectParameter("NgayBatDau", typeof(System.DateTime));
+    
+            var ngayKetThucParameter = ngayKetThuc.HasValue ?
+                new ObjectParameter("NgayKetThuc", ngayKetThuc) :
+                new ObjectParameter("NgayKetThuc", typeof(System.DateTime));
+    
+            var thoiGianBatDauParameter = thoiGianBatDau.HasValue ?
+                new ObjectParameter("ThoiGianBatDau", thoiGianBatDau) :
+                new ObjectParameter("ThoiGianBatDau", typeof(System.TimeSpan));
+    
+            var thoiGianKetThucParameter = thoiGianKetThuc.HasValue ?
+                new ObjectParameter("ThoiGianKetThuc", thoiGianKetThuc) :
+                new ObjectParameter("ThoiGianKetThuc", typeof(System.TimeSpan));
+    
+            var maPhimParameter = maPhim.HasValue ?
+                new ObjectParameter("MaPhim", maPhim) :
+                new ObjectParameter("MaPhim", typeof(int));
+    
+            var maPhongParameter = maPhong.HasValue ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SUATCHIEU>("TRACUUSUATCHIEU", mergeOption, ngayBatDauParameter, ngayKetThucParameter, thoiGianBatDauParameter, thoiGianKetThucParameter, maPhimParameter, maPhongParameter);
         }
     
         public virtual ObjectResult<KHACHHANG> LAYKHACHHANGTHEOMAKH(string maKhachHang)
@@ -551,6 +618,35 @@ namespace DAO
                 new ObjectParameter("TenPhong", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAOPHONG", tenPhongParameter);
+        }
+    
+        public virtual int CAPNHATSUATCHIEU(string maSuatChieu, Nullable<System.DateTime> ngayChieu, Nullable<System.TimeSpan> thoiGianBatDau, Nullable<System.TimeSpan> thoiGianKetThuc, string maPhim, string maPhong)
+        {
+            var maSuatChieuParameter = maSuatChieu != null ?
+                new ObjectParameter("MaSuatChieu", maSuatChieu) :
+                new ObjectParameter("MaSuatChieu", typeof(string));
+    
+            var ngayChieuParameter = ngayChieu.HasValue ?
+                new ObjectParameter("NgayChieu", ngayChieu) :
+                new ObjectParameter("NgayChieu", typeof(System.DateTime));
+    
+            var thoiGianBatDauParameter = thoiGianBatDau.HasValue ?
+                new ObjectParameter("ThoiGianBatDau", thoiGianBatDau) :
+                new ObjectParameter("ThoiGianBatDau", typeof(System.TimeSpan));
+    
+            var thoiGianKetThucParameter = thoiGianKetThuc.HasValue ?
+                new ObjectParameter("ThoiGianKetThuc", thoiGianKetThuc) :
+                new ObjectParameter("ThoiGianKetThuc", typeof(System.TimeSpan));
+    
+            var maPhimParameter = maPhim != null ?
+                new ObjectParameter("MaPhim", maPhim) :
+                new ObjectParameter("MaPhim", typeof(string));
+    
+            var maPhongParameter = maPhong != null ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CAPNHATSUATCHIEU", maSuatChieuParameter, ngayChieuParameter, thoiGianBatDauParameter, thoiGianKetThucParameter, maPhimParameter, maPhongParameter);
         }
     }
 }
