@@ -55,6 +55,7 @@
     <Compile Include="KhachHangDAOTests.cs" />
     <Compile Include="NhanVienDAOTests.cs" />
     <Compile Include="PhimDAOTests.cs" />
+    <Compile Include="PhongDAOTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrangThietBiDAOTests.cs" />
   </ItemGroup>

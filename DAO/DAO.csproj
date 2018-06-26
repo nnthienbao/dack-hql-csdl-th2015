@@ -62,6 +62,9 @@
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhachHangDAO.cs" />
+    <Compile Include="LAYDANHSACHPHONG_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LAYDOHOTPHIMTHEOMA_Result.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
@@ -87,6 +90,9 @@
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LAYPHIMTHEOMAPHIM_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYPHONGTHEOMA_Result.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LAYSUATCHIEUTHEOMA_Result.cs">
@@ -127,6 +133,7 @@
     <Compile Include="PHONG.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PhongDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SUATCHIEU.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>

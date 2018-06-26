@@ -226,6 +226,10 @@
           <Parameter Name="ThoiLuong" Type="int" Mode="In" />
           <Parameter Name="MaDoHot" Type="int" Mode="In" />
         </Function>
+        <Function Name="CAPNHATPHONG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaPhong" Type="varchar" Mode="In" />
+          <Parameter Name="TenPhong" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="CAPNHATPHUTHUCHONGOIDEP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PhuThuMoi" Type="int" Mode="In" />
         </Function>
@@ -244,6 +248,7 @@
           <Parameter Name="SDTDatVe" Type="varchar" Mode="In" />
           <Parameter Name="NhanVienBanVe" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="LAYDANHSACHPHONG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="LAYDOHOTPHIMTHEOMA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaDoHot" Type="varchar" Mode="In" />
         </Function>
@@ -261,6 +266,9 @@
         </Function>
         <Function Name="LAYPHIMTHEOMAPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaPhim" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="LAYPHONGTHEOMA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaPhong" Type="varchar" Mode="In" />
         </Function>
         <Function Name="LAYSUATCHIEUTHEOMA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaSuatChieu" Type="nvarchar" Mode="In" />
@@ -284,6 +292,9 @@
           <Parameter Name="TinhTrang" Type="int" Mode="In" />
           <Parameter Name="ThoiLuong" Type="int" Mode="In" />
           <Parameter Name="MaDoHot" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TAOPHONG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TenPhong" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="TAOSUATCHIEU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NgayChieu" Type="date" Mode="In" />
@@ -701,11 +712,22 @@
           </FunctionImport>
           <FunctionImport Name="LAYDSTRANGTHIETBI" EntitySet="TRANGTHIETBIs" ReturnType="Collection(DB_LOTTECINEMAModel.TRANGTHIETBI)" />
           <FunctionImport Name="LAYTRANGTHIETBITHEOMA" EntitySet="TRANGTHIETBIs" ReturnType="Collection(DB_LOTTECINEMAModel.TRANGTHIETBI)">
-            <Parameter Name="MaThietBi" Mode="In" Type="String" />
+          <Parameter Name="MaThietBi" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="TAOTRANGTHIETBI">
             <Parameter Name="TenThietBi" Mode="In" Type="String" />
             <Parameter Name="TienPhuThem" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CAPNHATPHONG">
+            <Parameter Name="MaPhong" Mode="In" Type="String" />
+            <Parameter Name="TenPhong" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LAYDANHSACHPHONG" EntitySet="PHONGs" ReturnType="Collection(DB_LOTTECINEMAModel.PHONG)" />
+          <FunctionImport Name="LAYPHONGTHEOMA" EntitySet="PHONGs" ReturnType="Collection(DB_LOTTECINEMAModel.PHONG)">
+            <Parameter Name="MaPhong" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TAOPHONG">
+            <Parameter Name="TenPhong" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="LAYDSKHACHHANG_Result">
@@ -828,6 +850,16 @@
           <Property Type="String" Name="MaThietBi" Nullable="true" MaxLength="11" />
           <Property Type="String" Name="TenThietBi" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="TienPhuThem" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="LAYDANHSACHPHONG_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaPhong" Nullable="true" MaxLength="9" />
+          <Property Type="String" Name="TenPhong" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="LAYPHONGTHEOMA_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaPhong" Nullable="true" MaxLength="9" />
+          <Property Type="String" Name="TenPhong" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1054,6 +1086,12 @@
           <FunctionImportMapping FunctionImportName="LAYTRANGTHIETBITHEOMA" FunctionName="DB_LOTTECINEMAModel.Store.LAYTRANGTHIETBITHEOMA">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TAOTRANGTHIETBI" FunctionName="DB_LOTTECINEMAModel.Store.TAOTRANGTHIETBI" />
+          <FunctionImportMapping FunctionImportName="CAPNHATPHONG" FunctionName="DB_LOTTECINEMAModel.Store.CAPNHATPHONG" />
+          <FunctionImportMapping FunctionImportName="LAYDANHSACHPHONG" FunctionName="DB_LOTTECINEMAModel.Store.LAYDANHSACHPHONG">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LAYPHONGTHEOMA" FunctionName="DB_LOTTECINEMAModel.Store.LAYPHONGTHEOMA">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TAOPHONG" FunctionName="DB_LOTTECINEMAModel.Store.TAOPHONG" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

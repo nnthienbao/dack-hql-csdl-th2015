@@ -502,5 +502,55 @@ namespace DAO
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAOTRANGTHIETBI", tenThietBiParameter, tienPhuThemParameter);
         }
+    
+        public virtual int CAPNHATPHONG(string maPhong, string tenPhong)
+        {
+            var maPhongParameter = maPhong != null ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(string));
+    
+            var tenPhongParameter = tenPhong != null ?
+                new ObjectParameter("TenPhong", tenPhong) :
+                new ObjectParameter("TenPhong", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CAPNHATPHONG", maPhongParameter, tenPhongParameter);
+        }
+    
+        public virtual ObjectResult<PHONG> LAYDANHSACHPHONG()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PHONG>("LAYDANHSACHPHONG");
+        }
+    
+        public virtual ObjectResult<PHONG> LAYDANHSACHPHONG(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PHONG>("LAYDANHSACHPHONG", mergeOption);
+        }
+    
+        public virtual ObjectResult<PHONG> LAYPHONGTHEOMA(string maPhong)
+        {
+            var maPhongParameter = maPhong != null ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PHONG>("LAYPHONGTHEOMA", maPhongParameter);
+        }
+    
+        public virtual ObjectResult<PHONG> LAYPHONGTHEOMA(string maPhong, MergeOption mergeOption)
+        {
+            var maPhongParameter = maPhong != null ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PHONG>("LAYPHONGTHEOMA", mergeOption, maPhongParameter);
+        }
+    
+        public virtual int TAOPHONG(string tenPhong)
+        {
+            var tenPhongParameter = tenPhong != null ?
+                new ObjectParameter("TenPhong", tenPhong) :
+                new ObjectParameter("TenPhong", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAOPHONG", tenPhongParameter);
+        }
     }
 }
