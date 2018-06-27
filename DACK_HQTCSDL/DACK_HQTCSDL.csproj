@@ -67,7 +67,7 @@
     <Compile Include="UserControl\slot.xaml.cs">
       <DependentUpon>slot.xaml</DependentUpon>
     </Compile>
-    <Page Include="NhanVien.xaml">
+    <Page Include="Window_NhanVien.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -75,8 +75,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NhanVien.xaml.cs">
-      <DependentUpon>NhanVien.xaml</DependentUpon>
+    <Compile Include="Window_NhanVien.xaml.cs">
+      <DependentUpon>Window_NhanVien.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NhanVien\Page_KhachHang.xaml">

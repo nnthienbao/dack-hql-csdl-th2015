@@ -18,12 +18,12 @@ namespace DACK_HQTCSDL
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class NhanVien : Window
+    public partial class Window_NhanVien : Window
     {
         private Page_KhachHang page_KhachHang = new Page_KhachHang();
         private Page_VeXemPhim page_VeXemPhim = new Page_VeXemPhim();
 
-        public NhanVien()
+        public Window_NhanVien()
         {
             InitializeComponent();
             this.MainFrame.Content = page_KhachHang;
