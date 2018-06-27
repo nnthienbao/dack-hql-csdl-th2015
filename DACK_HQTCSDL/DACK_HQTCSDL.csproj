@@ -64,7 +64,78 @@
     <Compile Include="NhanVien\Window_DatVe.xaml.cs">
       <DependentUpon>Window_DatVe.xaml</DependentUpon>
     </Compile>
-    <Page Include="NhanVien.xaml">
+    <Compile Include="QuanLy\Page_DoHot.xaml.cs">
+      <DependentUpon>Page_DoHot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Page_Phim.xaml.cs">
+      <DependentUpon>Page_Phim.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Page_Phong.xaml.cs">
+      <DependentUpon>Page_Phong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Page_SuatChieu.xaml.cs">
+      <DependentUpon>Page_SuatChieu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Page_ThietBi.xaml.cs">
+      <DependentUpon>Page_ThietBi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\slot.xaml.cs">
+      <DependentUpon>slot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window_QuanLy.xaml.cs">
+      <DependentUpon>Window_QuanLy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_SuaDoHot.xaml.cs">
+      <DependentUpon>Window_SuaDoHot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_SuaPhim.xaml.cs">
+      <DependentUpon>Window_SuaPhim.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_SuaPhong.xaml.cs">
+      <DependentUpon>Window_SuaPhong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_SuaSuatChieu.xaml.cs">
+      <DependentUpon>Window_SuaSuatChieu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_SuaThietBi.xaml.cs">
+      <DependentUpon>Window_SuaThietBi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_ThemDoHot.xaml.cs">
+      <DependentUpon>Window_ThemDoHot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_ThemPhim.xaml.cs">
+      <DependentUpon>Window_ThemPhim.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_ThemPhong.xaml.cs">
+      <DependentUpon>Window_ThemPhong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_ThemSuatChieu.xaml.cs">
+      <DependentUpon>Window_ThemSuatChieu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_ThemThietBi.xaml.cs">
+      <DependentUpon>Window_ThemThietBi.xaml</DependentUpon>
+    </Compile>
+    <Page Include="QuanLy\Page_DoHot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Page_Phim.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Page_Phong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Page_SuatChieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Page_ThietBi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window_NhanVien.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -72,8 +143,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NhanVien.xaml.cs">
-      <DependentUpon>NhanVien.xaml</DependentUpon>
+    <Compile Include="Window_NhanVien.xaml.cs">
+      <DependentUpon>Window_NhanVien.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NhanVien\Page_KhachHang.xaml">
@@ -93,6 +164,54 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NhanVien\Window_DatVe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\slot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window_QuanLy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Window_SuaDoHot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Window_SuaPhim.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Window_SuaPhong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Window_SuaSuatChieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Window_SuaThietBi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Window_ThemDoHot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Window_ThemPhim.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Window_ThemPhong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Window_ThemSuatChieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLy\Window_ThemThietBi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,7 +250,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="QuanLy\" />
+    <Resource Include="Image\cog.png" />
+    <Resource Include="Image\plus-circle.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\users.png" />
@@ -142,6 +262,19 @@
   <ItemGroup>
     <Resource Include="Image\user-cog.png" />
     <Resource Include="Image\user-plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\slot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\slotGreen.png" />
+    <Resource Include="Image\slotRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\home.png" />
+    <Resource Include="Image\hotjar.png" />
+    <Resource Include="Image\video.png" />
+    <Resource Include="Image\wrench.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

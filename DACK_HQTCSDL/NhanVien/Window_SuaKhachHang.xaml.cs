@@ -26,11 +26,7 @@ namespace DACK_HQTCSDL
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.titleBar.MouseLeftButtonDown += new MouseButtonEventHandler(title_MouseLeftButtonDown);
-        }
-        private void title_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
+            
         }
 
         private void button_SuaKhachHang_Click(object sender, RoutedEventArgs e)

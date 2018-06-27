@@ -30,7 +30,7 @@ namespace DACK_HQTCSDL
         public String CMND { get; set; }
         public String soDienThoai { get; set; }
     }
-    //  -- END demo
+    //  -- END demo class
 
     public partial class Page_KhachHang : Page
     {
