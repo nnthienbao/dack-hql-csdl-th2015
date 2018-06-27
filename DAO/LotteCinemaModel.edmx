@@ -304,13 +304,6 @@
         <Function Name="TAOPHONG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TenPhong" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="TAOSUATCHIEU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="NgayChieu" Type="date" Mode="In" />
-          <Parameter Name="ThoiGianBatDau" Type="time" Mode="In" />
-          <Parameter Name="ThoiGianKetThuc" Type="time" Mode="In" />
-          <Parameter Name="MaPhim" Type="varchar" Mode="In" />
-          <Parameter Name="MaPhong" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="TAOTRANGTHIETBI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TenThietBi" Type="nvarchar" Mode="In" />
           <Parameter Name="TienPhuThem" Type="int" Mode="In" />
@@ -666,13 +659,6 @@
           <FunctionImport Name="LAYVETHEOSDTDATVE" ReturnType="Collection(DB_LOTTECINEMAModel.LAYVETHEOSDTDATVE_Result)">
           <Parameter Name="SDTDatVe" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="TAOSUATCHIEU">
-            <Parameter Name="NgayChieu" Mode="In" Type="DateTime" />
-            <Parameter Name="ThoiGianBatDau" Mode="In" Type="Time" />
-            <Parameter Name="ThoiGianKetThuc" Mode="In" Type="Time" />
-            <Parameter Name="MaPhim" Mode="In" Type="String" />
-            <Parameter Name="MaPhong" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="TAOVE">
             <Parameter Name="MaKhachHang" Mode="In" Type="Int32" />
             <Parameter Name="TinhTrang" Mode="In" Type="String" />
@@ -891,6 +877,9 @@
           <Property Type="String" Name="MaPhong" Nullable="true" MaxLength="9" />
           <Property Type="String" Name="TenPhong" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="CT_THIETBI" >
+          <Property Type="Int32" Name="MaThietBi" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1057,7 +1046,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="TAOSUATCHIEU" FunctionName="DB_LOTTECINEMAModel.Store.TAOSUATCHIEU" />
           <FunctionImportMapping FunctionImportName="TAOVE" FunctionName="DB_LOTTECINEMAModel.Store.TAOVE" />
           <FunctionImportMapping FunctionImportName="THEMKHACHHANG" FunctionName="DB_LOTTECINEMAModel.Store.THEMKHACHHANG" />
           <FunctionImportMapping FunctionImportName="THONGKE_VEBANRATHEOPHIM" FunctionName="DB_LOTTECINEMAModel.Store.THONGKE_VEBANRATHEOPHIM">

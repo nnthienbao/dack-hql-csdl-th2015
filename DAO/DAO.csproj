@@ -54,6 +54,9 @@
     <Compile Include="BANGTHAMSO.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CT_THIETBI.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DOHOTPHIM.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>

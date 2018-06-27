@@ -248,31 +248,6 @@ namespace DAO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LAYVETHEOSDTDATVE_Result>("LAYVETHEOSDTDATVE", sDTDatVeParameter);
         }
     
-        public virtual int TAOSUATCHIEU(Nullable<System.DateTime> ngayChieu, Nullable<System.TimeSpan> thoiGianBatDau, Nullable<System.TimeSpan> thoiGianKetThuc, string maPhim, string maPhong)
-        {
-            var ngayChieuParameter = ngayChieu.HasValue ?
-                new ObjectParameter("NgayChieu", ngayChieu) :
-                new ObjectParameter("NgayChieu", typeof(System.DateTime));
-    
-            var thoiGianBatDauParameter = thoiGianBatDau.HasValue ?
-                new ObjectParameter("ThoiGianBatDau", thoiGianBatDau) :
-                new ObjectParameter("ThoiGianBatDau", typeof(System.TimeSpan));
-    
-            var thoiGianKetThucParameter = thoiGianKetThuc.HasValue ?
-                new ObjectParameter("ThoiGianKetThuc", thoiGianKetThuc) :
-                new ObjectParameter("ThoiGianKetThuc", typeof(System.TimeSpan));
-    
-            var maPhimParameter = maPhim != null ?
-                new ObjectParameter("MaPhim", maPhim) :
-                new ObjectParameter("MaPhim", typeof(string));
-    
-            var maPhongParameter = maPhong != null ?
-                new ObjectParameter("MaPhong", maPhong) :
-                new ObjectParameter("MaPhong", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAOSUATCHIEU", ngayChieuParameter, thoiGianBatDauParameter, thoiGianKetThucParameter, maPhimParameter, maPhongParameter);
-        }
-    
         public virtual int TAOVE(Nullable<int> maKhachHang, string tinhTrang, string tenChoNgoi, Nullable<int> maSuatChieu, Nullable<bool> choNgoiDep, string sDTDatVe, string nhanVienBanVe)
         {
             var maKhachHangParameter = maKhachHang.HasValue ?
