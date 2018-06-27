@@ -45,7 +45,7 @@ GO
 -- TAO VE
 ALTER PROC TAOVE
 	@MaKhachHang int,
-	@TinhTrang NVARCHAR(50), 
+	@TinhTrang int, 
 	@TenChoNgoi VARCHAR(10),
 	@MaSuatChieu INT,
 	@ChoNgoiDep BIT,
@@ -55,9 +55,18 @@ AS
 BEGIN
 	BEGIN TRY
 		BEGIN TRAN
+			IF EXISTS (SELECT * 
+						FROM VEXEMPHIM 
+						WHERE MaSuatChieu=@MaSuatChieu AND TenChoNgoi=@TenChoNgoi AND (TinhTrang=0 OR TinhTrang=1))
+				RAISERROR(N'Vé đã được bán hoặc đặt trước', 16, 1)
+
+			IF(@MaKhachHang IS NULL AND @SDTDatVe IS NULL)
+				RAISERROR(N'Không có thông tin khách hàng', 16, 1)
+
 			IF(@MaKhachHang IS NOT NULL)
 				IF NOT EXISTS(SELECT * FROM KHACHHANG WHERE id=@MaKhachHang)
 					RAISERROR(N'Không tìm thấy khách hàng', 16, 1)
+
 			-- Tinh gia ve
 			DECLARE @GiaVe int = 0;
 			SET @GiaVe = dbo.TINHGIAVE(@ChoNgoiDep, @MaSuatChieu)
@@ -86,13 +95,19 @@ BEGIN
 END
 
 GO
--- LAY VE THEO SDT DAT VE
-CREATE PROC LAYVETHEOSDTDATVE
-	@SDTDatVe VARCHAR(11)
+-- TRA CUU VE
+CREATE PROC TRACUUVE
+	@MaKhachHang INT,
+	@SDTDatVe VARCHAR(11),
+	@NhanVienBanVe VARCHAR(11)
 AS
 BEGIN
 	BEGIN TRAN
-		SELECT * FROM VEXEMPHIM WHERE SDTDatVe=@SDTDatVe
+		SELECT * 
+		FROM VEXEMPHIM 
+		WHERE (@MaKhachHang IS NULL OR MaKhachHang=@MaKhachHang) AND
+				(@SDTDatVe IS NULL OR SDTDatVe=@SDTDatVe) AND
+				(@NhanVienBanVe IS NULL OR NhanVienBanVe=@NhanVienBanVe)
 	COMMIT TRAN
 END
 
@@ -101,7 +116,7 @@ GO
 ALTER PROC CAPNHATVE
 	@MaVe VARCHAR(8),
 	@MaKhachHang int,
-	@TinhTrang NVARCHAR(50), 
+	@TinhTrang int, 
 	@TenChoNgoi VARCHAR(10),
 	@MaSuatChieu INT,
 	@ChoNgoiDep BIT,
