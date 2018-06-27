@@ -2,6 +2,46 @@ USE DB_LOTTECINEMA
 
 -----------------------------------
 ---------------VE------------------
+GO
+-- HAM TINH GIA VE
+ALTER FUNCTION TINHGIAVE(@ChoNgoiDep bit, @MaSuatChieu int)
+	RETURNS INT
+AS
+BEGIN
+	DECLARE @GiaVe INT = 0
+	-- Gia ve co ban
+	DECLARE @GiaVeCoBan INT = CONVERT(INT, (SELECT GiaTri FROM BANGTHAMSO WHERE TenThamSo='GIA_VE_CO_BAN'))
+	SET @GiaVe = @GiaVe + @GiaVeCoBan
+
+	-- Them tien neu cho ngoi dep
+	IF(@ChoNgoiDep=1)
+	BEGIN
+		DECLARE @TienPhuThem_ChoNgoiDep int = CONVERT(INT, (SELECT GiaTri FROM BANGTHAMSO WHERE TenThamSo='TIEN_PHU_CHO_NGOI_DEP'))
+		SET @GiaVe = @GiaVe + @TienPhuThem_ChoNgoiDep
+	END
+
+	-- Tien them do hot phim
+	DECLARE @MaPhim int = (SELECT MaPhim FROM SUATCHIEU WHERE id=@MaSuatChieu)
+	DECLARE @TienPhuThem_DoHotPhim INT =
+		(SELECT DH.TienPhuThem 
+		FROM PHIM P
+		INNER JOIN DOHOTPHIM DH
+		ON P.id=@MaPhim AND P.MaDoHot=DH.id)
+	SET @GiaVe = @GiaVe + @TienPhuThem_DoHotPhim
+
+	-- Tien them trang thiet bi
+	DECLARE @TienPhuThem_TrangThietBi INT =
+		(SELECT SUM(TB.TienPhuThem)
+		FROM CHITIETSUATCHIEU_THIETBI CTTB
+		INNER JOIN TRANGTHIETBI TB
+		ON CTTB.MaSuatChieu=@MaSuatChieu AND CTTB.MaThietBi=TB.id
+		GROUP BY CTTB.MaSuatChieu)
+	SET @GiaVe = @GiaVe + ISNULL(@TienPhuThem_TrangThietBi, 0)
+
+	RETURN @GiaVe
+END
+
+GO
 -- TAO VE
 ALTER PROC TAOVE
 	@MaKhachHang int,
@@ -20,16 +60,7 @@ BEGIN
 					RAISERROR(N'Không tìm thấy khách hàng', 16, 1)
 			-- Tinh gia ve
 			DECLARE @GiaVe int = 0;
-			----Lay gia ve co ban
-			DECLARE @GiaVeCoBan int = CONVERT(INT, (SELECT GiaTri FROM BANGTHAMSO WHERE TenThamSo='GIA_VE_CO_BAN'))
-			SET @GiaVe = @GiaVe + @GiaVeCoBan
-			----Tinh them tien neu cho ngoi dep
-			IF(@ChoNgoiDep=1)
-				DECLARE @TienPhuThem_ChoNgoiDep int = CONVERT(INT, (SELECT GiaTri FROM BANGTHAMSO WHERE TenThamSo='TIEN_PHU_CHO_NGOI_DEP'))
-				SET @GiaVe = @GiaVe + @TienPhuThem_ChoNgoiDep
-			----Tinh tien phu them trang thiet bi
-			
-			----Tinh tien phu them do hot phim
+			SET @GiaVe = dbo.TINHGIAVE(@ChoNgoiDep, @MaSuatChieu)
 
 			INSERT INTO VEXEMPHIM(MaKhachHang, GiaVe, TinhTrang, TenChoNgoi, MaSuatChieu, ChoNgoiDep, SDTDatVe, NhanVienBanVe)
 				VALUES(@MaKhachHang, @GiaVe, @TinhTrang, @TenChoNgoi, @MaSuatChieu, @ChoNgoiDep, @SDTDatVe, @NhanVienBanVe)
@@ -67,7 +98,7 @@ END
 
 GO
 -- CAP NHAT THONG TIN VE
-CREATE PROC CAPNHATVE
+ALTER PROC CAPNHATVE
 	@MaVe VARCHAR(8),
 	@MaKhachHang int,
 	@TinhTrang NVARCHAR(50), 
@@ -80,8 +111,16 @@ AS
 BEGIN
 	BEGIN TRY
 		BEGIN TRAN
+			IF NOT EXISTS (SELECT * FROM VEXEMPHIM WHERE MaVe=@MaVe)
+				RAISERROR(N'Không tìm thấy vé', 16, 1)
+
+			IF(@MaKhachHang IS NOT NULL)
+				IF NOT EXISTS(SELECT * FROM KHACHHANG WHERE id=@MaKhachHang)
+					RAISERROR(N'Không tìm thấy khách hàng', 16, 1)
+
 			UPDATE VEXEMPHIM
 			SET MaKhachHang=ISNULL(@MaKhachHang, MaKhachHang),
+				GiaVe=dbo.TINHGIAVE(ISNULL(@ChoNgoiDep, ChoNgoiDep), ISNULL(@MaSuatChieu, MaSuatChieu)),
 				TinhTrang=ISNULL(@TinhTrang, TinhTrang),
 				TenChoNgoi=ISNULL(@TenChoNgoi, TenChoNgoi),
 				MaSuatChieu=ISNULL(@MaSuatChieu, MaSuatChieu),
@@ -97,4 +136,14 @@ BEGIN
 		RAISERROR(@ErrorMsg, 16,1)
 		ROLLBACK TRAN
 	END CATCH
+END
+
+GO
+-- LAY DANH SACH VE
+CREATE PROC LAYDSVE
+AS
+BEGIN
+	BEGIN TRAN
+		SELECT * FROM VEXEMPHIM
+	COMMIT TRAN
 END
