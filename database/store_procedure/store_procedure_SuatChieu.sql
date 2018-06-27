@@ -43,18 +43,26 @@ GO
 --Tạo kiểu dữ liệu mới lưu danh sách chi tiết thiết bị cho suất chiếu
 CREATE TYPE DS_THIETBI AS TABLE
 (
-	MaThieuBi int
+	MaThietBi int
 )
+drop type DS_THIETBI
 
 GO
 -- TAO SUAT CHIEU PHIM
 ALTER PROC TAOSUATCHIEU
-	@NgayChieu DATE, @ThoiGianBatDau TIME(7), @ThoiGianKetThuc TIME(7), @MaPhim VARCHAR(10), @MaPhong VARCHAR(9), @DS_THIETBI AS DS_THIETBI READONLY
+	@NgayChieu DATE,
+	@ThoiGianBatDau TIME(7), 
+	@ThoiGianKetThuc TIME(7), 
+	@MaPhim int, 
+	@MaPhong int, 
+	@DS_THIETBI AS DS_THIETBI READONLY
 AS
 BEGIN
 	BEGIN TRY
+		SET XACT_ABORT ON
 		BEGIN TRAN
-			INSERT INTO SUATCHIEU VALUES(@NgayChieu, @ThoiGianBatDau, @ThoiGianKetThuc, @MaPhim, @MaPhong)
+			INSERT INTO SUATCHIEU(NgayChieu, ThoiGianBatDau, ThoiGianKetThuc, MaPhim, MaPhong)
+			 VALUES(@NgayChieu, @ThoiGianBatDau, @ThoiGianKetThuc, @MaPhim, @MaPhong)
 			
 			DECLARE @IdSuatChieu INT = SCOPE_IDENTITY()
 			INSERT INTO CHITIETSUATCHIEU_THIETBI(MaSuatChieu, MaThietBi) SELECT @IdSuatChieu, * FROM @DS_THIETBI
@@ -70,17 +78,18 @@ END
 
 GO
 -- CAP NHAT SUAT CHIEU
-CREATE PROC CAPNHATSUATCHIEU
+ALTER PROC CAPNHATSUATCHIEU
 	@MaSuatChieu VARCHAR(15),
 	@NgayChieu DATE, 
 	@ThoiGianBatDau TIME(7), 
 	@ThoiGianKetThuc TIME(7), 
-	@MaPhim VARCHAR(10), 
-	@MaPhong VARCHAR(9), 
+	@MaPhim int, 
+	@MaPhong int, 
 	@DS_THIETBI AS DS_THIETBI READONLY
 AS
 BEGIN
 	BEGIN TRY
+		SET XACT_ABORT ON
 		BEGIN TRAN
 			IF NOT EXISTS (SELECT * FROM SUATCHIEU WHERE MaSuatChieu=@MaSuatChieu)
 				RAISERROR(N'Không tìm thấy mã suất chiếu', 16, 1)
@@ -93,9 +102,11 @@ BEGIN
 				MaPhong=ISNULL(@MaPhong, MaPhong)
 			WHERE MaSuatChieu=@MaSuatChieu
 
-			DELETE CHITIETSUATCHIEU_THIETBI WHERE MaSuatChieu=@MaSuatChieu
+			DECLARE @IdSuatChieu int = (SELECT id FROM SUATCHIEU WHERE MaSuatChieu=@MaSuatChieu);
 
-			INSERT INTO CHITIETSUATCHIEU_THIETBI(MaSuatChieu, MaThietBi) SELECT @MaSuatChieu, * FROM @DS_THIETBI
+			DELETE CHITIETSUATCHIEU_THIETBI WHERE MaSuatChieu=@IdSuatChieu
+
+			INSERT INTO CHITIETSUATCHIEU_THIETBI(MaSuatChieu, MaThietBi) SELECT @IdSuatChieu, * FROM @DS_THIETBI
 		COMMIT TRAN
 	END TRY
 	BEGIN CATCH
