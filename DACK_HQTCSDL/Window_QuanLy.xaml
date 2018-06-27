@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:DACK_HQTCSDL"
         mc:Ignorable="d"
         Title="Window_QuanLy" Height="800" Width="1000"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        Loaded="Window_Loaded">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -14,9 +15,9 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <StackPanel x:Name="topStackPanel" Background="#BFD7FF" Orientation="Horizontal">
+            <StackPanel x:Name="topStackPanel" Background="#33C62828" Orientation="Horizontal">
                 <!--Button danh sách phim-->
-                <Button x:Name="button_Phim" Click="button_Phim_Click" Width="120" Height="80" Background="#c62828" Style="{StaticResource MyButton}">
+                <Button x:Name="button_Phim" Click="button_Phim_Click" Width="120" Height="80" Background="#C62828" Style="{StaticResource MyButton}">
                     <StackPanel>
                         <Image Source="Image/film.png" Width="48" Height="48" Margin="0 5 0 0"/>
                         <Label Foreground="White" FontWeight="Bold" Content="Phim" />
@@ -39,7 +40,7 @@
                 <!--Button thiết bị-->
                 <Button x:Name="button_ThietBi" Click="button_ThietBi_Click" Width="120" Height="80" Background="#2E7D32" Style="{StaticResource MyButton}">
                     <StackPanel>
-                        <Image Source="Image/users.png" Width="48" Height="48" Margin="0 5 0 0"/>
+                        <Image Source="Image/wrench.png" Width="48" Height="46" Margin="0 5 0 0"/>
                         <Label Foreground="White" FontWeight="Bold" Content="Thiết bị" />
                     </StackPanel>
                 </Button>
