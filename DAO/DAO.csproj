@@ -86,6 +86,9 @@
     <Compile Include="LAYDSTRANGTHIETBI_Result.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LAYDSVE_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LAYKHACHHANGTHEOMAKH_Result.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
@@ -151,6 +154,12 @@
     <Compile Include="TINHTRANGPHIM.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TINHTRANGVE.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TRACUUVE_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TRANGTHIETBI.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
@@ -158,6 +167,7 @@
     <Compile Include="VEXEMPHIM.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="VeXemPhimDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="LotteCinemaModel.edmx">

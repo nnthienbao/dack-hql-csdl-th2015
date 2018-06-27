@@ -100,7 +100,7 @@
           <Property Name="MaVe" Type="varchar" MaxLength="8" StoreGeneratedPattern="Computed" />
           <Property Name="MaKhachHang" Type="int" />
           <Property Name="GiaVe" Type="int" Nullable="false" />
-          <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TinhTrang" Type="int" Nullable="false" />
           <Property Name="TenChoNgoi" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="MaSuatChieu" Type="int" Nullable="false" />
           <Property Name="ChoNgoiDep" Type="bit" Nullable="false" />
@@ -238,8 +238,8 @@
           <Parameter Name="NgayChieu" Type="date" Mode="In" />
           <Parameter Name="ThoiGianBatDau" Type="time" Mode="In" />
           <Parameter Name="ThoiGianKetThuc" Type="time" Mode="In" />
-          <Parameter Name="MaPhim" Type="varchar" Mode="In" />
-          <Parameter Name="MaPhong" Type="varchar" Mode="In" />
+          <Parameter Name="MaPhim" Type="int" Mode="In" />
+          <Parameter Name="MaPhong" Type="int" Mode="In" />
         </Function>
         <Function Name="CAPNHATTRANGTHIETBI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaThietBi" Type="varchar" Mode="In" />
@@ -249,7 +249,7 @@
         <Function Name="CAPNHATVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaVe" Type="varchar" Mode="In" />
           <Parameter Name="MaKhachHang" Type="int" Mode="In" />
-          <Parameter Name="TinhTrang" Type="nvarchar" Mode="In" />
+          <Parameter Name="TinhTrang" Type="int" Mode="In" />
           <Parameter Name="TenChoNgoi" Type="varchar" Mode="In" />
           <Parameter Name="MaSuatChieu" Type="int" Mode="In" />
           <Parameter Name="ChoNgoiDep" Type="bit" Mode="In" />
@@ -265,6 +265,7 @@
         <Function Name="LAYDSPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="LAYDSSUATCHIEU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="LAYDSTRANGTHIETBI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LAYDSVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="LAYGIAVECOBAN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="LAYKHACHHANGTHEOMAKH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaKhachHang" Type="varchar" Mode="In" />
@@ -288,9 +289,6 @@
         <Function Name="LAYVETHEOMAVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Mave" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="LAYVETHEOSDTDATVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="SDTDatVe" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="TAODOHOTPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TenDoHot" Type="nvarchar" Mode="In" />
           <Parameter Name="TienPhuThem" Type="int" Mode="In" />
@@ -304,13 +302,20 @@
         <Function Name="TAOPHONG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TenPhong" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="TAOSUATCHIEU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NgayChieu" Type="date" Mode="In" />
+          <Parameter Name="ThoiGianBatDau" Type="time" Mode="In" />
+          <Parameter Name="ThoiGianKetThuc" Type="time" Mode="In" />
+          <Parameter Name="MaPhim" Type="int" Mode="In" />
+          <Parameter Name="MaPhong" Type="int" Mode="In" />
+        </Function>
         <Function Name="TAOTRANGTHIETBI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TenThietBi" Type="nvarchar" Mode="In" />
           <Parameter Name="TienPhuThem" Type="int" Mode="In" />
         </Function>
         <Function Name="TAOVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaKhachHang" Type="int" Mode="In" />
-          <Parameter Name="TinhTrang" Type="nvarchar" Mode="In" />
+          <Parameter Name="TinhTrang" Type="int" Mode="In" />
           <Parameter Name="TenChoNgoi" Type="varchar" Mode="In" />
           <Parameter Name="MaSuatChieu" Type="int" Mode="In" />
           <Parameter Name="ChoNgoiDep" Type="bit" Mode="In" />
@@ -332,6 +337,10 @@
           <Parameter Name="NgayBatDau" Type="date" Mode="In" />
           <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
         </Function>
+        <Function Name="TINHGIAVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="ChoNgoiDep" Type="bit" Mode="In" />
+          <Parameter Name="MaSuatChieu" Type="int" Mode="In" />
+        </Function>
         <Function Name="TRACUUSUATCHIEU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NgayBatDau" Type="date" Mode="In" />
           <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
@@ -339,6 +348,11 @@
           <Parameter Name="ThoiGianKetThuc" Type="time" Mode="In" />
           <Parameter Name="MaPhim" Type="int" Mode="In" />
           <Parameter Name="MaPhong" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TRACUUVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaKhachHang" Type="int" Mode="In" />
+          <Parameter Name="SDTDatVe" Type="varchar" Mode="In" />
+          <Parameter Name="NhanVienBanVe" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="DB_LOTTECINEMAModelStoreContainer">
           <EntitySet Name="BANGTHAMSO" EntityType="Self.BANGTHAMSO" Schema="dbo" store:Type="Tables" />
@@ -486,7 +500,7 @@
           <Property Name="MaVe" Type="String" MaxLength="8" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="MaKhachHang" Type="Int32" />
           <Property Name="GiaVe" Type="Int32" Nullable="false" />
-          <Property Name="TinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TinhTrang" Type="Int32" Nullable="false" />
           <Property Name="TenChoNgoi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MaSuatChieu" Type="Int32" Nullable="false" />
           <Property Name="ChoNgoiDep" Type="Boolean" Nullable="false" />
@@ -634,7 +648,7 @@
           <FunctionImport Name="CAPNHATVE">
             <Parameter Name="MaVe" Mode="In" Type="String" />
             <Parameter Name="MaKhachHang" Mode="In" Type="Int32" />
-            <Parameter Name="TinhTrang" Mode="In" Type="String" />
+            <Parameter Name="TinhTrang" Mode="In" Type="Int32" />
             <Parameter Name="TenChoNgoi" Mode="In" Type="String" />
             <Parameter Name="MaSuatChieu" Mode="In" Type="Int32" />
             <Parameter Name="ChoNgoiDep" Mode="In" Type="Boolean" />
@@ -653,7 +667,7 @@
           <FunctionImport Name="LAYSUATCHIEUTHEOMA" EntitySet="SUATCHIEUx" ReturnType="Collection(DB_LOTTECINEMAModel.SUATCHIEU)">
           <Parameter Name="MaSuatChieu" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="LAYVETHEOMAVE" ReturnType="Collection(DB_LOTTECINEMAModel.LAYVETHEOMAVE_Result)">
+          <FunctionImport Name="LAYVETHEOMAVE" EntitySet="VEXEMPHIMs" ReturnType="Collection(DB_LOTTECINEMAModel.VEXEMPHIM)">
           <Parameter Name="Mave" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LAYVETHEOSDTDATVE" ReturnType="Collection(DB_LOTTECINEMAModel.LAYVETHEOSDTDATVE_Result)">
@@ -661,7 +675,7 @@
           </FunctionImport>
           <FunctionImport Name="TAOVE">
             <Parameter Name="MaKhachHang" Mode="In" Type="Int32" />
-            <Parameter Name="TinhTrang" Mode="In" Type="String" />
+            <Parameter Name="TinhTrang" Mode="In" Type="Int32" />
             <Parameter Name="TenChoNgoi" Mode="In" Type="String" />
             <Parameter Name="MaSuatChieu" Mode="In" Type="Int32" />
             <Parameter Name="ChoNgoiDep" Mode="In" Type="Boolean" />
@@ -742,8 +756,21 @@
             <Parameter Name="NgayChieu" Mode="In" Type="DateTime" />
             <Parameter Name="ThoiGianBatDau" Mode="In" Type="Time" />
             <Parameter Name="ThoiGianKetThuc" Mode="In" Type="Time" />
-            <Parameter Name="MaPhim" Mode="In" Type="String" />
-            <Parameter Name="MaPhong" Mode="In" Type="String" />
+            <Parameter Name="MaPhim" Mode="In" Type="Int32" />
+            <Parameter Name="MaPhong" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LAYDSVE" EntitySet="VEXEMPHIMs" ReturnType="Collection(DB_LOTTECINEMAModel.VEXEMPHIM)" />
+          <FunctionImport Name="TAOSUATCHIEU">
+            <Parameter Name="NgayChieu" Mode="In" Type="DateTime" />
+            <Parameter Name="ThoiGianBatDau" Mode="In" Type="Time" />
+            <Parameter Name="ThoiGianKetThuc" Mode="In" Type="Time" />
+            <Parameter Name="MaPhim" Mode="In" Type="Int32" />
+            <Parameter Name="MaPhong" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TRACUUVE" EntitySet="VEXEMPHIMs" ReturnType="Collection(DB_LOTTECINEMAModel.VEXEMPHIM)">
+            <Parameter Name="MaKhachHang" Mode="In" Type="Int32" />
+            <Parameter Name="SDTDatVe" Mode="In" Type="String" />
+            <Parameter Name="NhanVienBanVe" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="LAYDSKHACHHANG_Result">
@@ -880,6 +907,35 @@
         <ComplexType Name="CT_THIETBI" >
           <Property Type="Int32" Name="MaThietBi" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="LAYDSVE_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaVe" Nullable="true" MaxLength="8" />
+          <Property Type="Int32" Name="MaKhachHang" Nullable="true" />
+          <Property Type="Int32" Name="GiaVe" Nullable="false" />
+          <Property Type="Int32" Name="TinhTrang" Nullable="false" />
+          <Property Type="String" Name="TenChoNgoi" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="MaSuatChieu" Nullable="false" />
+          <Property Type="Boolean" Name="ChoNgoiDep" Nullable="false" />
+          <Property Type="String" Name="SDTDatVe" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="NhanVienBanVe" Nullable="false" MaxLength="11" />
+        </ComplexType>
+        <ComplexType Name="TRACUUVE_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaVe" Nullable="true" MaxLength="8" />
+          <Property Type="Int32" Name="MaKhachHang" Nullable="true" />
+          <Property Type="Int32" Name="GiaVe" Nullable="false" />
+          <Property Type="Int32" Name="TinhTrang" Nullable="false" />
+          <Property Type="String" Name="TenChoNgoi" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="MaSuatChieu" Nullable="false" />
+          <Property Type="Boolean" Name="ChoNgoiDep" Nullable="false" />
+          <Property Type="String" Name="SDTDatVe" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="NhanVienBanVe" Nullable="false" MaxLength="11" />
+        </ComplexType>
+        <EnumType Name="TINHTRANGVE">
+          <Member Name="DA_BAN" Value="0" />
+          <Member Name="DA_DAT" Value="1" />
+          <Member Name="HUY" Value="2" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -976,11 +1032,11 @@
           <EntitySetMapping Name="VEXEMPHIMs">
             <EntityTypeMapping TypeName="DB_LOTTECINEMAModel.VEXEMPHIM">
               <MappingFragment StoreEntitySet="VEXEMPHIM">
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="MaVe" ColumnName="MaVe" />
                 <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
                 <ScalarProperty Name="GiaVe" ColumnName="GiaVe" />
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="TenChoNgoi" ColumnName="TenChoNgoi" />
                 <ScalarProperty Name="MaSuatChieu" ColumnName="MaSuatChieu" />
                 <ScalarProperty Name="ChoNgoiDep" ColumnName="ChoNgoiDep" />
@@ -1015,36 +1071,6 @@
           <FunctionImportMapping FunctionImportName="LAYSUATCHIEUTHEOMA" FunctionName="DB_LOTTECINEMAModel.Store.LAYSUATCHIEUTHEOMA">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="LAYVETHEOMAVE" FunctionName="DB_LOTTECINEMAModel.Store.LAYVETHEOMAVE">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.LAYVETHEOMAVE_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="MaVe" ColumnName="MaVe" />
-                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
-                <ScalarProperty Name="GiaVe" ColumnName="GiaVe" />
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-                <ScalarProperty Name="TenChoNgoi" ColumnName="TenChoNgoi" />
-                <ScalarProperty Name="MaSuatChieu" ColumnName="MaSuatChieu" />
-                <ScalarProperty Name="ChoNgoiDep" ColumnName="ChoNgoiDep" />
-                <ScalarProperty Name="SDTDatVe" ColumnName="SDTDatVe" />
-                <ScalarProperty Name="NhanVienBanVe" ColumnName="NhanVienBanVe" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="LAYVETHEOSDTDATVE" FunctionName="DB_LOTTECINEMAModel.Store.LAYVETHEOSDTDATVE">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DB_LOTTECINEMAModel.LAYVETHEOSDTDATVE_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="MaVe" ColumnName="MaVe" />
-                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
-                <ScalarProperty Name="GiaVe" ColumnName="GiaVe" />
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-                <ScalarProperty Name="TenChoNgoi" ColumnName="TenChoNgoi" />
-                <ScalarProperty Name="MaSuatChieu" ColumnName="MaSuatChieu" />
-                <ScalarProperty Name="ChoNgoiDep" ColumnName="ChoNgoiDep" />
-                <ScalarProperty Name="SDTDatVe" ColumnName="SDTDatVe" />
-                <ScalarProperty Name="NhanVienBanVe" ColumnName="NhanVienBanVe" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TAOVE" FunctionName="DB_LOTTECINEMAModel.Store.TAOVE" />
           <FunctionImportMapping FunctionImportName="THEMKHACHHANG" FunctionName="DB_LOTTECINEMAModel.Store.THEMKHACHHANG" />
@@ -1089,6 +1115,11 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TAOPHONG" FunctionName="DB_LOTTECINEMAModel.Store.TAOPHONG" />
           <FunctionImportMapping FunctionImportName="CAPNHATSUATCHIEU" FunctionName="DB_LOTTECINEMAModel.Store.CAPNHATSUATCHIEU" />
+          <FunctionImportMapping FunctionImportName="LAYDSVE" FunctionName="DB_LOTTECINEMAModel.Store.LAYDSVE">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TAOSUATCHIEU" FunctionName="DB_LOTTECINEMAModel.Store.TAOSUATCHIEU" />
+          <FunctionImportMapping FunctionImportName="TRACUUVE" FunctionName="DB_LOTTECINEMAModel.Store.TRACUUVE">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

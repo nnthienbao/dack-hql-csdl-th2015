@@ -10,9 +10,8 @@
 namespace DAO
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class VEXEMPHIM
+    public partial class TRACUUVE_Result
     {
         public int id { get; set; }
         public string MaVe { get; set; }
@@ -24,9 +23,5 @@ namespace DAO
         public bool ChoNgoiDep { get; set; }
         public string SDTDatVe { get; set; }
         public string NhanVienBanVe { get; set; }
-    
-        public virtual KHACHHANG KHACHHANG { get; set; }
-        public virtual NHANVIEN NHANVIEN { get; set; }
-        public virtual SUATCHIEU SUATCHIEU { get; set; }
     }
 }

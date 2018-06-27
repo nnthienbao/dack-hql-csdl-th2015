@@ -109,7 +109,7 @@ namespace DAO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CAPNHATPHUTHUCHONGOIDEP", phuThuMoiParameter);
         }
     
-        public virtual int CAPNHATVE(string maVe, Nullable<int> maKhachHang, string tinhTrang, string tenChoNgoi, Nullable<int> maSuatChieu, Nullable<bool> choNgoiDep, string sDTDatVe, string nhanVienBanVe)
+        public virtual int CAPNHATVE(string maVe, Nullable<int> maKhachHang, Nullable<int> tinhTrang, string tenChoNgoi, Nullable<int> maSuatChieu, Nullable<bool> choNgoiDep, string sDTDatVe, string nhanVienBanVe)
         {
             var maVeParameter = maVe != null ?
                 new ObjectParameter("MaVe", maVe) :
@@ -119,9 +119,9 @@ namespace DAO
                 new ObjectParameter("MaKhachHang", maKhachHang) :
                 new ObjectParameter("MaKhachHang", typeof(int));
     
-            var tinhTrangParameter = tinhTrang != null ?
+            var tinhTrangParameter = tinhTrang.HasValue ?
                 new ObjectParameter("TinhTrang", tinhTrang) :
-                new ObjectParameter("TinhTrang", typeof(string));
+                new ObjectParameter("TinhTrang", typeof(int));
     
             var tenChoNgoiParameter = tenChoNgoi != null ?
                 new ObjectParameter("TenChoNgoi", tenChoNgoi) :
@@ -230,13 +230,22 @@ namespace DAO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SUATCHIEU>("LAYSUATCHIEUTHEOMA", mergeOption, maSuatChieuParameter);
         }
     
-        public virtual ObjectResult<LAYVETHEOMAVE_Result> LAYVETHEOMAVE(string mave)
+        public virtual ObjectResult<VEXEMPHIM> LAYVETHEOMAVE(string mave)
         {
             var maveParameter = mave != null ?
                 new ObjectParameter("Mave", mave) :
                 new ObjectParameter("Mave", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LAYVETHEOMAVE_Result>("LAYVETHEOMAVE", maveParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VEXEMPHIM>("LAYVETHEOMAVE", maveParameter);
+        }
+    
+        public virtual ObjectResult<VEXEMPHIM> LAYVETHEOMAVE(string mave, MergeOption mergeOption)
+        {
+            var maveParameter = mave != null ?
+                new ObjectParameter("Mave", mave) :
+                new ObjectParameter("Mave", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VEXEMPHIM>("LAYVETHEOMAVE", mergeOption, maveParameter);
         }
     
         public virtual ObjectResult<LAYVETHEOSDTDATVE_Result> LAYVETHEOSDTDATVE(string sDTDatVe)
@@ -248,15 +257,15 @@ namespace DAO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LAYVETHEOSDTDATVE_Result>("LAYVETHEOSDTDATVE", sDTDatVeParameter);
         }
     
-        public virtual int TAOVE(Nullable<int> maKhachHang, string tinhTrang, string tenChoNgoi, Nullable<int> maSuatChieu, Nullable<bool> choNgoiDep, string sDTDatVe, string nhanVienBanVe)
+        public virtual int TAOVE(Nullable<int> maKhachHang, Nullable<int> tinhTrang, string tenChoNgoi, Nullable<int> maSuatChieu, Nullable<bool> choNgoiDep, string sDTDatVe, string nhanVienBanVe)
         {
             var maKhachHangParameter = maKhachHang.HasValue ?
                 new ObjectParameter("MaKhachHang", maKhachHang) :
                 new ObjectParameter("MaKhachHang", typeof(int));
     
-            var tinhTrangParameter = tinhTrang != null ?
+            var tinhTrangParameter = tinhTrang.HasValue ?
                 new ObjectParameter("TinhTrang", tinhTrang) :
-                new ObjectParameter("TinhTrang", typeof(string));
+                new ObjectParameter("TinhTrang", typeof(int));
     
             var tenChoNgoiParameter = tenChoNgoi != null ?
                 new ObjectParameter("TenChoNgoi", tenChoNgoi) :
@@ -595,7 +604,7 @@ namespace DAO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAOPHONG", tenPhongParameter);
         }
     
-        public virtual int CAPNHATSUATCHIEU(string maSuatChieu, Nullable<System.DateTime> ngayChieu, Nullable<System.TimeSpan> thoiGianBatDau, Nullable<System.TimeSpan> thoiGianKetThuc, string maPhim, string maPhong)
+        public virtual int CAPNHATSUATCHIEU(string maSuatChieu, Nullable<System.DateTime> ngayChieu, Nullable<System.TimeSpan> thoiGianBatDau, Nullable<System.TimeSpan> thoiGianKetThuc, Nullable<int> maPhim, Nullable<int> maPhong)
         {
             var maSuatChieuParameter = maSuatChieu != null ?
                 new ObjectParameter("MaSuatChieu", maSuatChieu) :
@@ -613,15 +622,84 @@ namespace DAO
                 new ObjectParameter("ThoiGianKetThuc", thoiGianKetThuc) :
                 new ObjectParameter("ThoiGianKetThuc", typeof(System.TimeSpan));
     
-            var maPhimParameter = maPhim != null ?
+            var maPhimParameter = maPhim.HasValue ?
                 new ObjectParameter("MaPhim", maPhim) :
-                new ObjectParameter("MaPhim", typeof(string));
+                new ObjectParameter("MaPhim", typeof(int));
     
-            var maPhongParameter = maPhong != null ?
+            var maPhongParameter = maPhong.HasValue ?
                 new ObjectParameter("MaPhong", maPhong) :
-                new ObjectParameter("MaPhong", typeof(string));
+                new ObjectParameter("MaPhong", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CAPNHATSUATCHIEU", maSuatChieuParameter, ngayChieuParameter, thoiGianBatDauParameter, thoiGianKetThucParameter, maPhimParameter, maPhongParameter);
+        }
+    
+        public virtual ObjectResult<VEXEMPHIM> LAYDSVE()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VEXEMPHIM>("LAYDSVE");
+        }
+    
+        public virtual ObjectResult<VEXEMPHIM> LAYDSVE(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VEXEMPHIM>("LAYDSVE", mergeOption);
+        }
+    
+        public virtual int TAOSUATCHIEU(Nullable<System.DateTime> ngayChieu, Nullable<System.TimeSpan> thoiGianBatDau, Nullable<System.TimeSpan> thoiGianKetThuc, Nullable<int> maPhim, Nullable<int> maPhong)
+        {
+            var ngayChieuParameter = ngayChieu.HasValue ?
+                new ObjectParameter("NgayChieu", ngayChieu) :
+                new ObjectParameter("NgayChieu", typeof(System.DateTime));
+    
+            var thoiGianBatDauParameter = thoiGianBatDau.HasValue ?
+                new ObjectParameter("ThoiGianBatDau", thoiGianBatDau) :
+                new ObjectParameter("ThoiGianBatDau", typeof(System.TimeSpan));
+    
+            var thoiGianKetThucParameter = thoiGianKetThuc.HasValue ?
+                new ObjectParameter("ThoiGianKetThuc", thoiGianKetThuc) :
+                new ObjectParameter("ThoiGianKetThuc", typeof(System.TimeSpan));
+    
+            var maPhimParameter = maPhim.HasValue ?
+                new ObjectParameter("MaPhim", maPhim) :
+                new ObjectParameter("MaPhim", typeof(int));
+    
+            var maPhongParameter = maPhong.HasValue ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TAOSUATCHIEU", ngayChieuParameter, thoiGianBatDauParameter, thoiGianKetThucParameter, maPhimParameter, maPhongParameter);
+        }
+    
+        public virtual ObjectResult<VEXEMPHIM> TRACUUVE(Nullable<int> maKhachHang, string sDTDatVe, string nhanVienBanVe)
+        {
+            var maKhachHangParameter = maKhachHang.HasValue ?
+                new ObjectParameter("MaKhachHang", maKhachHang) :
+                new ObjectParameter("MaKhachHang", typeof(int));
+    
+            var sDTDatVeParameter = sDTDatVe != null ?
+                new ObjectParameter("SDTDatVe", sDTDatVe) :
+                new ObjectParameter("SDTDatVe", typeof(string));
+    
+            var nhanVienBanVeParameter = nhanVienBanVe != null ?
+                new ObjectParameter("NhanVienBanVe", nhanVienBanVe) :
+                new ObjectParameter("NhanVienBanVe", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VEXEMPHIM>("TRACUUVE", maKhachHangParameter, sDTDatVeParameter, nhanVienBanVeParameter);
+        }
+    
+        public virtual ObjectResult<VEXEMPHIM> TRACUUVE(Nullable<int> maKhachHang, string sDTDatVe, string nhanVienBanVe, MergeOption mergeOption)
+        {
+            var maKhachHangParameter = maKhachHang.HasValue ?
+                new ObjectParameter("MaKhachHang", maKhachHang) :
+                new ObjectParameter("MaKhachHang", typeof(int));
+    
+            var sDTDatVeParameter = sDTDatVe != null ?
+                new ObjectParameter("SDTDatVe", sDTDatVe) :
+                new ObjectParameter("SDTDatVe", typeof(string));
+    
+            var nhanVienBanVeParameter = nhanVienBanVe != null ?
+                new ObjectParameter("NhanVienBanVe", nhanVienBanVe) :
+                new ObjectParameter("NhanVienBanVe", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VEXEMPHIM>("TRACUUVE", mergeOption, maKhachHangParameter, sDTDatVeParameter, nhanVienBanVeParameter);
         }
     }
 }
