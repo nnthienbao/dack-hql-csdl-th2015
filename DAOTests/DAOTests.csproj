@@ -58,6 +58,7 @@
     <Compile Include="PhongDAOTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SuatChieuDAOTests.cs" />
+    <Compile Include="ThamSoDAOTests.cs" />
     <Compile Include="TrangThietBiDAOTests.cs" />
     <Compile Include="VeXemPhimDAOTests.cs" />
   </ItemGroup>
