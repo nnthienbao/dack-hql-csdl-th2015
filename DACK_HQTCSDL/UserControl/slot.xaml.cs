@@ -18,18 +18,22 @@ namespace DACK_HQTCSDL
     /// <summary>
     /// Interaction logic for slot.xaml
     /// </summary>
-    public partial class slot : UserControl
+    public partial class UC_Slot : UserControl
     {
+        //  Tên chỗ ngồi
         public String slotID { get; set; }
-        public bool isSlotReserved { get; set; }
+        //  Thuộc tính kiểm tra xem chỗ ngồi đang được chọn hay không
         public bool isSelectedBtn { get; set; }
-
-        public slot()
+        //  Thuộc tính kiểm tra xem chỗ ngồi đã đặt rồi hay chưa
+        public bool isSlotReserved { get; set; }
+        //  Event xử lý click
+        public event EventHandler UcClick;
+        //  Khởi tạo user control
+        public UC_Slot()
         {
             InitializeComponent();
         }
-
-
+        //  UserControl load
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             isSelectedBtn = false;
@@ -40,9 +44,10 @@ namespace DACK_HQTCSDL
             }
             this.Label_Slot.Content = slotID;
         }
-
+        //  Event click vào button
         private void Btn_Slot_Click(object sender, RoutedEventArgs e)
         {
+            //  Xử lý màu sắc cho khi UC bị click
             if (isSelectedBtn == false)
             {
                 isSelectedBtn = true;
@@ -56,8 +61,12 @@ namespace DACK_HQTCSDL
                 this.BorderThickness = new Thickness(0);
                 this.BorderBrush = new SolidColorBrush((Color.FromArgb(0, 255, 255, 255)));
             }
+            //  Thêm Event UcClick cho UC
+            if (this.UcClick != null)
+            {
+                this.UcClick(this, e);
+            }
+                
         }
-
-       
     }
 }
