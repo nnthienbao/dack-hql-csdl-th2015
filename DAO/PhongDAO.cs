@@ -37,6 +37,21 @@ namespace DAO
             }
         }
 
+        public PHONG LayPhongTheoId(int idPhong)
+        {
+            try
+            {
+                using (var db = new DB_LOTTECINEMAEntities())
+                {
+                    return db.LAYPHONGTHEOID(idPhong).SingleOrDefault();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public bool ThemPhong(string tenPhong)
         {
             try

@@ -105,11 +105,10 @@ namespace DAO.Tests
         [TestMethod()]
         public void TraCuuSuatChieuTest()
         {
-            var dsSuatChieu = suatChieuDAO.TraCuuSuatChieu(DateTime.Now, null, null, null, null, null);
-            Assert.IsNotNull(dsSuatChieu);
-            Debug.WriteLine(dsSuatChieu.Count);
+            var dsSuatChieu = suatChieuDAO.TraCuuSuatChieu(null, null, null, null, null, null, null);
+            Assert.IsNull(dsSuatChieu);
 
-            dsSuatChieu = suatChieuDAO.TraCuuSuatChieu(DateTime.Now, null, null, null, null, 100);
+            dsSuatChieu = suatChieuDAO.TraCuuSuatChieu(null, null, null, null, null, null, new List<CT_THIETBI>());
             Assert.IsNotNull(dsSuatChieu);
             Debug.WriteLine(dsSuatChieu.Count);
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Diagnostics;
@@ -154,24 +155,57 @@ namespace DAO
                                                 TimeSpan? thoiGianBatDau,
                                                 TimeSpan? thoiGianKetThuc,
                                                 int? maPhim,
-                                                int? maPhong
+                                                int? maPhong,
+                                                List<CT_THIETBI> dsThietBi
                                                 )
         {
             try
             {
                 using (var db = new DB_LOTTECINEMAEntities())
                 {
-                    return db
-                        .TRACUUSUATCHIEU(ngayBatDau, 
-                                        ngayKetThuc, 
-                                        thoiGianBatDau, 
-                                        thoiGianKetThuc, 
-                                        maPhim, maPhong)
-                        .ToList();
+                    var pNgayBatDau = new SqlParameter("NgayBatDau", SqlDbType.DateTime);
+                    pNgayBatDau.Value = (Object)ngayBatDau ?? DBNull.Value;
+
+                    var pNgayKetThuc = new SqlParameter("NgayKetThuc", SqlDbType.DateTime);
+                    pNgayKetThuc.Value = (Object)ngayKetThuc ?? DBNull.Value;
+
+                    var pthoiGianBD = new SqlParameter("ThoiGianBatDau", SqlDbType.Time);
+                    pthoiGianBD.Value = (Object)thoiGianBatDau ?? DBNull.Value;
+
+                    var pthoiGianKT = new SqlParameter("ThoiGianKetThuc", SqlDbType.Time);
+                    pthoiGianKT.Value = (Object)thoiGianKetThuc ?? DBNull.Value;
+
+                    var pMaPhim = new SqlParameter("MaPhim", SqlDbType.Int);
+                    pMaPhim.Value = (Object)maPhim ?? DBNull.Value;
+
+                    var pMaPhong = new SqlParameter("MaPhong", SqlDbType.Int);
+                    pMaPhong.Value = (Object)maPhong ?? DBNull.Value;
+
+                    var pDSThietBi = new SqlParameter("DS_THIETBI", SqlDbType.Structured);
+                    if (dsThietBi != null)
+                    {
+                        var dt = new DataTable();
+                        dt.Columns.Add("MaThietBi");
+                        foreach (var thietBi in dsThietBi)
+                        {
+                            dt.Rows.Add(thietBi.MaThietBi);
+                        }
+                        pDSThietBi.Value = dt;
+                    }
+                    else
+                    {
+                        pDSThietBi.Value = DBNull.Value;
+                    }
+                    pDSThietBi.TypeName = "dbo.DS_THIETBI";
+
+                    return db.Database.SqlQuery<SUATCHIEU>("EXEC TRACUUSUATCHIEU" +
+                        " @NgayBatDau, @NgayKetThuc, @ThoiGianBatDau, @ThoiGianKetThuc, @MaPhim, @MaPhong, @DS_ThietBi",
+                        pNgayBatDau, pNgayKetThuc, pthoiGianBD, pthoiGianKT, pMaPhim, pMaPhong, pDSThietBi).ToList();
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 return null;
             }
         }

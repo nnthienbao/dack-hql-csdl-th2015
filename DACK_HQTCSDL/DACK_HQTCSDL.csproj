@@ -58,6 +58,8 @@
     <Compile Include="Converter\GioiTinhConverter.cs" />
     <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Converter\NgaySinhConverter.cs" />
+    <Compile Include="Converter\SuatChieuConverter.cs" />
+    <Compile Include="ModelForBinding\ThietBiChecker.cs" />
     <Compile Include="NhanVien\Window_SuaKhachHang.xaml.cs">
       <DependentUpon>Window_SuaKhachHang.xaml</DependentUpon>
     </Compile>

@@ -98,6 +98,9 @@
     <Compile Include="LAYPHIMTHEOMAPHIM_Result.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LAYPHONGTHEOID_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LAYPHONGTHEOMA_Result.cs">
       <DependentUpon>LotteCinemaModel.tt</DependentUpon>
     </Compile>

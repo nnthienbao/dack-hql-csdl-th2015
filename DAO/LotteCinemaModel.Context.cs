@@ -743,5 +743,23 @@ namespace DAO
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<KHACHHANG>("TRACUUKHACHHANG", mergeOption, maKhachHangParameter, hoTenParameter, cMNDParameter, soDienThoaiParameter);
         }
+    
+        public virtual ObjectResult<PHONG> LAYPHONGTHEOID(Nullable<int> maPhong)
+        {
+            var maPhongParameter = maPhong.HasValue ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PHONG>("LAYPHONGTHEOID", maPhongParameter);
+        }
+    
+        public virtual ObjectResult<PHONG> LAYPHONGTHEOID(Nullable<int> maPhong, MergeOption mergeOption)
+        {
+            var maPhongParameter = maPhong.HasValue ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PHONG>("LAYPHONGTHEOID", mergeOption, maPhongParameter);
+        }
     }
 }

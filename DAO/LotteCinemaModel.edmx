@@ -276,6 +276,9 @@
         <Function Name="LAYPHIMTHEOMAPHIM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaPhim" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="LAYPHONGTHEOID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaPhong" Type="int" Mode="In" />
+        </Function>
         <Function Name="LAYPHONGTHEOMA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaPhong" Type="varchar" Mode="In" />
         </Function>
@@ -784,6 +787,9 @@
             <Parameter Name="CMND" Mode="In" Type="String" />
             <Parameter Name="SoDienThoai" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="LAYPHONGTHEOID" EntitySet="PHONGs" ReturnType="Collection(DB_LOTTECINEMAModel.PHONG)">
+            <Parameter Name="MaPhong" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="LAYDSKHACHHANG_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -956,6 +962,11 @@
           <Property Type="DateTime" Name="NgaySinh" Nullable="false" />
           <Property Type="String" Name="CMND" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="SoDienThoai" Nullable="true" MaxLength="11" />
+        </ComplexType>
+        <ComplexType Name="LAYPHONGTHEOID_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaPhong" Nullable="true" MaxLength="9" />
+          <Property Type="String" Name="TenPhong" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1142,6 +1153,8 @@
           <FunctionImportMapping FunctionImportName="TRACUUVE" FunctionName="DB_LOTTECINEMAModel.Store.TRACUUVE">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TRACUUKHACHHANG" FunctionName="DB_LOTTECINEMAModel.Store.TRACUUKHACHHANG">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LAYPHONGTHEOID" FunctionName="DB_LOTTECINEMAModel.Store.LAYPHONGTHEOID">
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
