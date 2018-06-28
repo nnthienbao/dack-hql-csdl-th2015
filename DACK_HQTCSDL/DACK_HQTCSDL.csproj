@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\GioiTinhConverter.cs" />
+    <Compile Include="Converter\InverseBooleanConverter.cs" />
+    <Compile Include="Converter\NgaySinhConverter.cs" />
     <Compile Include="NhanVien\Window_SuaKhachHang.xaml.cs">
       <DependentUpon>Window_SuaKhachHang.xaml</DependentUpon>
     </Compile>
@@ -275,6 +278,16 @@
     <Resource Include="Image\hotjar.png" />
     <Resource Include="Image\video.png" />
     <Resource Include="Image\wrench.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BUS\BUS.csproj">
+      <Project>{11a53f23-761d-44cb-81ca-73b2a9a39efb}</Project>
+      <Name>BUS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAO\DAO.csproj">
+      <Project>{b2eac500-4b73-4be9-bd27-b6d1173c4c77}</Project>
+      <Name>DAO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

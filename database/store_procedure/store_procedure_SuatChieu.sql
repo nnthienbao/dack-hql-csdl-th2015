@@ -4,7 +4,7 @@ USE DB_LOTTECINEMA
 ------------SUAT CHIEU---------------
 GO
 -- LAY DANH SACH SUAT CHIEU
-CREATE PROC LAYDSSUATCHIEU
+ALTER PROC LAYDSSUATCHIEU
 AS
 BEGIN
 	BEGIN TRY
@@ -13,7 +13,7 @@ BEGIN
 		COMMIT TRAN
 	END TRY
 	BEGIN CATCH
-		DECLARE @ErrorMsg VARCHAR(2000)
+		DECLARE @ErrorMsg NVARCHAR(2000)
 		SELECT @ErrorMsg = N'Lỗi: ' + ERROR_MESSAGE()
 		RAISERROR(@ErrorMsg, 16,1)
 		ROLLBACK TRAN
@@ -32,7 +32,7 @@ BEGIN
 		COMMIT TRAN
 	END TRY
 	BEGIN CATCH
-		DECLARE @ErrorMsg VARCHAR(2000)
+		DECLARE @ErrorMsg NVARCHAR(2000)
 		SELECT @ErrorMsg = N'Lỗi' + ERROR_MESSAGE()
 		RAISERROR(@ErrorMsg, 16,1)
 		ROLLBACK TRAN
@@ -43,34 +43,74 @@ GO
 --Tạo kiểu dữ liệu mới lưu danh sách chi tiết thiết bị cho suất chiếu
 CREATE TYPE DS_THIETBI AS TABLE
 (
-	MaThieuBi int
+	MaThietBi int
 )
+drop type DS_THIETBI
 
 GO
 -- TAO SUAT CHIEU PHIM
-CREATE PROC TAOSUATCHIEU
-	@NgayChieu DATE, @ThoiGianBatDau TIME(7), @ThoiGianKetThuc TIME(7), @MaPhim VARCHAR(10), @MaPhong VARCHAR(9), @DS_THIETBI AS DS_THIETBI READONLY
+ALTER PROC TAOSUATCHIEU
+	@NgayChieu DATE,
+	@ThoiGianBatDau TIME(7), 
+	@ThoiGianKetThuc TIME(7), 
+	@MaPhim int, 
+	@MaPhong int, 
+	@DS_THIETBI AS DS_THIETBI READONLY
 AS
 BEGIN
 	BEGIN TRY
+		SET XACT_ABORT ON
 		BEGIN TRAN
-			IF NOT EXISTS (SELECT * FROM PHIM WHERE MaPhim=@MaPhim)
-			BEGIN
-				RAISERROR(N'Không tìm thấy phim', 16, 1)
-			END
-			IF NOT EXISTS (SELECT * FROM PHONG WHERE MaPhong=@MaPhong)
-			BEGIN
-				RAISERROR(N'Không tìm thấy phòng', 16, 1)
-			END
-
-			INSERT INTO SUATCHIEU VALUES(@NgayChieu, @ThoiGianBatDau, @ThoiGianKetThuc, @MaPhim, @MaPhong)
+			INSERT INTO SUATCHIEU(NgayChieu, ThoiGianBatDau, ThoiGianKetThuc, MaPhim, MaPhong)
+			 VALUES(@NgayChieu, @ThoiGianBatDau, @ThoiGianKetThuc, @MaPhim, @MaPhong)
 			
 			DECLARE @IdSuatChieu INT = SCOPE_IDENTITY()
 			INSERT INTO CHITIETSUATCHIEU_THIETBI(MaSuatChieu, MaThietBi) SELECT @IdSuatChieu, * FROM @DS_THIETBI
 		COMMIT TRAN
 	END TRY
 	BEGIN CATCH
-		DECLARE @ErrorMsg VARCHAR(2000)
+		DECLARE @ErrorMsg NVARCHAR(2000)
+		SELECT @ErrorMsg = N'Lỗi' + ERROR_MESSAGE()
+		RAISERROR(@ErrorMsg, 16,1)
+		ROLLBACK TRAN
+	END CATCH
+END
+
+GO
+-- CAP NHAT SUAT CHIEU
+ALTER PROC CAPNHATSUATCHIEU
+	@MaSuatChieu VARCHAR(15),
+	@NgayChieu DATE, 
+	@ThoiGianBatDau TIME(7), 
+	@ThoiGianKetThuc TIME(7), 
+	@MaPhim int, 
+	@MaPhong int, 
+	@DS_THIETBI AS DS_THIETBI READONLY
+AS
+BEGIN
+	BEGIN TRY
+		SET XACT_ABORT ON
+		BEGIN TRAN
+			IF NOT EXISTS (SELECT * FROM SUATCHIEU WHERE MaSuatChieu=@MaSuatChieu)
+				RAISERROR(N'Không tìm thấy mã suất chiếu', 16, 1)
+
+			UPDATE SUATCHIEU
+			SET NgayChieu=ISNULL(@NgayChieu, NgayChieu),
+				ThoiGianBatDau=ISNULL(@ThoiGianBatDau, ThoiGianBatDau),
+				ThoiGianKetThuc=ISNULL(@ThoiGianKetThuc, ThoiGianKetThuc),
+				MaPhim=ISNULL(@MaPhim, MaPhim),
+				MaPhong=ISNULL(@MaPhong, MaPhong)
+			WHERE MaSuatChieu=@MaSuatChieu
+
+			DECLARE @IdSuatChieu int = (SELECT id FROM SUATCHIEU WHERE MaSuatChieu=@MaSuatChieu);
+
+			DELETE CHITIETSUATCHIEU_THIETBI WHERE MaSuatChieu=@IdSuatChieu
+
+			INSERT INTO CHITIETSUATCHIEU_THIETBI(MaSuatChieu, MaThietBi) SELECT @IdSuatChieu, * FROM @DS_THIETBI
+		COMMIT TRAN
+	END TRY
+	BEGIN CATCH
+		DECLARE @ErrorMsg NVARCHAR(2000)
 		SELECT @ErrorMsg = N'Lỗi' + ERROR_MESSAGE()
 		RAISERROR(@ErrorMsg, 16,1)
 		ROLLBACK TRAN
@@ -79,8 +119,24 @@ END
 
 GO
 -- TRA CUU SUAT CHIEU
-CREATE PROC TRACUUSUATCHIEU
+ALTER PROC TRACUUSUATCHIEU
+	@NgayBatDau DATE, 
+	@NgayKetThuc DATE,
+	@ThoiGianBatDau TIME(7), 
+	@ThoiGianKetThuc TIME(7),
+	@MaPhim int,
+	@MaPhong int
 AS
 BEGIN
-	RETURN
+	BEGIN TRAN
+		SELECT *
+		FROM SUATCHIEU
+		WHERE
+			(@NgayBatDau IS NULL OR NgayChieu>=@NgayBatDau) AND
+			(@NgayKetThuc IS NULL OR NgayChieu<=@NgayKetThuc) AND
+			(@ThoiGianBatDau IS NULL OR ThoiGianBatDau>=@ThoiGianBatDau) AND
+			(@ThoiGianKetThuc IS NULL OR ThoiGianKetThuc<=@ThoiGianBatDau) AND
+			(@MaPhim IS NULL OR MaPhim=@MaPhim) AND
+			(@MaPhong IS NULL OR MaPhong=@MaPhong)
+	COMMIT TRAN
 END

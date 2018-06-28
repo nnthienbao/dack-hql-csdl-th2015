@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{911FD158-20DC-42AB-8C86-2F70EA70961D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DACK_HQTCSDL</RootNamespace>
+    <AssemblyName>DACK_HQTCSDL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NhanVien\Window_SuaKhachHang.xaml.cs">
+      <DependentUpon>Window_SuaKhachHang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NhanVien\Window_ThemKhachHang.xaml.cs">
+      <DependentUpon>Window_ThemKhachHang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NhanVien\Window_DatVe.xaml.cs">
+      <DependentUpon>Window_DatVe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Page_DoHot.xaml.cs">
+      <DependentUpon>Page_DoHot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Page_Phim.xaml.cs">
+      <DependentUpon>Page_Phim.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Page_Phong.xaml.cs">
+      <DependentUpon>Page_Phong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Page_SuatChieu.xaml.cs">
+      <DependentUpon>Page_SuatChieu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Page_ThietBi.xaml.cs">
+      <DependentUpon>Page_ThietBi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\slot.xaml.cs">
+      <DependentUpon>slot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window_QuanLy.xaml.cs">
+      <DependentUpon>Window_QuanLy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_SuaDoHot.xaml.cs">
+      <DependentUpon>Window_SuaDoHot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_SuaPhim.xaml.cs">
+      <DependentUpon>Window_SuaPhim.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_SuaPhong.xaml.cs">
+      <DependentUpon>Window_SuaPhong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_SuaSuatChieu.xaml.cs">
+      <DependentUpon>Window_SuaSuatChieu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_SuaThietBi.xaml.cs">
+      <DependentUpon>Window_SuaThietBi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_ThemDoHot.xaml.cs">
+      <DependentUpon>Window_ThemDoHot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_ThemPhim.xaml.cs">
+      <DependentUpon>Window_ThemPhim.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_ThemPhong.xaml.cs">
+      <DependentUpon>Window_ThemPhong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_ThemSuatChieu.xaml.cs">
+      <DependentUpon>Window_ThemSuatChieu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLy\Window_ThemThietBi.xaml.cs">
+      <DependentUpon>Window_ThemThietBi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Window_NhanVien.xaml.cs">
+      <DependentUpon>Window_NhanVien.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NhanVien\Page_KhachHang.xaml.cs">
+      <DependentUpon>Page_KhachHang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NhanVien\Page_VeXemPhim.xaml.cs">
+      <DependentUpon>Page_VeXemPhim.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BUS\BUS.csproj">
+      <Project>{11a53f23-761d-44cb-81ca-73b2a9a39efb}</Project>
+      <Name>BUS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAO\DAO.csproj">
+      <Project>{b2eac500-4b73-4be9-bd27-b6d1173c4c77}</Project>
+      <Name>DAO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ReferencePath Include="D:\ThienBao\Git\dack-hql-csdl-th2015\BUS\bin\Debug\BUS.dll" />
+    <ReferencePath Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DAO\bin\Debug\DAO.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Microsoft.CSharp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\mscorlib.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Net.Http.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\WindowsBase.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Page_DoHot.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Page_Phim.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Page_Phong.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Page_SuatChieu.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Page_ThietBi.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\Window_NhanVien.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\NhanVien\Page_KhachHang.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\NhanVien\Page_VeXemPhim.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\NhanVien\Window_SuaKhachHang.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\NhanVien\Window_ThemKhachHang.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\NhanVien\Window_DatVe.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\UserControl\slot.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\Window_QuanLy.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_SuaDoHot.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_SuaPhim.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_SuaPhong.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_SuaSuatChieu.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_SuaThietBi.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_ThemDoHot.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_ThemPhim.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_ThemPhong.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_ThemSuatChieu.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_ThemThietBi.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\App.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
+</Project>

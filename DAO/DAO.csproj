@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B2EAC500-4B73-4BE9-BD27-B6D1173C4C77}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAO</RootNamespace>
+    <AssemblyName>DAO</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BANGTHAMSO.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CT_THIETBI.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOHOTPHIM.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DoHotPhimDAO.cs" />
+    <Compile Include="KHACHHANG.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhachHangDAO.cs" />
+    <Compile Include="LAYDANHSACHPHONG_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYDOHOTPHIMTHEOMA_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYDSDOHOTPHIM_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYDSKHACHHANG_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYDSPHIM_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYDSSUATCHIEU_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYDSTRANGTHIETBI_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYDSVE_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYKHACHHANGTHEOMAKH_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYNHANVIEN_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYPHIMTHEOMAPHIM_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYPHONGTHEOMA_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYSUATCHIEUTHEOMA_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYTRANGTHIETBITHEOMA_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYVETHEOMAVE_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LAYVETHEOSDTDATVE_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LotteCinemaModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LotteCinemaModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LotteCinemaModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LotteCinemaModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LotteCinemaModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="NHANVIEN.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NhanVienDAO.cs" />
+    <Compile Include="PHIM.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhimDAO.cs" />
+    <Compile Include="PHONG.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhongDAO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SUATCHIEU.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SuatChieuDAO.cs" />
+    <Compile Include="ThamSoDAO.cs" />
+    <Compile Include="THONGKE_VEBANRATHEOPHIM_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="THONGKE_VEHUYTHEOPHIM_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TINHTRANGPHIM.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TINHTRANGVE.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TRACUUKHACHHANG_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TRACUUVE_Result.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TRANGTHIETBI.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TrangThietBiDAO.cs" />
+    <Compile Include="VEXEMPHIM.cs">
+      <DependentUpon>LotteCinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VeXemPhimDAO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="LotteCinemaModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LotteCinemaModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="LotteCinemaModel.edmx.diagram">
+      <DependentUpon>LotteCinemaModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LotteCinemaModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LotteCinemaModel.edmx</DependentUpon>
+      <LastGenOutput>LotteCinemaModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="LotteCinemaModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LotteCinemaModel.edmx</DependentUpon>
+      <LastGenOutput>LotteCinemaModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
