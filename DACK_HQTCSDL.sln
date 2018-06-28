@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO", "DAO\DAO.csproj", "{B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAOTests", "DAOTests\DAOTests.csproj", "{1866B449-C639-4777-B63D-D92CC3AA99D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUS", "BUS\BUS.csproj", "{11A53F23-761D-44CB-81CA-73B2A9A39EFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1866B449-C639-4777-B63D-D92CC3AA99D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1866B449-C639-4777-B63D-D92CC3AA99D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1866B449-C639-4777-B63D-D92CC3AA99D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A53F23-761D-44CB-81CA-73B2A9A39EFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A53F23-761D-44CB-81CA-73B2A9A39EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A53F23-761D-44CB-81CA-73B2A9A39EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A53F23-761D-44CB-81CA-73B2A9A39EFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

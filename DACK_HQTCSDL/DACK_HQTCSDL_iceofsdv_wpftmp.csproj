@@ -35,29 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Converter\GioiTinhConverter.cs" />
-    <Compile Include="Converter\InverseBooleanConverter.cs" />
-    <Compile Include="Converter\NgaySinhConverter.cs" />
     <Compile Include="NhanVien\Window_SuaKhachHang.xaml.cs">
       <DependentUpon>Window_SuaKhachHang.xaml</DependentUpon>
     </Compile>
@@ -118,30 +97,6 @@
     <Compile Include="QuanLy\Window_ThemThietBi.xaml.cs">
       <DependentUpon>Window_ThemThietBi.xaml</DependentUpon>
     </Compile>
-    <Page Include="QuanLy\Page_DoHot.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Page_Phim.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Page_Phong.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Page_SuatChieu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Page_ThietBi.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Window_NhanVien.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -150,74 +105,6 @@
       <DependentUpon>Window_NhanVien.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NhanVien\Page_KhachHang.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NhanVien\Page_VeXemPhim.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NhanVien\Window_SuaKhachHang.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NhanVien\Window_ThemKhachHang.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NhanVien\Window_DatVe.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControl\slot.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Window_QuanLy.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Window_SuaDoHot.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Window_SuaPhim.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Window_SuaPhong.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Window_SuaSuatChieu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Window_SuaThietBi.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Window_ThemDoHot.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Window_ThemPhim.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Window_ThemPhong.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Window_ThemSuatChieu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuanLy\Window_ThemThietBi.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NhanVien\Page_KhachHang.xaml.cs">
@@ -253,31 +140,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\cog.png" />
-    <Resource Include="Image\plus-circle.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\users.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\film.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\user-cog.png" />
-    <Resource Include="Image\user-plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\slot.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\slotGreen.png" />
-    <Resource Include="Image\slotRed.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\home.png" />
-    <Resource Include="Image\hotjar.png" />
-    <Resource Include="Image\video.png" />
-    <Resource Include="Image\wrench.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BUS\BUS.csproj">
@@ -297,4 +171,48 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ReferencePath Include="D:\ThienBao\Git\dack-hql-csdl-th2015\BUS\bin\Debug\BUS.dll" />
+    <ReferencePath Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DAO\bin\Debug\DAO.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Microsoft.CSharp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\mscorlib.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Net.Http.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\WindowsBase.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Page_DoHot.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Page_Phim.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Page_Phong.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Page_SuatChieu.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Page_ThietBi.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\Window_NhanVien.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\NhanVien\Page_KhachHang.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\NhanVien\Page_VeXemPhim.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\NhanVien\Window_SuaKhachHang.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\NhanVien\Window_ThemKhachHang.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\NhanVien\Window_DatVe.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\UserControl\slot.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\Window_QuanLy.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_SuaDoHot.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_SuaPhim.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_SuaPhong.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_SuaSuatChieu.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_SuaThietBi.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_ThemDoHot.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_ThemPhim.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_ThemPhong.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_ThemSuatChieu.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\QuanLy\Window_ThemThietBi.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\App.g.cs" />
+    <Compile Include="D:\ThienBao\Git\dack-hql-csdl-th2015\DACK_HQTCSDL\obj\Debug\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
 </Project>

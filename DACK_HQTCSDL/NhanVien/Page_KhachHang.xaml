@@ -1,14 +1,24 @@
-﻿<Page x:Class="DACK_HQTCSDL.Page_KhachHang"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:DACK_HQTCSDL"
-      mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="800"
-      Title="Page_KhachHang"
-      Loaded="Page_Loaded">
-    <Border Padding="10" BorderBrush="#649EFF" BorderThickness="0 2 0 0">
+﻿<Page
+    x:Class="DACK_HQTCSDL.Page_KhachHang"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cv="clr-namespace:DACK_HQTCSDL.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DACK_HQTCSDL"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Page_KhachHang"
+    d:DesignHeight="400"
+    d:DesignWidth="800"
+    Loaded="Page_Loaded"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <cv:GioiTinhConverter x:Key="GioiTinhConverter" />
+        <cv:NgaySinhConverter x:Key="NgaySinhConverter" />
+    </Page.Resources>
+    <Border
+        Padding="10"
+        BorderBrush="#649EFF"
+        BorderThickness="0,2,0,0">
         <Border.Background>
             <LinearGradientBrush StartPoint="0.5,-0.5" EndPoint="0.5,0.8">
                 <GradientStop Offset="0" Color="#77649EFF" />
@@ -18,55 +28,124 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!--Panel button điều hướng--> 
-            <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
-                <Button x:Name="button_ThemKhachHang" Click="button_ThemKhachHang_Click" Width="100" Height="80" Background="#649EFF" Style="{StaticResource MyButton}">
+            <!--  Panel button điều hướng  -->
+            <StackPanel
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="0">
+                <Button
+                    x:Name="button_ThemKhachHang"
+                    Width="100"
+                    Height="80"
+                    Background="#649EFF"
+                    Click="button_ThemKhachHang_Click"
+                    Style="{StaticResource MyButton}">
                     <StackPanel>
-                        <Image Source="../Image/user-plus.png" Width="48" Height="38" Margin="0 5 0 0"/>
-                        <Label Foreground="White" FontSize="11" FontWeight="SemiBold" Content="Thêm khách hàng" />
+                        <Image
+                            Width="48"
+                            Height="38"
+                            Margin="0,5,0,0"
+                            Source="../Image/user-plus.png" />
+                        <Label
+                            Content="Thêm khách hàng"
+                            FontSize="11"
+                            FontWeight="SemiBold"
+                            Foreground="White" />
                     </StackPanel>
                 </Button>
-                <Button x:Name="button_SuaKhachHang" Click="button_SuaKhachHang_Click" Width="100" Height="80" Background="#649EFF" Style="{StaticResource MyButton}">
+                <Button
+                    x:Name="button_SuaKhachHang"
+                    Width="100"
+                    Height="80"
+                    Background="#649EFF"
+                    Click="button_SuaKhachHang_Click"
+                    Style="{StaticResource MyButton}">
                     <StackPanel>
-                        <Image Source="../Image/user-cog.png" Width="48" Height="38" Margin="0 5 0 0"/>
-                        <Label Foreground="White" FontSize="11" FontWeight="SemiBold" Content="Sửa khách hàng" />
+                        <Image
+                            Width="48"
+                            Height="38"
+                            Margin="0,5,0,0"
+                            Source="../Image/user-cog.png" />
+                        <Label
+                            Content="Sửa khách hàng"
+                            FontSize="11"
+                            FontWeight="SemiBold"
+                            Foreground="White" />
                     </StackPanel>
                 </Button>
             </StackPanel>
 
-            <Border Grid.Row="0" Grid.Column="1" Padding="10 0 0 0" Margin="0 -15 0 0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Label Margin="20 5 0 0" Content="Tìm kiếm theo Mã" Style="{StaticResource MyLabel}"/>
-                    <TextBox Width="100" Style="{StaticResource MyTextBox}" BorderBrush="#649EFF" />
-                    <Label Margin="20 5 0 0" Content="Theo CMND" Style="{StaticResource MyLabel}"/>
-                    <TextBox Width="100" Style="{StaticResource MyTextBox}" BorderBrush="#649EFF" />
-                    <Label Margin="20 5 0 0" Content="Theo SĐT" Style="{StaticResource MyLabel}"/>
-                    <TextBox Width="100" Style="{StaticResource MyTextBox}" BorderBrush="#649EFF" />
-                    <Button Margin="20 5 0 0" Height="32" Width="100" Foreground="White" Background="#649EFF" FontSize="14" FontWeight="SemiBold" Content="Tìm kiếm" Style="{StaticResource MyButton}"/>
+            <Border
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,-15,0,0"
+                Padding="10,0,0,0">
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Label
+                        Margin="20,5,0,0"
+                        Content="Tìm kiếm theo Mã"
+                        Style="{StaticResource MyLabel}" />
+                    <TextBox
+                        Width="100"
+                        BorderBrush="#649EFF"
+                        Style="{StaticResource MyTextBox}" />
+                    <Label
+                        Margin="20,5,0,0"
+                        Content="Theo CMND"
+                        Style="{StaticResource MyLabel}" />
+                    <TextBox
+                        Width="100"
+                        BorderBrush="#649EFF"
+                        Style="{StaticResource MyTextBox}" />
+                    <Label
+                        Margin="20,5,0,0"
+                        Content="Theo SĐT"
+                        Style="{StaticResource MyLabel}" />
+                    <TextBox
+                        Width="100"
+                        BorderBrush="#649EFF"
+                        Style="{StaticResource MyTextBox}" />
+                    <Button
+                        Width="100"
+                        Height="32"
+                        Margin="20,5,0,0"
+                        Background="#649EFF"
+                        Content="Tìm kiếm"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="White"
+                        Style="{StaticResource MyButton}" />
                 </StackPanel>
             </Border>
-            
-            <!--Datagrid hiển thị danh sách khách hàng-->
-            <!--Sử dụng binding để chèn dữ liệu, nếu k biết hãy search GG "Binding WPF datagrid"-->
-            <DataGrid x:Name="dataGrid_KhachHang" Grid.Column="1" Grid.Row="1" IsReadOnly="True" Margin="10 0 0 0" 
-                      HorizontalGridLinesBrush="#77649EFF" VerticalGridLinesBrush="#77649EFF">
+
+            <!--  Datagrid hiển thị danh sách khách hàng  -->
+            <!--  Sử dụng binding để chèn dữ liệu, nếu k biết hãy search GG "Binding WPF datagrid"  -->
+            <DataGrid
+                x:Name="dataGrid_KhachHang"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="10,0,0,0"
+                AutoGenerateColumns="False"
+                HorizontalGridLinesBrush="#77649EFF"
+                IsReadOnly="True"
+                VerticalGridLinesBrush="#77649EFF">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontSize" Value="14" />
                         <Setter Property="FontWeight" Value="SemiBold" />
                         <Setter Property="Height" Value="32" />
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
-                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="FontSize" Value="13" />
                         <Setter Property="FontWeight" Value="SemiBold" />
                         <Setter Property="Height" Value="32" />
                         <Style.Triggers>
@@ -79,23 +158,35 @@
                     </Style>
                 </DataGrid.CellStyle>
 
-                <!--Thông tin header từng cột và binding-->
+                <!--  Thông tin header từng cột và binding  -->
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="*" Header="Mã khách hàng" Binding="{Binding maKhachHang}"/>
-                    <DataGridTextColumn Width="*" Header="Tên khách hàng" Binding="{Binding tenKhachHang}" />
-                    <DataGridTextColumn Width="*" Header="Giới tính" Binding="{Binding gioiTinh}" />
-                    <DataGridTextColumn Width="*" Header="Ngày sinh" Binding="{Binding ngaySinh}" />
-                    <DataGridTextColumn Width="*" Header="CMND" Binding="{Binding CMND}" />
-                    <DataGridTextColumn Width="*" Header="Số điện thoại" Binding="{Binding soDienThoai}" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding MaKhachHang}"
+                        Header="Mã khách hàng" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding HoTen}"
+                        Header="Tên khách hàng" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding GioiTinh, Converter={StaticResource GioiTinhConverter}}"
+                        Header="Giới tính" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding NgaySinh, Converter={StaticResource NgaySinhConverter}, ConverterParameter=dd/MM/yyyy}"
+                        Header="Ngày sinh" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding CMND}"
+                        Header="CMND" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding SoDienThoai}"
+                        Header="Số điện thoại" />
                 </DataGrid.Columns>
-
-                <!--Phần này sẽ xóa đi do sau này load dữ liệu từ database, cái này chỉ dùng để demo thôi nhé-->
-                <local:KhachHang maKhachHang="123" tenKhachHang="Fred" gioiTinh="Flintstone" ngaySinh="fred@noemail.org" CMND="272425165" soDienThoai="01666290456" />
-                <local:KhachHang maKhachHang="456" tenKhachHang="Fred" gioiTinh="Flintstone" ngaySinh="fred@noemail.org" CMND="272425165" soDienThoai="01666290456" />
-                <local:KhachHang maKhachHang="789" tenKhachHang="Fred" gioiTinh="Flintstone" ngaySinh="fred@noemail.org" CMND="272425165" soDienThoai="01666290456" />
-                <!--END demo-->
             </DataGrid>
         </Grid>
     </Border>
-    
+
 </Page>

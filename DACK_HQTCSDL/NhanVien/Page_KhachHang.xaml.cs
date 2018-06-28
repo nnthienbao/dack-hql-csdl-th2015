@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BUS;
+using DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,21 +22,10 @@ namespace DACK_HQTCSDL
     /// </summary>
     /// 
 
-    //  Class này sẽ xóa đi do sau này sử dụng class từ DTO, cái này chỉ dùng để demo thôi nhé
-    public class KhachHang
-    {
-        public String maKhachHang { get; set; }
-        public String tenKhachHang { get; set; }
-        public String gioiTinh { get; set; }
-        public String ngaySinh { get; set; }
-        public String CMND { get; set; }
-        public String soDienThoai { get; set; }
-    }
-    //  -- END demo class
-
     public partial class Page_KhachHang : Page
     {
-        
+        private KhachHangBUS khachHangBUS = new KhachHangBUS();
+
         public Page_KhachHang()
         {
             InitializeComponent();
@@ -42,23 +33,31 @@ namespace DACK_HQTCSDL
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            ReLoadDSKhachHang();
         }
 
         private void button_ThemKhachHang_Click(object sender, RoutedEventArgs e)
         {
             Window_ThemKhachHang wd = new Window_ThemKhachHang();
-            if (wd.ShowDialog() == true)
+            if(wd.ShowDialog() == true)
             {
-                //pageDSLoaiSach.RefreshDanhSach();
+                ReLoadDSKhachHang();
             }
+        }
+
+        private void ReLoadDSKhachHang()
+        {
+            dataGrid_KhachHang.ItemsSource = khachHangBUS.LayDSKhachHang();
         }
 
         private void button_SuaKhachHang_Click(object sender, RoutedEventArgs e)
         {
-            Window_SuaKhachHang wd = new Window_SuaKhachHang();
+            var khDangChon = dataGrid_KhachHang.SelectedItem as KHACHHANG;
+            if (khDangChon == null) return;
+            Window_SuaKhachHang wd = new Window_SuaKhachHang(khDangChon.MaKhachHang);
             if (wd.ShowDialog() == true)
             {
-                //pageDSLoaiSach.RefreshDanhSach();
+                ReLoadDSKhachHang();
             }
         }
 
