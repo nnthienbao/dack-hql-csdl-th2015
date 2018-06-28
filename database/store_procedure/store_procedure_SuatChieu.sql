@@ -125,18 +125,30 @@ ALTER PROC TRACUUSUATCHIEU
 	@ThoiGianBatDau TIME(7), 
 	@ThoiGianKetThuc TIME(7),
 	@MaPhim int,
-	@MaPhong int
+	@MaPhong int,
+	@DS_ThietBi AS DS_THIETBI READONLY
 AS
 BEGIN
 	BEGIN TRAN
 		SELECT *
-		FROM SUATCHIEU
+		FROM SUATCHIEU SC
 		WHERE
-			(@NgayBatDau IS NULL OR NgayChieu>=@NgayBatDau) AND
-			(@NgayKetThuc IS NULL OR NgayChieu<=@NgayKetThuc) AND
-			(@ThoiGianBatDau IS NULL OR ThoiGianBatDau>=@ThoiGianBatDau) AND
-			(@ThoiGianKetThuc IS NULL OR ThoiGianKetThuc<=@ThoiGianBatDau) AND
-			(@MaPhim IS NULL OR MaPhim=@MaPhim) AND
-			(@MaPhong IS NULL OR MaPhong=@MaPhong)
+			(@NgayBatDau IS NULL OR SC.NgayChieu>=@NgayBatDau) AND
+			(@NgayKetThuc IS NULL OR SC.NgayChieu<=@NgayKetThuc) AND
+			(@ThoiGianBatDau IS NULL OR SC.ThoiGianBatDau>=@ThoiGianBatDau) AND
+			(@ThoiGianKetThuc IS NULL OR SC.ThoiGianKetThuc<=@ThoiGianBatDau) AND
+			(@MaPhim IS NULL OR SC.MaPhim=@MaPhim) AND
+			(@MaPhong IS NULL OR SC.MaPhong=@MaPhong) AND
+			NOT EXISTS(
+				(SELECT MaThietBi FROM @DS_ThietBi)
+				EXCEPT
+				(SELECT MaThietBi FROM CHITIETSUATCHIEU_THIETBI CTTB
+				WHERE CTTB.MaSuatChieu=SC.id))
+			AND 
+			NOT EXISTS(
+				(SELECT MaThietBi FROM CHITIETSUATCHIEU_THIETBI CTTB
+					WHERE CTTB.MaSuatChieu=SC.id)
+				EXCEPT
+				(SELECT MaThietBi FROM @DS_ThietBi))
 	COMMIT TRAN
 END
