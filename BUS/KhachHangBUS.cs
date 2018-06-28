@@ -50,5 +50,10 @@ namespace BUS
         {
             return sdt.Length > 0 && sdt.Length <= 11;
         }
+
+        public List<KHACHHANG> TraCuuKhachHang(string keyword_MaKH, string keyword_HoTen, string keyword_CMND, string keyword_SDT)
+        {
+            return khachHangDAO.TraCuuKhachHang(keyword_MaKH, keyword_HoTen, keyword_CMND, keyword_SDT);
+        }
     }
 }

@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Page_KhachHang"
     d:DesignHeight="400"
-    d:DesignWidth="800"
+    d:DesignWidth="1110"
     Loaded="Page_Loaded"
     mc:Ignorable="d">
     <Page.Resources>
@@ -93,6 +93,16 @@
                         Content="Tìm kiếm theo Mã"
                         Style="{StaticResource MyLabel}" />
                     <TextBox
+                        x:Name="tb_TimKiemTheo_Ma"
+                        Width="100"
+                        BorderBrush="#649EFF"
+                        Style="{StaticResource MyTextBox}" />
+                    <Label
+                        Margin="20,5,0,0"
+                        Content="Theo họ tên"
+                        Style="{StaticResource MyLabel}" />
+                    <TextBox
+                        x:Name="tb_TiemKiemTheo_HoTen"
                         Width="100"
                         BorderBrush="#649EFF"
                         Style="{StaticResource MyTextBox}" />
@@ -101,6 +111,7 @@
                         Content="Theo CMND"
                         Style="{StaticResource MyLabel}" />
                     <TextBox
+                        x:Name="tb_TiemKiemTheo_CMND"
                         Width="100"
                         BorderBrush="#649EFF"
                         Style="{StaticResource MyTextBox}" />
@@ -109,15 +120,30 @@
                         Content="Theo SĐT"
                         Style="{StaticResource MyLabel}" />
                     <TextBox
+                        x:Name="tb_TiemKiemTheo_SDT"
                         Width="100"
                         BorderBrush="#649EFF"
                         Style="{StaticResource MyTextBox}" />
                     <Button
+                        x:Name="btn_TimKiemKhachHang"
                         Width="100"
                         Height="32"
                         Margin="20,5,0,0"
                         Background="#649EFF"
+                        Click="btn_TimKiemKhachHang_Click"
                         Content="Tìm kiếm"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="White"
+                        Style="{StaticResource MyButton}" />
+                    <Button
+                        x:Name="btn_ResetTimKiem"
+                        Width="60"
+                        Height="32"
+                        Margin="20,5,0,0"
+                        Background="#649EFF"
+                        Click="btn_ResetTimKiem_Click"
+                        Content="Reset"
                         FontSize="14"
                         FontWeight="SemiBold"
                         Foreground="White"
@@ -135,6 +161,7 @@
                 AutoGenerateColumns="False"
                 HorizontalGridLinesBrush="#77649EFF"
                 IsReadOnly="True"
+                SelectionMode="Single"
                 VerticalGridLinesBrush="#77649EFF">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">

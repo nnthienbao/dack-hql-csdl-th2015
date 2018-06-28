@@ -61,6 +61,29 @@ namespace DACK_HQTCSDL
             }
         }
 
-        
+        private void btn_TimKiemKhachHang_Click(object sender, RoutedEventArgs e)
+        {
+            string keyword_MaKH = tb_TimKiemTheo_Ma.Text;
+            string keyword_HoTen = tb_TiemKiemTheo_HoTen.Text;
+            string keyword_CMND = tb_TiemKiemTheo_CMND.Text;
+            string keyword_SDT = tb_TiemKiemTheo_SDT.Text;
+
+            keyword_MaKH = keyword_MaKH == "" ? null : keyword_MaKH;
+            keyword_HoTen = keyword_HoTen == "" ? null : keyword_HoTen;
+            keyword_CMND = keyword_CMND == "" ? null : keyword_CMND;
+            keyword_SDT = keyword_SDT == "" ? null : keyword_SDT;
+
+            var dsKetQuaTimKiem = khachHangBUS.TraCuuKhachHang(keyword_MaKH, keyword_HoTen, keyword_CMND, keyword_SDT);
+            dataGrid_KhachHang.ItemsSource = dsKetQuaTimKiem;
+        }
+
+        private void btn_ResetTimKiem_Click(object sender, RoutedEventArgs e)
+        {
+            tb_TimKiemTheo_Ma.Text = "";
+            tb_TiemKiemTheo_HoTen.Text = "";
+            tb_TiemKiemTheo_CMND.Text = "";
+            tb_TiemKiemTheo_SDT.Text = "";
+            ReLoadDSKhachHang();
+        }
     }
 }

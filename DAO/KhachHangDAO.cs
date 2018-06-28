@@ -107,5 +107,20 @@ namespace DAO
                 return null;
             }
         }
+
+        public List<KHACHHANG> TraCuuKhachHang(string maKH, string hoTen, string CMND, string sdt)
+        {
+            try
+            {
+                using (var db = new DB_LOTTECINEMAEntities())
+                {
+                    return db.TRACUUKHACHHANG(maKH, hoTen, CMND, sdt).ToList();
+                }
+            } catch (Exception ex)
+            {
+                Debug.Fail(ex.ToString());
+                return null;
+            }
+        }
     }
 }

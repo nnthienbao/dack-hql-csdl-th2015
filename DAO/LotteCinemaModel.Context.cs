@@ -701,5 +701,47 @@ namespace DAO
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VEXEMPHIM>("TRACUUVE", mergeOption, maKhachHangParameter, sDTDatVeParameter, nhanVienBanVeParameter);
         }
+    
+        public virtual ObjectResult<KHACHHANG> TRACUUKHACHHANG(string maKhachHang, string hoTen, string cMND, string soDienThoai)
+        {
+            var maKhachHangParameter = maKhachHang != null ?
+                new ObjectParameter("MaKhachHang", maKhachHang) :
+                new ObjectParameter("MaKhachHang", typeof(string));
+    
+            var hoTenParameter = hoTen != null ?
+                new ObjectParameter("HoTen", hoTen) :
+                new ObjectParameter("HoTen", typeof(string));
+    
+            var cMNDParameter = cMND != null ?
+                new ObjectParameter("CMND", cMND) :
+                new ObjectParameter("CMND", typeof(string));
+    
+            var soDienThoaiParameter = soDienThoai != null ?
+                new ObjectParameter("SoDienThoai", soDienThoai) :
+                new ObjectParameter("SoDienThoai", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<KHACHHANG>("TRACUUKHACHHANG", maKhachHangParameter, hoTenParameter, cMNDParameter, soDienThoaiParameter);
+        }
+    
+        public virtual ObjectResult<KHACHHANG> TRACUUKHACHHANG(string maKhachHang, string hoTen, string cMND, string soDienThoai, MergeOption mergeOption)
+        {
+            var maKhachHangParameter = maKhachHang != null ?
+                new ObjectParameter("MaKhachHang", maKhachHang) :
+                new ObjectParameter("MaKhachHang", typeof(string));
+    
+            var hoTenParameter = hoTen != null ?
+                new ObjectParameter("HoTen", hoTen) :
+                new ObjectParameter("HoTen", typeof(string));
+    
+            var cMNDParameter = cMND != null ?
+                new ObjectParameter("CMND", cMND) :
+                new ObjectParameter("CMND", typeof(string));
+    
+            var soDienThoaiParameter = soDienThoai != null ?
+                new ObjectParameter("SoDienThoai", soDienThoai) :
+                new ObjectParameter("SoDienThoai", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<KHACHHANG>("TRACUUKHACHHANG", mergeOption, maKhachHangParameter, hoTenParameter, cMNDParameter, soDienThoaiParameter);
+        }
     }
 }
