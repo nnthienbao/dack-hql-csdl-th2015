@@ -23,5 +23,24 @@ namespace DACK_HQTCSDL
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DatePicker_NgayChieu.SelectedDate = DateTime.Today;
+            this.DatePicker_NgayChieu.DisplayDateStart = DateTime.Today;
+            this.DatePicker_NgayChieu.DisplayDateEnd = DateTime.Today.AddDays(3);
+        }
+
+        private void button_ThemSuatChieu_Click(object sender, RoutedEventArgs e)
+        {
+            //DateTime? temp = this.TimePicker_GioBatDau.Value;
+            //System.Diagnostics.Debug.WriteLine(temp);
+            //this.DialogResult = true;
+        }
+
+        private void button_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+        }
     }
 }

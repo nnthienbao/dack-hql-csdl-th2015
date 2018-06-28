@@ -5,8 +5,145 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DACK_HQTCSDL"
         mc:Ignorable="d"
-        Title="Window_SuaSuatChieu" Height="300" Width="300">
+        Title="Sửa thông tin suất chiếu" Height="385" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Border
+            Grid.Row="0"
+            Padding="15"
+            BorderBrush="#649EFF"
+            BorderThickness="0,0,0,2">
+            <StackPanel Orientation="Vertical">
+                <!--Mã suất chiếu-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                        Content="Mã suất chiếu"
+                        Style="{StaticResource MyLabel}" />
+                    <TextBox
+                        x:Name="TextBox_MaSuatChieu"
+                        Grid.Column="1"
+                        IsEnabled="False"
+                        Style="{StaticResource MyTextBox}" />
+                </Grid>
+                <!--Ngày chiếu-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                        Content="Ngày chiếu"
+                        Style="{StaticResource MyLabel}" />
+                    <DatePicker Grid.Column="1"
+                        x:Name="DatePicker_NgayChieu"        
+                        Width="170" 
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource MyDatePicker}"/>
+                </Grid>
+                <!--Combobox Chọn phim-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                        Content="Tên phim"
+                        Style="{StaticResource MyLabel}" />
+                    <ComboBox x:Name="Combobox_Phim" Grid.Column="1"
+                        Style="{StaticResource MyCombobox}">
+                    </ComboBox>
+                </Grid>
+                <!--Combobox chọn phòng-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                        Content="Phòng chiếu"
+                        Style="{StaticResource MyLabel}" />
+                    <ComboBox x:Name="Combobox_Phong" Grid.Column="1"
+                        Style="{StaticResource MyCombobox}">
+                    </ComboBox>
+                </Grid>
+                <!--Giờ bắt đầu-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                        Content="Giờ bắt đầu"
+                        Style="{StaticResource MyLabel}" />
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Label Content="Giờ" Style="{StaticResource MyLabel}" />
+                        <TextBox x:Name="TextBox_GioBatDau_H" Width="50" Margin="10 5 0 0" Style="{StaticResource MyTextBox}" />
+                        <Label Margin="20 5 0 0" Content="Phút" Style="{StaticResource MyLabel}" />
+                        <TextBox x:Name="TextBox_GioBatDau_M" Width="50" Margin="10 5 0 0" Style="{StaticResource MyTextBox}" />
+                    </StackPanel>
+                </Grid>
+                <!--Báo lỗi giờ bắt đầu-->
+                <Label
+                    x:Name="lb_Error_GioBatDau"
+                    Margin="110,0,0,0"
+                    HorizontalAlignment="Left"
+                    BorderBrush="#649EFF"
+                    Content=""
+                    Style="{StaticResource MyLabelError}"
+                    Visibility="Collapsed" />
+                <!--Giờ kết thúc-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                        Content="Giờ kết thúc"
+                        Style="{StaticResource MyLabel}" />
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Label Content="Giờ" Style="{StaticResource MyLabel}" />
+                        <TextBox x:Name="TextBox_GioKetThuc_H" Width="50" Margin="10 5 0 0" Style="{StaticResource MyTextBox}" />
+                        <Label Margin="20 5 0 0" Content="Phút" Style="{StaticResource MyLabel}" />
+                        <TextBox x:Name="TextBox_GioKetThuc_M" Width="50" Margin="10 5 0 0" Style="{StaticResource MyTextBox}" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                x:Name="button_SuaSuatChieu"
+                Width="120"
+                Margin="10"
+                Background="#649EFF"
+                Click="button_SuaSuatChieu_Click"
+                Content="Cập nhật"
+                FontSize="14"
+                FontWeight="SemiBold"
+                Foreground="White"
+                Style="{StaticResource MyButton}" />
+            <Button
+                x:Name="button_Cancel"
+                Width="100"
+                Margin="10"
+                Background="#649EFF"
+                Click="button_Cancel_Click"
+                Content="Cancel"
+                FontSize="14"
+                FontWeight="SemiBold"
+                Foreground="White"
+                Style="{StaticResource MyButton}" />
+        </StackPanel>
     </Grid>
 </Window>

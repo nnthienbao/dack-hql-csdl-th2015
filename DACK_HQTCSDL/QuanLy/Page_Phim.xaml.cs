@@ -24,5 +24,23 @@ namespace DACK_HQTCSDL
         {
             InitializeComponent();
         }
+
+        private void button_ThemPhim_Click(object sender, RoutedEventArgs e)
+        {
+            Window_ThemPhim wd = new Window_ThemPhim();
+            if (wd.ShowDialog() == true)
+            {
+              
+            }
+        }
+
+        private void button_SuaPhim_Click(object sender, RoutedEventArgs e)
+        {
+            Window_SuaPhim wd = new Window_SuaPhim();
+            if (wd.ShowDialog() == true)
+            {
+                
+            }
+        }
     }
 }

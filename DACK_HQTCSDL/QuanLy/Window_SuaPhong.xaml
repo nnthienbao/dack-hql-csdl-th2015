@@ -5,8 +5,89 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DACK_HQTCSDL"
         mc:Ignorable="d"
-        Title="Window_SuaPhong" Height="300" Width="300">
+        Title="Sửa thông tin phòng" Height="230" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <Border
+            Grid.Row="0"
+            Padding="15"
+            BorderBrush="#649EFF"
+            BorderThickness="0,0,0,2">
+            <StackPanel Orientation="Vertical">
+                <!--Mã phòng-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                        Width="130"
+                        Content="Mã phòng" 
+                        Style="{StaticResource MyLabel}" />
+                    <TextBox Grid.Column="1"
+                        x:Name="textbox_MaPhong"
+                        IsEnabled="False"       
+                        BorderBrush="#649EFF"
+                        Style="{StaticResource MyTextBox}" />
+                </Grid>
+                <!--Tên Phòng-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                        Width="130"
+                        Content="Tên Phòng"
+                        Style="{StaticResource MyLabel}" />
+                    <TextBox Grid.Column="1"
+                        x:Name="textbox_TenPhong"
+                        BorderBrush="#649EFF"
+                        Style="{StaticResource MyTextBox}" />
+                </Grid>
+                <!--Báo lỗi Tên Phòng-->
+                <Label
+                    x:Name="lb_Error_TenPhong"
+                    Margin="130,0,0,0"
+                    HorizontalAlignment="Left"
+                    BorderBrush="#649EFF"
+                    Content="Tên phòng phải từ 1-50 ký tự"
+                    Style="{StaticResource MyLabelError}"
+                    Visibility="Collapsed" />
+            </StackPanel>
+        </Border>
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                x:Name="button_SuaPhong"
+                Width="120"
+                Margin="10"
+                Background="#649EFF"
+                Click="button_SuaPhong_Click"
+                Content="Cập nhật"
+                FontSize="14"
+                FontWeight="SemiBold"
+                Foreground="White"
+                Style="{StaticResource MyButton}" />
+            <Button
+                x:Name="button_Cancel"
+                Width="100"
+                Margin="10"
+                Background="#649EFF"
+                Click="button_Cancel_Click"
+                Content="Cancel"
+                FontSize="14"
+                FontWeight="SemiBold"
+                Foreground="White"
+                Style="{StaticResource MyButton}" />
+        </StackPanel>
     </Grid>
 </Window>

@@ -36,7 +36,8 @@
                 Grid.RowSpan="2"
                 Grid.Column="0">
                 <Button
-                    x:Name="button_ThemKhachHang"
+                    x:Name="button_ThemPhong"
+                    Click="button_ThemPhong_Click"
                     Width="100"
                     Height="80"
                     Background="#039BE5"
@@ -55,7 +56,8 @@
                     </StackPanel>
                 </Button>
                 <Button
-                    x:Name="button_SuaKhachHang"
+                    x:Name="button_SuaPhong"
+                    Click="button_SuaPhong_Click"
                     Width="100"
                     Height="80"
                     Background="#039BE5"
@@ -102,13 +104,12 @@
                 </StackPanel>
             </Border>
 
-            <!--  Datagrid hiển thị danh sách khách hàng  -->
-            <!--  Sử dụng binding để chèn dữ liệu, nếu k biết hãy search GG "Binding WPF datagrid"  -->
+           
             <DataGrid
                 x:Name="dataGrid_KhachHang"
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="68,0,-58,0"
+                Margin="10 0 0 0"
                 HorizontalGridLinesBrush="#77039BE5"
                 IsReadOnly="True"
                 VerticalGridLinesBrush="#77039BE5">

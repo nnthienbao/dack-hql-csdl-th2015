@@ -23,5 +23,15 @@ namespace DACK_HQTCSDL
         {
             InitializeComponent();
         }
+
+        private void button_SuaDoHot_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+        }
+
+        private void button_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+        }
     }
 }

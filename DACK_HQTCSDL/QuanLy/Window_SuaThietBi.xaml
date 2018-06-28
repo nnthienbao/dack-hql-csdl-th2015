@@ -5,8 +5,113 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DACK_HQTCSDL"
         mc:Ignorable="d"
-        Title="Window_SuaThietBi" Height="300" Width="300">
+        Title="Sửa thông tin thiết bị" Height="295" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <Border
+            Grid.Row="0"
+            Padding="15"
+            BorderBrush="#649EFF"
+            BorderThickness="0,0,0,2">
+            <StackPanel Orientation="Vertical">
+                <!--Mã thiết bị-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                        Width="130"
+                        Content="Mã Thiết bị"
+                        Style="{StaticResource MyLabel}" />
+                    <TextBox Grid.Column="1"
+                        x:Name="textbox_MaThietBi"
+                        IsEnabled="False"
+                        BorderBrush="#649EFF"
+                        Style="{StaticResource MyTextBox}" />
+                </Grid>
+                <!--Tên Phòng-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                        Width="130"
+                        Content="Tên Thiết bị"
+                        Style="{StaticResource MyLabel}" />
+                    <TextBox Grid.Column="1"
+                        x:Name="textbox_TenThietBi"
+                        BorderBrush="#649EFF"
+                        Style="{StaticResource MyTextBox}" />
+                </Grid>
+                <!--Báo lỗi Tên thiết bị-->
+                <Label
+                    x:Name="lb_Error_TenThietBi"
+                    Margin="130,0,0,0"
+                    HorizontalAlignment="Left"
+                    BorderBrush="#649EFF"
+                    Content="Tên phòng phải từ 1-200 ký tự"
+                    Style="{StaticResource MyLabelError}"
+                    Visibility="Collapsed" />
+                <!--Tiền phụ thêm-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                        Width="130"
+                        Content="Tiền phụ thêm"
+                        Style="{StaticResource MyLabel}" />
+                    <TextBox Grid.Column="1"
+                        x:Name="textbox_TienPhuThem"
+                        BorderBrush="#649EFF"
+                        Style="{StaticResource MyTextBox}" />
+                </Grid>
+                <!--Báo lỗi Tên thiết bị-->
+                <Label
+                    x:Name="lb_Error_TienPhuThem"
+                    Margin="130,0,0,0"
+                    HorizontalAlignment="Left"
+                    BorderBrush="#649EFF"
+                    Content="Tiền phụ thêm phải là số"
+                    Style="{StaticResource MyLabelError}"
+                    Visibility="Collapsed" />
+            </StackPanel>
+        </Border>
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                x:Name="button_SuaThietBi"
+                Width="120"
+                Margin="10"
+                Background="#649EFF"
+                Click="button_SuaThietBi_Click"
+                Content="Cập nhật"
+                FontSize="14"
+                FontWeight="SemiBold"
+                Foreground="White"
+                Style="{StaticResource MyButton}" />
+            <Button
+                x:Name="button_Cancel"
+                Width="100"
+                Margin="10"
+                Background="#649EFF"
+                Click="button_Cancel_Click"
+                Content="Cancel"
+                FontSize="14"
+                FontWeight="SemiBold"
+                Foreground="White"
+                Style="{StaticResource MyButton}" />
+        </StackPanel>
     </Grid>
 </Window>

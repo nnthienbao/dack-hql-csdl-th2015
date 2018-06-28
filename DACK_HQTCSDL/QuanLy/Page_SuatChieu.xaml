@@ -36,7 +36,8 @@
                 Grid.RowSpan="2"
                 Grid.Column="0">
                 <Button
-                    x:Name="button_ThemKhachHang"
+                    x:Name="button_ThemSuatChieu"
+                    Click="button_ThemSuatChieu_Click"
                     Width="100"
                     Height="80"
                     Background="#8E24AA"
@@ -55,7 +56,8 @@
                     </StackPanel>
                 </Button>
                 <Button
-                    x:Name="button_SuaKhachHang"
+                    x:Name="button_SuaSuatChieu"
+                    Click="button_SuaSuatChieu_Click"
                     Width="100"
                     Height="80"
                     Background="#8E24AA"

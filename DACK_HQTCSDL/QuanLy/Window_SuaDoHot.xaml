@@ -5,8 +5,117 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DACK_HQTCSDL"
         mc:Ignorable="d"
-        Title="Window_SuaDoHot" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        Title="Sửa thông tin độ hot phim" Height="290" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+   
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+
+            <Border
+            Grid.Row="0"
+            Padding="15"
+            BorderBrush="#649EFF"
+            BorderThickness="0,0,0,2">
+                <StackPanel Orientation="Vertical">
+                    <!--Mã độ hot-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                            Width="130"
+                            Content="Mã độ hot"
+                            Style="{StaticResource MyLabel}" />
+                        <TextBox 
+                            Grid.Column="1"
+                            IsEnabled="False"
+                            x:Name="textbox_MaDoHot"     
+                            BorderBrush="#649EFF"
+                            Style="{StaticResource MyTextBox}" />
+                    </Grid>
+                    <!--Tên độ hot-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                            Width="130"
+                            Content="Tên độ hot"
+                            Style="{StaticResource MyLabel}" />
+                            <TextBox Grid.Column="1"
+                            x:Name="textbox_TenDoHot"
+                            BorderBrush="#649EFF"
+                            Style="{StaticResource MyTextBox}" />   
+                    </Grid>
+                    <!--Báo lỗi Tên độ hot-->
+                    <Label
+                        x:Name="lb_Error_TenDoHot"
+                        Margin="130,0,0,0"
+                        HorizontalAlignment="Left"
+                        BorderBrush="#649EFF"
+                        Content="Tên độ hot phải từ 1-100 ký tự"
+                        Style="{StaticResource MyLabelError}"
+                        Visibility="Collapsed" />
+                    <!--Tiền phụ thêm-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                            Width="130"
+                            Content="Tiền phụ thêm"
+                            Style="{StaticResource MyLabel}" />
+                        <TextBox Grid.Column="1"
+                            x:Name="textbox_TienPhuThem"
+                            BorderBrush="#649EFF"
+                            Style="{StaticResource MyTextBox}" />
+                    </Grid>
+                    <!--Báo lỗi tiền phụ thêm-->
+                    <Label
+                        x:Name="lb_Error_TienPhuThem"
+                        Margin="130,0,0,0"
+                        HorizontalAlignment="Left"
+                        BorderBrush="#649EFF"
+                        Content="Tiền phụ thêm chỉ cho phép nhập số"
+                        Style="{StaticResource MyLabelError}"
+                        Visibility="Collapsed" />
+                </StackPanel>
+            </Border>
+
+            <StackPanel
+                Grid.Row="1"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <Button
+                    x:Name="button_SuaDoHot"
+                    Width="120"
+                    Margin="10"
+                    Background="#649EFF"
+                    Click="button_SuaDoHot_Click"
+                    Content="Cập nhật"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Foreground="White"
+                    Style="{StaticResource MyButton}" />
+                <Button
+                    x:Name="button_Cancel"
+                    Width="100"
+                    Margin="10"
+                    Background="#649EFF"
+                    Click="button_Cancel_Click"
+                    Content="Cancel"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Foreground="White"
+                    Style="{StaticResource MyButton}" />
+            </StackPanel>
+        </Grid>
+   
 </Window>

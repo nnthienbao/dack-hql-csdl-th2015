@@ -24,5 +24,23 @@ namespace DACK_HQTCSDL
         {
             InitializeComponent();
         }
+
+        private void button_ThemDoHot_Click(object sender, RoutedEventArgs e)
+        {
+            Window_ThemDoHot wd = new Window_ThemDoHot();
+            if (wd.ShowDialog() == true)
+            {
+
+            }
+        }
+
+        private void button_SuaDoHot_Click(object sender, RoutedEventArgs e)
+        {
+            Window_SuaDoHot wd = new Window_SuaDoHot();
+            if (wd.ShowDialog() == true)
+            {
+
+            }
+        }
     }
 }
