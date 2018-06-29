@@ -18,7 +18,7 @@
         <Border
             Grid.Row="0"
             Padding="15"
-            BorderBrush="#649EFF"
+            BorderBrush="#4527A0"
             BorderThickness="0,0,0,2">
             <StackPanel Orientation="Vertical">
                 <!--Ngày chiếu-->
@@ -32,7 +32,7 @@
                         Style="{StaticResource MyLabel}" />
                     <DatePicker Grid.Column="1"
                         x:Name="DatePicker_NgayChieu"        
-                        Width="170" 
+                        Width="170" BorderBrush="#4527A0"
                         HorizontalAlignment="Left"
                         Style="{StaticResource MyDatePicker}"/>
                 </Grid>
@@ -45,7 +45,9 @@
                     <Label Grid.Column="0"
                         Content="Tên phim"
                         Style="{StaticResource MyLabel}" />
-                    <ComboBox x:Name="Combobox_Phim" Grid.Column="1"
+                    <ComboBox 
+                        x:Name="Combobox_Phim" 
+                        Grid.Column="1" BorderBrush="#4527A0"
                         Style="{StaticResource MyCombobox}">
                     </ComboBox>
                 </Grid>
@@ -58,7 +60,9 @@
                     <Label Grid.Column="0"
                         Content="Phòng chiếu"
                         Style="{StaticResource MyLabel}" />
-                    <ComboBox x:Name="Combobox_Phong" Grid.Column="1"
+                    <ComboBox 
+                        x:Name="Combobox_Phong" 
+                        Grid.Column="1" BorderBrush="#4527A0"
                         Style="{StaticResource MyCombobox}">
                     </ComboBox>
                 </Grid>
@@ -73,9 +77,9 @@
                         Style="{StaticResource MyLabel}" />
                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                         <Label Content="Giờ" Style="{StaticResource MyLabel}" />
-                        <TextBox x:Name="TextBox_GioBatDau_H" Width="50" Margin="10 5 0 0" Style="{StaticResource MyTextBox}" />
+                        <TextBox x:Name="TextBox_GioBatDau_H" BorderBrush="#4527A0" Width="50" Margin="10 5 0 0" Style="{StaticResource MyTextBox}" />
                         <Label Margin="20 5 0 0" Content="Phút" Style="{StaticResource MyLabel}" />
-                        <TextBox x:Name="TextBox_GioBatDau_M" Width="50" Margin="10 5 0 0" Style="{StaticResource MyTextBox}" />
+                        <TextBox x:Name="TextBox_GioBatDau_M" BorderBrush="#4527A0" Width="50" Margin="10 5 0 0" Style="{StaticResource MyTextBox}" />
                     </StackPanel>
                 </Grid>
                 <!--Báo lỗi giờ bắt đầu-->
@@ -98,9 +102,9 @@
                         Style="{StaticResource MyLabel}" />
                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                         <Label Content="Giờ" Style="{StaticResource MyLabel}" />
-                        <TextBox x:Name="TextBox_GioKetThuc_H" Width="50" Margin="10 5 0 0" Style="{StaticResource MyTextBox}" />
+                        <TextBox x:Name="TextBox_GioKetThuc_H" BorderBrush="#4527A0" Width="50" Margin="10 5 0 0" Style="{StaticResource MyTextBox}" />
                         <Label Margin="20 5 0 0" Content="Phút" Style="{StaticResource MyLabel}" />
-                        <TextBox x:Name="TextBox_GioKetThuc_M" Width="50" Margin="10 5 0 0" Style="{StaticResource MyTextBox}" />
+                        <TextBox x:Name="TextBox_GioKetThuc_M" BorderBrush="#4527A0" Width="50" Margin="10 5 0 0" Style="{StaticResource MyTextBox}" />
                     </StackPanel>
                 </Grid>
             </StackPanel>
@@ -113,7 +117,7 @@
                 x:Name="button_ThemSuatChieu"
                 Width="100"
                 Margin="10"
-                Background="#649EFF"
+                Background="#8E24AA"
                 Click="button_ThemSuatChieu_Click"
                 Content="Thêm"
                 FontSize="14"
@@ -124,7 +128,7 @@
                 x:Name="button_Cancel"
                 Width="100"
                 Margin="10"
-                Background="#649EFF"
+                Background="#8E24AA"
                 Click="button_Cancel_Click"
                 Content="Cancel"
                 FontSize="14"

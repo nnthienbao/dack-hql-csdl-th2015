@@ -18,7 +18,7 @@
             <Border
             Grid.Row="0"
             Padding="15"
-            BorderBrush="#649EFF"
+            BorderBrush="#FF8F00"
             BorderThickness="0,0,0,2">
                 <StackPanel Orientation="Vertical">
                     <!--Mã độ hot-->
@@ -35,7 +35,7 @@
                             Grid.Column="1"
                             IsEnabled="False"
                             x:Name="textbox_MaDoHot"     
-                            BorderBrush="#649EFF"
+                            BorderBrush="#FF8F00"
                             Style="{StaticResource MyTextBox}" />
                     </Grid>
                     <!--Tên độ hot-->
@@ -50,7 +50,7 @@
                             Style="{StaticResource MyLabel}" />
                             <TextBox Grid.Column="1"
                             x:Name="textbox_TenDoHot"
-                            BorderBrush="#649EFF"
+                            BorderBrush="#FF8F00"
                             Style="{StaticResource MyTextBox}" />   
                     </Grid>
                     <!--Báo lỗi Tên độ hot-->
@@ -74,7 +74,7 @@
                             Style="{StaticResource MyLabel}" />
                         <TextBox Grid.Column="1"
                             x:Name="textbox_TienPhuThem"
-                            BorderBrush="#649EFF"
+                            BorderBrush="#FF8F00"
                             Style="{StaticResource MyTextBox}" />
                     </Grid>
                     <!--Báo lỗi tiền phụ thêm-->
@@ -97,7 +97,7 @@
                     x:Name="button_SuaDoHot"
                     Width="120"
                     Margin="10"
-                    Background="#649EFF"
+                    Background="#FF8F00"
                     Click="button_SuaDoHot_Click"
                     Content="Cập nhật"
                     FontSize="14"
@@ -108,7 +108,7 @@
                     x:Name="button_Cancel"
                     Width="100"
                     Margin="10"
-                    Background="#649EFF"
+                    Background="#FF8F00"
                     Click="button_Cancel_Click"
                     Content="Cancel"
                     FontSize="14"

@@ -17,7 +17,7 @@
         <Border
             Grid.Row="0"
             Padding="15"
-            BorderBrush="#649EFF"
+            BorderBrush="#2E7D32"
             BorderThickness="0,0,0,2">
             <StackPanel Orientation="Vertical">
                 <!--Tên Phòng-->
@@ -32,7 +32,7 @@
                         Style="{StaticResource MyLabel}" />
                     <TextBox Grid.Column="1"
                         x:Name="textbox_TenThietBi"
-                        BorderBrush="#649EFF"
+                        BorderBrush="#2E7D32"
                         Style="{StaticResource MyTextBox}" />
                 </Grid>
                 <!--Báo lỗi Tên thiết bị-->
@@ -56,7 +56,7 @@
                         Style="{StaticResource MyLabel}" />
                     <TextBox Grid.Column="1"
                         x:Name="textbox_TienPhuThem"
-                        BorderBrush="#649EFF"
+                        BorderBrush="#2E7D32"
                         Style="{StaticResource MyTextBox}" />
                 </Grid>
                 <!--Báo lỗi Tên thiết bị-->
@@ -78,7 +78,7 @@
                 x:Name="button_ThemThietBi"
                 Width="100"
                 Margin="10"
-                Background="#649EFF"
+                Background="#43A047"
                 Click="button_ThemThietBi_Click"
                 Content="Thêm"
                 FontSize="14"
@@ -89,7 +89,7 @@
                 x:Name="button_Cancel"
                 Width="100"
                 Margin="10"
-                Background="#649EFF"
+                Background="#43A047"
                 Click="button_Cancel_Click"
                 Content="Cancel"
                 FontSize="14"

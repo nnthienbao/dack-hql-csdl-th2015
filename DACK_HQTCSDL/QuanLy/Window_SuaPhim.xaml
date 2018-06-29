@@ -16,7 +16,7 @@
         <Border
             Grid.Row="0"
             Padding="15"
-            BorderBrush="#649EFF"
+            BorderBrush="#C62828"
             BorderThickness="0,0,0,2">
             <StackPanel Orientation="Vertical">
                 <!--Mã bộ phim-->
@@ -30,10 +30,9 @@
                         Content="Mã phim"
                         Style="{StaticResource MyLabel}" />
                     <TextBox Grid.Column="1"
-                        
                         IsEnabled="False"
                         x:Name="textbox_MaPhim"
-                        BorderBrush="#649EFF"
+                        BorderBrush="#C62828"
                         Style="{StaticResource MyTextBox}" />
                 </Grid>
                 <!--Tên phim-->
@@ -49,7 +48,7 @@
                         Style="{StaticResource MyLabel}" />
                     <TextBox Grid.Column="1"
                         x:Name="textbox_TenPhim"
-                        BorderBrush="#649EFF"
+                        BorderBrush="#C62828"
                         Style="{StaticResource MyTextBox}" Grid.ColumnSpan="2" />
                 </Grid>
                 <!--Báo lỗi Tên độ hot-->
@@ -60,7 +59,7 @@
                     BorderBrush="#649EFF"
                     Content="Tên phim phải từ 1-200 ký tự"
                     Style="{StaticResource MyLabelError}"
-                    Visibility="Visible" />
+                    Visibility="Collapsed" />
                 <!--Combobox tình trạng phim-->
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -71,7 +70,9 @@
                         Width="130"
                         Content="Tình trạng"
                         Style="{StaticResource MyLabel}" />
-                    <ComboBox x:Name="Combobox_TinhTrang" Grid.Column="1"
+                    <ComboBox 
+                        x:Name="Combobox_TinhTrang" 
+                        Grid.Column="1" BorderBrush="#C62828"
                         Style="{StaticResource MyCombobox}">
                         <ComboBoxItem Name="cbbItem_DungChieu">Dừng chiếu</ComboBoxItem>
                         <ComboBoxItem Name="cbbItem_DangChieu" IsSelected="True">Đang chiếu</ComboBoxItem>
@@ -89,7 +90,7 @@
                         Style="{StaticResource MyLabel}" />
                     <TextBox Grid.Column="1"
                         x:Name="textbox_ThoiLuong"
-                        BorderBrush="#649EFF"
+                        BorderBrush="#C62828"
                         Style="{StaticResource MyTextBox}" />
                 </Grid>
                 <Label
@@ -99,7 +100,7 @@
                     BorderBrush="#649EFF"
                     Content="Thời lượng phải là số lớn hơn 60"
                     Style="{StaticResource MyLabelError}"
-                    Visibility="Visible" />
+                    Visibility="Collapsed" />
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -110,7 +111,9 @@
                         Width="130"
                         Content="Độ hot"
                         Style="{StaticResource MyLabel}" />
-                    <ComboBox x:Name="Combobox_DoHot" Grid.Column="1"
+                    <ComboBox 
+                        x:Name="Combobox_DoHot" 
+                        Grid.Column="1" BorderBrush="#C62828"
                         Style="{StaticResource MyCombobox}">
                     </ComboBox>
                 </Grid>
@@ -125,7 +128,7 @@
                 x:Name="button_SuaPhim"
                 Width="120"
                 Margin="10"
-                Background="#649EFF"
+                Background="#e53935"
                 Click="button_SuaPhim_Click"
                 Content="Cập nhật"
                 FontSize="14"
@@ -136,7 +139,7 @@
                 x:Name="button_Cancel"
                 Width="100"
                 Margin="10"
-                Background="#649EFF"
+                Background="#e53935"
                 Click="button_Cancel_Click"
                 Content="Cancel"
                 FontSize="14"

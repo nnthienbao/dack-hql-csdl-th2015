@@ -17,7 +17,7 @@
         <Border
             Grid.Row="0"
             Padding="15"
-            BorderBrush="#649EFF"
+            BorderBrush="#C62828"
             BorderThickness="0,0,0,2">
             <StackPanel Orientation="Vertical">
                 <Grid>
@@ -31,7 +31,7 @@
                         Style="{StaticResource MyLabel}" />
                     <TextBox Grid.Column="1"
                         x:Name="textbox_TenPhim"
-                        BorderBrush="#649EFF"
+                        BorderBrush="#C62828"
                         Style="{StaticResource MyTextBox}" />
                 </Grid>
                 <!--Báo lỗi Tên độ hot-->
@@ -53,7 +53,9 @@
                         Width="130"
                         Content="Tình trạng"
                         Style="{StaticResource MyLabel}" />
-                    <ComboBox x:Name="Combobox_TinhTrang" Grid.Column="1"
+                    <ComboBox 
+                        x:Name="Combobox_TinhTrang" 
+                        Grid.Column="1" BorderBrush="#C62828"
                         Style="{StaticResource MyCombobox}">
                         <ComboBoxItem Name="cbbItem_DungChieu">Dừng chiếu</ComboBoxItem>
                         <ComboBoxItem Name="cbbItem_DangChieu" IsSelected="True">Đang chiếu</ComboBoxItem>
@@ -71,7 +73,7 @@
                         Style="{StaticResource MyLabel}" />
                     <TextBox Grid.Column="1"
                         x:Name="textbox_ThoiLuong"
-                        BorderBrush="#649EFF"
+                        BorderBrush="#C62828"
                         Style="{StaticResource MyTextBox}" />
                 </Grid>
                 <Label
@@ -92,7 +94,9 @@
                         Width="130"
                         Content="Độ hot"
                         Style="{StaticResource MyLabel}" />
-                    <ComboBox x:Name="Combobox_DoHot" Grid.Column="1"
+                    <ComboBox 
+                        x:Name="Combobox_DoHot" 
+                        Grid.Column="1" BorderBrush="#C62828"
                         Style="{StaticResource MyCombobox}">
                     </ComboBox>
                 </Grid>
@@ -107,7 +111,7 @@
                 x:Name="button_ThemPhim"
                 Width="100"
                 Margin="10"
-                Background="#649EFF"
+                Background="#e53935"
                 Click="button_ThemPhim_Click"
                 Content="Thêm"
                 FontSize="14"
@@ -118,7 +122,7 @@
                 x:Name="button_Cancel"
                 Width="100"
                 Margin="10"
-                Background="#649EFF"
+                Background="#e53935"
                 Click="button_Cancel_Click"
                 Content="Cancel"
                 FontSize="14"
