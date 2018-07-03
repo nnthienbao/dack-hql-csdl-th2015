@@ -1,63 +1,308 @@
-﻿<Window x:Class="DACK_HQTCSDL.Window_DatVe"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:controls="clr-namespace:DACK_HQTCSDL"
-        mc:Ignorable="d"
-        Title="Đặt vé" Height="700" Width="1366"
-        WindowState="Maximized"
-        Loaded="Window_Loaded">
+﻿<Window
+    x:Class="DACK_HQTCSDL.Window_DatVe"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:DACK_HQTCSDL"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Đặt vé"
+    Width="1366"
+    Height="700"
+    Loaded="Window_Loaded"
+    WindowState="Maximized"
+    mc:Ignorable="d">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
 
-        <Border Background="#7700AA8D" Padding="10">
+
+        <Border Padding="10" Background="#7700AA8D">
             <Grid Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60" />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
 
                 <StackPanel>
-                    <CheckBox x:Name="CheckBox_MaKhachHang" Checked="CheckBox_MaKhachHang_Checked" Unchecked="CheckBox_MaKhachHang_Unchecked" Content="Mã khách hàng" FontWeight="SemiBold" FontSize="14" Margin="5 13 0 6" BorderBrush="#00AA8D"/>
-                    <Label Content="Số điện thoại" Margin="5 5 0 0" Style="{StaticResource MyLabel}" />
-                    <Label x:Name="Label_HoVaTen" Visibility="Hidden" Content="Họ và tên" Margin="5 5 0 0" Style="{StaticResource MyLabel}" />
-                    <Label x:Name="Label_GioiTinh" Visibility="Hidden" Content="Giới tính" Margin="5 5 0 0" Style="{StaticResource MyLabel}" />
-                    <Label x:Name="Label_NgaySinh" Visibility="Hidden" Content="Ngày sinh" Margin="5 5 0 0" Style="{StaticResource MyLabel}" />
-                    <Label x:Name="Label_CMND" Visibility="Hidden" Content="CMND" Margin="5 5 0 0" Style="{StaticResource MyLabel}" />
-                    <Label Content="Số lượng vé" Margin="5 15 0 0" Style="{StaticResource MyLabel}" />
-                </StackPanel>
-
-                <StackPanel Grid.Column="1">
-                    <TextBox x:Name="textbox_MaKhachHang" Width="150" HorizontalAlignment="Left" Style="{StaticResource MyTextBox}" BorderBrush="#00AA8D" IsEnabled="False"/>
-                    <TextBox x:Name="textbox_SoDienThoai" Width="150" HorizontalAlignment="Left" Style="{StaticResource MyTextBox}" BorderBrush="#00AA8D" />
-                    <TextBox x:Name="textbox_TenKhachHang" Visibility="Hidden" Margin="0 5 5 0" Style="{StaticResource MyTextBox}" BorderBrush="#00AA8D" />
-                    <StackPanel Height="32" Orientation="Horizontal" Margin="0 5 0 0" >
-                        <RadioButton x:Name="radioButton_GioiTinhNam" Visibility="Hidden" Margin="0 10 0 0" Content="Nam" FontWeight="SemiBold" FontSize="13" BorderBrush="#00AA8D" />
-                        <RadioButton x:Name="radioButton_GioiTinhNu" Visibility="Hidden" Margin="10 10 0 0" Content="Nữ" FontWeight="SemiBold" FontSize="13" BorderBrush="#00AA8D" />
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton
+                            x:Name="cbb_MaKhachHang"
+                            Width="126"
+                            Margin="5,13,0,6"
+                            BorderBrush="#00AA8D"
+                            Content="Mã khách hàng"
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            GroupName="group_TTDatVe"
+                            IsChecked="True" />
+                        <TextBox
+                            x:Name="textbox_MaKhachHang"
+                            Width="240"
+                            HorizontalAlignment="Left"
+                            BorderBrush="#00AA8D"
+                            KeyUp="textbox_MaKhachHang_KeyUp"
+                            Style="{StaticResource MyTextBox}"
+                            TextChanged="textbox_MaKhachHang_TextChanged" />
                     </StackPanel>
-                    <DatePicker x:Name="textbox_NgaySinh" Visibility="Hidden" Text="1/04/1990" Width="150" HorizontalAlignment="Left" Style="{StaticResource MyDatePicker}" BorderBrush="#00AA8D" />
-                    <TextBox x:Name="textbox_CMND" Visibility="Hidden" Width="150" HorizontalAlignment="Left" Style="{StaticResource MyTextBox}" BorderBrush="#00AA8D" />
-                    <Label x:Name="Label_SoLuongVe" Content="0" Margin="0 15 0 0" Foreground="Red" Style="{StaticResource MyLabel}" />
+                    <Label
+                        x:Name="lb_Error_MaKhachHang"
+                        Margin="126,0,0,0"
+                        HorizontalAlignment="Left"
+                        Content="Không tìm thấy khách hàng"
+                        Style="{StaticResource MyLabelError}"
+                        Visibility="Collapsed" />
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton
+                            x:Name="cbb_SoDienThoai"
+                            Width="126"
+                            Margin="5,13,0,6"
+                            BorderBrush="#00AA8D"
+                            Checked="cbb_SoDienThoai_Checked"
+                            Content="Số điện thoại"
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            GroupName="group_TTDatVe" />
+                        <TextBox
+                            x:Name="textbox_SoDienThoai"
+                            Width="240"
+                            HorizontalAlignment="Left"
+                            BorderBrush="#00AA8D"
+                            Style="{StaticResource MyTextBox}" />
+                    </StackPanel>
+                    <StackPanel x:Name="panel_ThongTinKhachHang" Visibility="Collapsed">
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                                x:Name="Label_HoVaTen"
+                                Width="126"
+                                Margin="5,5,0,0"
+                                Content="Họ và tên"
+                                Style="{StaticResource MyLabel}"
+                                Visibility="Visible" />
+                            <TextBox
+                                x:Name="textbox_TenKhachHang"
+                                Width="240"
+                                Margin="0,5,5,0"
+                                BorderBrush="#00AA8D"
+                                IsEnabled="False"
+                                Style="{StaticResource MyTextBox}"
+                                Visibility="Visible" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                                x:Name="Label_GioiTinh"
+                                Width="126"
+                                Margin="5,5,0,0"
+                                Content="Giới tính"
+                                Style="{StaticResource MyLabel}"
+                                Visibility="Visible" />
+                            <StackPanel
+                                Height="32"
+                                Margin="0,5,0,0"
+                                Orientation="Horizontal">
+                                <RadioButton
+                                    x:Name="radioButton_GioiTinhNam"
+                                    Margin="0,10,0,0"
+                                    BorderBrush="#00AA8D"
+                                    Content="Nam"
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    GroupName="group_GioiTinh"
+                                    IsEnabled="False"
+                                    Visibility="Visible" />
+                                <RadioButton
+                                    x:Name="radioButton_GioiTinhNu"
+                                    Margin="10,10,0,0"
+                                    BorderBrush="#00AA8D"
+                                    Content="Nữ"
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    GroupName="group_GioiTinh"
+                                    IsEnabled="False"
+                                    Visibility="Visible" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                                x:Name="Label_NgaySinh"
+                                Width="126"
+                                Margin="5,5,0,0"
+                                Content="Ngày sinh"
+                                Style="{StaticResource MyLabel}"
+                                Visibility="Visible" />
+                            <DatePicker
+                                x:Name="datePicker_NgaySinh"
+                                Width="150"
+                                HorizontalAlignment="Left"
+                                BorderBrush="#00AA8D"
+                                IsEnabled="False"
+                                Style="{StaticResource MyDatePicker}"
+                                Text="1/04/1990"
+                                Visibility="Visible" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                                x:Name="Label_CMND"
+                                Width="126"
+                                Margin="5,5,0,0"
+                                Content="CMND"
+                                Style="{StaticResource MyLabel}"
+                                Visibility="Visible" />
+                            <TextBox
+                                x:Name="textbox_CMND"
+                                Width="240"
+                                HorizontalAlignment="Left"
+                                BorderBrush="#00AA8D"
+                                IsEnabled="False"
+                                Style="{StaticResource MyTextBox}"
+                                Visibility="Visible" />
+                        </StackPanel>
+                    </StackPanel>
+                    <Separator
+                        Height="1"
+                        Margin="4,10,4,0"
+                        FlowDirection="LeftToRight" />
+                    <StackPanel>
+                        <Label
+                            Content="Thông tin thanh toán"
+                            FontSize="16"
+                            Style="{StaticResource MyLabel}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                Content="Số lượng"
+                                Style="{StaticResource MyLabel}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                Content="Giá vé"
+                                Style="{StaticResource MyLabel}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                HorizontalAlignment="Center"
+                                Content="Tổng tiền"
+                                Style="{StaticResource MyLabel}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Content="Số vé thường"
+                                Style="{StaticResource MyLabel}" />
+                            <Label
+                                x:Name="lb_SoLuongVeThuong"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                Content="1"
+                                Style="{StaticResource MyLabel}" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Content="Số vé vip"
+                                Style="{StaticResource MyLabel}" />
+                            <Label
+                                x:Name="lb_SoLuongVeVip"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                Content="1"
+                                Style="{StaticResource MyLabel}" />
+                            <Label
+                                x:Name="lb_GiaVeVip"
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                Content="300000"
+                                Style="{StaticResource MyLabel}" />
+                            <Label
+                                x:Name="lb_TongTienVeVip"
+                                Grid.Row="2"
+                                Grid.Column="3"
+                                HorizontalAlignment="Center"
+                                Content="300000"
+                                Style="{StaticResource MyLabel}" />
+                            <Label
+                                x:Name="lb_GiaVeThuong"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                Content="200000"
+                                Style="{StaticResource MyLabel}" />
+                            <Label
+                                x:Name="lb_TongTienVeThuong"
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                HorizontalAlignment="Center"
+                                Content="200000"
+                                Style="{StaticResource MyLabel}" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                HorizontalAlignment="Right"
+                                Content="Số tiền thanh toán"
+                                Style="{StaticResource MyLabel}" />
+                            <Label
+                                x:Name="lb_TongSoTienThanhToan"
+                                Grid.Row="3"
+                                Grid.Column="3"
+                                Content="500000 VNĐ"
+                                Style="{StaticResource MyLabel}" />
+                        </Grid>
+                    </StackPanel>
                 </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-                    <Button x:Name="button_DatVe" Click="button_DatVe_Click" Foreground="White" Background="#00AA8D" Width="80" Margin="10" FontSize="14" FontWeight="SemiBold" Content="Đặt vé" Style="{StaticResource MyButton}"/>
-                    <Button x:Name="button_HuyThaoTac" Click="button_HuyThaoTac_Click" Foreground="White" Background="#00AA8D" Width="150" Margin="10" FontSize="14" FontWeight="SemiBold" Content="Hủy thao tác" Style="{StaticResource MyButton}"/>
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        x:Name="button_DatVe"
+                        Width="80"
+                        Margin="10"
+                        Background="#00AA8D"
+                        Click="button_DatVe_Click"
+                        Content="Đặt vé"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="White"
+                        Style="{StaticResource MyButton}" />
+                    <Button
+                        x:Name="button_HuyThaoTac"
+                        Width="150"
+                        Margin="10"
+                        Background="#00AA8D"
+                        Click="button_HuyThaoTac_Click"
+                        Content="Hủy thao tác"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="White"
+                        Style="{StaticResource MyButton}" />
                 </StackPanel>
             </Grid>
         </Border>
-        <Border Grid.Column="1" Background="#7700AA8D" Padding="0 10 10 10">
+        <Border
+            Grid.Column="1"
+            Padding="0,10,10,10"
+            Background="#7700AA8D">
             <Grid Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -71,95 +316,438 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
 
-                <!--Màn hình-->
-                <Border Grid.Row="0" Grid.ColumnSpan="9" Background="#00AA8D" >
-                    <Label  Content="Màn hình" 
-                       VerticalAlignment="Center" HorizontalAlignment="Center" 
-                       FontSize="30" FontWeight="Bold" Foreground="White"/>
+                <!--  Màn hình  -->
+                <Border
+                    Grid.Row="0"
+                    Grid.ColumnSpan="9"
+                    Background="#00AA8D">
+                    <Label
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="Màn hình"
+                        FontSize="30"
+                        FontWeight="Bold"
+                        Foreground="White" />
                 </Border>
-                <!--hàng 1-->  
-                <controls:UC_Slot x:Name="A1" slotID="A1" UcClick="UC_Slot_Click" Grid.Column="0" Grid.Row="1" isSlotReserved="True"/>
-                <controls:UC_Slot x:Name="B1" slotID="B1" UcClick="UC_Slot_Click" Grid.Column="1" Grid.Row="1"/>
-                <controls:UC_Slot x:Name="C1" slotID="C1" UcClick="UC_Slot_Click" Grid.Column="2" Grid.Row="1"/>
-                <controls:UC_Slot x:Name="D1" slotID="D1" UcClick="UC_Slot_Click" Grid.Column="3" Grid.Row="1"/>
-                <controls:UC_Slot x:Name="E1" slotID="E1" UcClick="UC_Slot_Click" Grid.Column="5" Grid.Row="1"/>
-                <controls:UC_Slot x:Name="F1" slotID="F1" UcClick="UC_Slot_Click" Grid.Column="6" Grid.Row="1"/>
-                <controls:UC_Slot x:Name="G1" slotID="G1" UcClick="UC_Slot_Click" Grid.Column="7" Grid.Row="1"/>
-                <controls:UC_Slot x:Name="H1" slotID="H1" UcClick="UC_Slot_Click" Grid.Column="8" Grid.Row="1" isSlotReserved="True"/>
-                <!--hàng 2-->
-                <controls:UC_Slot x:Name="A2" slotID="A2" UcClick="UC_Slot_Click" Grid.Column="0" Grid.Row="2" isSlotReserved="True"/>
-                <controls:UC_Slot x:Name="B2" slotID="B2" UcClick="UC_Slot_Click" Grid.Column="1" Grid.Row="2"/>
-                <controls:UC_Slot x:Name="C2" slotID="C2" UcClick="UC_Slot_Click" Grid.Column="2" Grid.Row="2"/>
-                <controls:UC_Slot x:Name="D2" slotID="D2" UcClick="UC_Slot_Click" Grid.Column="3" Grid.Row="2"/>
-                <controls:UC_Slot x:Name="E2" slotID="E2" UcClick="UC_Slot_Click" Grid.Column="5" Grid.Row="2"/>
-                <controls:UC_Slot x:Name="F2" slotID="F2" UcClick="UC_Slot_Click" Grid.Column="6" Grid.Row="2"/>
-                <controls:UC_Slot x:Name="G2" slotID="G2" UcClick="UC_Slot_Click" Grid.Column="7" Grid.Row="2"/>
-                <controls:UC_Slot x:Name="H2" slotID="H2" UcClick="UC_Slot_Click" Grid.Column="8" Grid.Row="2" isSlotReserved="True"/>
-                <!--hàng 3-->
-                <controls:UC_Slot x:Name="A3" slotID="A3" UcClick="UC_Slot_Click" Grid.Column="0" Grid.Row="3" isSlotReserved="True"/>
-                <controls:UC_Slot x:Name="B3" slotID="B3" UcClick="UC_Slot_Click" Grid.Column="1" Grid.Row="3"/>
-                <controls:UC_Slot x:Name="C3" slotID="C3" UcClick="UC_Slot_Click" Grid.Column="2" Grid.Row="3"/>
-                <controls:UC_Slot x:Name="D3" slotID="D3" UcClick="UC_Slot_Click" Grid.Column="3" Grid.Row="3"/>
-                <controls:UC_Slot x:Name="E3" slotID="E3" UcClick="UC_Slot_Click" Grid.Column="5" Grid.Row="3"/>
-                <controls:UC_Slot x:Name="F3" slotID="F3" UcClick="UC_Slot_Click" Grid.Column="6" Grid.Row="3"/>
-                <controls:UC_Slot x:Name="G3" slotID="G3" UcClick="UC_Slot_Click" Grid.Column="7" Grid.Row="3"/>
-                <controls:UC_Slot x:Name="H3" slotID="H3" UcClick="UC_Slot_Click" Grid.Column="8" Grid.Row="3" isSlotReserved="True"/>
-                <!--hàng 4-->
-                <controls:UC_Slot x:Name="A4" slotID="A4" UcClick="UC_Slot_Click" Grid.Column="0" Grid.Row="4" isSlotReserved="True"/>
-                <controls:UC_Slot x:Name="B4" slotID="B4" UcClick="UC_Slot_Click" Grid.Column="1" Grid.Row="4"/>
-                <controls:UC_Slot x:Name="C4" slotID="C4" UcClick="UC_Slot_Click" Grid.Column="2" Grid.Row="4"/>
-                <controls:UC_Slot x:Name="D4" slotID="D4" UcClick="UC_Slot_Click" Grid.Column="3" Grid.Row="4"/>
-                <controls:UC_Slot x:Name="E4" slotID="E4" UcClick="UC_Slot_Click" Grid.Column="5" Grid.Row="4"/>
-                <controls:UC_Slot x:Name="F4" slotID="F4" UcClick="UC_Slot_Click" Grid.Column="6" Grid.Row="4"/>
-                <controls:UC_Slot x:Name="G4" slotID="G4" UcClick="UC_Slot_Click" Grid.Column="7" Grid.Row="4"/>
-                <controls:UC_Slot x:Name="H4" slotID="H4" UcClick="UC_Slot_Click" Grid.Column="8" Grid.Row="4" isSlotReserved="True"/>
-                <!--hàng 5-->
-                <controls:UC_Slot x:Name="A5" slotID="A5" UcClick="UC_Slot_Click" Grid.Column="0" Grid.Row="5" isSlotReserved="True"/>
-                <controls:UC_Slot x:Name="B5" slotID="B5" UcClick="UC_Slot_Click" Grid.Column="1" Grid.Row="5"/>
-                <controls:UC_Slot x:Name="C5" slotID="C5" UcClick="UC_Slot_Click" Grid.Column="2" Grid.Row="5"/>
-                <controls:UC_Slot x:Name="D5" slotID="D5" UcClick="UC_Slot_Click" Grid.Column="3" Grid.Row="5"/>
-                <controls:UC_Slot x:Name="E5" slotID="E5" UcClick="UC_Slot_Click" Grid.Column="5" Grid.Row="5"/>
-                <controls:UC_Slot x:Name="F5" slotID="F5" UcClick="UC_Slot_Click" Grid.Column="6" Grid.Row="5"/>
-                <controls:UC_Slot x:Name="G5" slotID="G5" UcClick="UC_Slot_Click" Grid.Column="7" Grid.Row="5"/>
-                <controls:UC_Slot x:Name="H5" slotID="H5" UcClick="UC_Slot_Click" Grid.Column="8" Grid.Row="5" isSlotReserved="True"/>
-                <!--hàng 6-->
-                <controls:UC_Slot x:Name="A6" slotID="A6" UcClick="UC_Slot_Click" Grid.Column="0" Grid.Row="6" isSlotReserved="True"/>
-                <controls:UC_Slot x:Name="B6" slotID="B6" UcClick="UC_Slot_Click" Grid.Column="1" Grid.Row="6"/>
-                <controls:UC_Slot x:Name="C6" slotID="C6" UcClick="UC_Slot_Click" Grid.Column="2" Grid.Row="6"/>
-                <controls:UC_Slot x:Name="D6" slotID="D6" UcClick="UC_Slot_Click" Grid.Column="3" Grid.Row="6"/>
-                <controls:UC_Slot x:Name="E6" slotID="E6" UcClick="UC_Slot_Click" Grid.Column="5" Grid.Row="6"/>
-                <controls:UC_Slot x:Name="F6" slotID="F6" UcClick="UC_Slot_Click" Grid.Column="6" Grid.Row="6"/>
-                <controls:UC_Slot x:Name="G6" slotID="G6" UcClick="UC_Slot_Click" Grid.Column="7" Grid.Row="6"/>
-                <controls:UC_Slot x:Name="H6" slotID="H6" UcClick="UC_Slot_Click" Grid.Column="8" Grid.Row="6" isSlotReserved="True"/>
-                <!--hàng 7-->
-                <controls:UC_Slot x:Name="A7" slotID="A7" UcClick="UC_Slot_Click" Grid.Column="0" Grid.Row="7" isSlotReserved="True"/>
-                <controls:UC_Slot x:Name="B7" slotID="B7" UcClick="UC_Slot_Click" Grid.Column="1" Grid.Row="7"/>
-                <controls:UC_Slot x:Name="C7" slotID="C7" UcClick="UC_Slot_Click" Grid.Column="2" Grid.Row="7"/>
-                <controls:UC_Slot x:Name="D7" slotID="D7" UcClick="UC_Slot_Click" Grid.Column="3" Grid.Row="7"/>
-                <controls:UC_Slot x:Name="E7" slotID="E7" UcClick="UC_Slot_Click" Grid.Column="5" Grid.Row="7"/>
-                <controls:UC_Slot x:Name="F7" slotID="F7" UcClick="UC_Slot_Click" Grid.Column="6" Grid.Row="7"/>
-                <controls:UC_Slot x:Name="G7" slotID="G7" UcClick="UC_Slot_Click" Grid.Column="7" Grid.Row="7"/>
-                <controls:UC_Slot x:Name="H7" slotID="H7" UcClick="UC_Slot_Click" Grid.Column="8" Grid.Row="7" isSlotReserved="True"/>
-                <!--hàng 8-->
-                <controls:UC_Slot x:Name="A8" slotID="A8" UcClick="UC_Slot_Click" Grid.Column="0" Grid.Row="8" isSlotReserved="True"/>
-                <controls:UC_Slot x:Name="B8" slotID="B8" UcClick="UC_Slot_Click" Grid.Column="1" Grid.Row="8"/>
-                <controls:UC_Slot x:Name="C8" slotID="C8" UcClick="UC_Slot_Click" Grid.Column="2" Grid.Row="8"/>
-                <controls:UC_Slot x:Name="D8" slotID="D8" UcClick="UC_Slot_Click" Grid.Column="3" Grid.Row="8"/>
-                <controls:UC_Slot x:Name="E8" slotID="E8" UcClick="UC_Slot_Click" Grid.Column="5" Grid.Row="8"/>
-                <controls:UC_Slot x:Name="F8" slotID="F8" UcClick="UC_Slot_Click" Grid.Column="6" Grid.Row="8"/>
-                <controls:UC_Slot x:Name="G8" slotID="G8" UcClick="UC_Slot_Click" Grid.Column="7" Grid.Row="8"/>
-                <controls:UC_Slot x:Name="H8" slotID="H8" UcClick="UC_Slot_Click" Grid.Column="8" Grid.Row="8" isSlotReserved="True"/>
+                <!--  hàng 1  -->
+                <controls:UC_Slot
+                    x:Name="A1"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="A1" />
+                <controls:UC_Slot
+                    x:Name="B1"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    UcClick="UC_Slot_Click"
+                    slotID="B1" />
+                <controls:UC_Slot
+                    x:Name="C1"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    UcClick="UC_Slot_Click"
+                    slotID="C1" />
+                <controls:UC_Slot
+                    x:Name="D1"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    UcClick="UC_Slot_Click"
+                    slotID="D1" />
+                <controls:UC_Slot
+                    x:Name="E1"
+                    Grid.Row="1"
+                    Grid.Column="5"
+                    UcClick="UC_Slot_Click"
+                    slotID="E1" />
+                <controls:UC_Slot
+                    x:Name="F1"
+                    Grid.Row="1"
+                    Grid.Column="6"
+                    UcClick="UC_Slot_Click"
+                    slotID="F1" />
+                <controls:UC_Slot
+                    x:Name="G1"
+                    Grid.Row="1"
+                    Grid.Column="7"
+                    UcClick="UC_Slot_Click"
+                    slotID="G1" />
+                <controls:UC_Slot
+                    x:Name="H1"
+                    Grid.Row="1"
+                    Grid.Column="8"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="H1" />
+                <!--  hàng 2  -->
+                <controls:UC_Slot
+                    x:Name="A2"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="A2" />
+                <controls:UC_Slot
+                    x:Name="B2"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    UcClick="UC_Slot_Click"
+                    slotID="B2" />
+                <controls:UC_Slot
+                    x:Name="C2"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    UcClick="UC_Slot_Click"
+                    slotID="C2" />
+                <controls:UC_Slot
+                    x:Name="D2"
+                    Grid.Row="2"
+                    Grid.Column="3"
+                    UcClick="UC_Slot_Click"
+                    slotID="D2" />
+                <controls:UC_Slot
+                    x:Name="E2"
+                    Grid.Row="2"
+                    Grid.Column="5"
+                    UcClick="UC_Slot_Click"
+                    slotID="E2" />
+                <controls:UC_Slot
+                    x:Name="F2"
+                    Grid.Row="2"
+                    Grid.Column="6"
+                    UcClick="UC_Slot_Click"
+                    slotID="F2" />
+                <controls:UC_Slot
+                    x:Name="G2"
+                    Grid.Row="2"
+                    Grid.Column="7"
+                    UcClick="UC_Slot_Click"
+                    slotID="G2" />
+                <controls:UC_Slot
+                    x:Name="H2"
+                    Grid.Row="2"
+                    Grid.Column="8"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="H2" />
+                <!--  hàng 3  -->
+                <controls:UC_Slot
+                    x:Name="A3"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="A3" />
+                <controls:UC_Slot
+                    x:Name="B3"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    UcClick="UC_Slot_Click"
+                    slotID="B3" />
+                <controls:UC_Slot
+                    x:Name="C3"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    UcClick="UC_Slot_Click"
+                    slotID="C3" />
+                <controls:UC_Slot
+                    x:Name="D3"
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    UcClick="UC_Slot_Click"
+                    slotID="D3" />
+                <controls:UC_Slot
+                    x:Name="E3"
+                    Grid.Row="3"
+                    Grid.Column="5"
+                    UcClick="UC_Slot_Click"
+                    slotID="E3" />
+                <controls:UC_Slot
+                    x:Name="F3"
+                    Grid.Row="3"
+                    Grid.Column="6"
+                    UcClick="UC_Slot_Click"
+                    slotID="F3" />
+                <controls:UC_Slot
+                    x:Name="G3"
+                    Grid.Row="3"
+                    Grid.Column="7"
+                    UcClick="UC_Slot_Click"
+                    slotID="G3" />
+                <controls:UC_Slot
+                    x:Name="H3"
+                    Grid.Row="3"
+                    Grid.Column="8"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="H3" />
+                <!--  hàng 4  -->
+                <controls:UC_Slot
+                    x:Name="A4"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="A4" />
+                <controls:UC_Slot
+                    x:Name="B4"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    UcClick="UC_Slot_Click"
+                    slotID="B4" />
+                <controls:UC_Slot
+                    x:Name="C4"
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    UcClick="UC_Slot_Click"
+                    slotID="C4" />
+                <controls:UC_Slot
+                    x:Name="D4"
+                    Grid.Row="4"
+                    Grid.Column="3"
+                    UcClick="UC_Slot_Click"
+                    slotID="D4" />
+                <controls:UC_Slot
+                    x:Name="E4"
+                    Grid.Row="4"
+                    Grid.Column="5"
+                    UcClick="UC_Slot_Click"
+                    slotID="E4" />
+                <controls:UC_Slot
+                    x:Name="F4"
+                    Grid.Row="4"
+                    Grid.Column="6"
+                    UcClick="UC_Slot_Click"
+                    slotID="F4" />
+                <controls:UC_Slot
+                    x:Name="G4"
+                    Grid.Row="4"
+                    Grid.Column="7"
+                    UcClick="UC_Slot_Click"
+                    slotID="G4" />
+                <controls:UC_Slot
+                    x:Name="H4"
+                    Grid.Row="4"
+                    Grid.Column="8"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="H4" />
+                <!--  hàng 5  -->
+                <controls:UC_Slot
+                    x:Name="A5"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="A5" />
+                <controls:UC_Slot
+                    x:Name="B5"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    UcClick="UC_Slot_Click"
+                    slotID="B5" />
+                <controls:UC_Slot
+                    x:Name="C5"
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    UcClick="UC_Slot_Click"
+                    slotID="C5" />
+                <controls:UC_Slot
+                    x:Name="D5"
+                    Grid.Row="5"
+                    Grid.Column="3"
+                    UcClick="UC_Slot_Click"
+                    slotID="D5" />
+                <controls:UC_Slot
+                    x:Name="E5"
+                    Grid.Row="5"
+                    Grid.Column="5"
+                    UcClick="UC_Slot_Click"
+                    slotID="E5" />
+                <controls:UC_Slot
+                    x:Name="F5"
+                    Grid.Row="5"
+                    Grid.Column="6"
+                    UcClick="UC_Slot_Click"
+                    slotID="F5" />
+                <controls:UC_Slot
+                    x:Name="G5"
+                    Grid.Row="5"
+                    Grid.Column="7"
+                    UcClick="UC_Slot_Click"
+                    slotID="G5" />
+                <controls:UC_Slot
+                    x:Name="H5"
+                    Grid.Row="5"
+                    Grid.Column="8"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="H5" />
+                <!--  hàng 6  -->
+                <controls:UC_Slot
+                    x:Name="A6"
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="A6" />
+                <controls:UC_Slot
+                    x:Name="B6"
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    UcClick="UC_Slot_Click"
+                    slotID="B6" />
+                <controls:UC_Slot
+                    x:Name="C6"
+                    Grid.Row="6"
+                    Grid.Column="2"
+                    UcClick="UC_Slot_Click"
+                    slotID="C6" />
+                <controls:UC_Slot
+                    x:Name="D6"
+                    Grid.Row="6"
+                    Grid.Column="3"
+                    UcClick="UC_Slot_Click"
+                    slotID="D6" />
+                <controls:UC_Slot
+                    x:Name="E6"
+                    Grid.Row="6"
+                    Grid.Column="5"
+                    UcClick="UC_Slot_Click"
+                    slotID="E6" />
+                <controls:UC_Slot
+                    x:Name="F6"
+                    Grid.Row="6"
+                    Grid.Column="6"
+                    UcClick="UC_Slot_Click"
+                    slotID="F6" />
+                <controls:UC_Slot
+                    x:Name="G6"
+                    Grid.Row="6"
+                    Grid.Column="7"
+                    UcClick="UC_Slot_Click"
+                    slotID="G6" />
+                <controls:UC_Slot
+                    x:Name="H6"
+                    Grid.Row="6"
+                    Grid.Column="8"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="H6" />
+                <!--  hàng 7  -->
+                <controls:UC_Slot
+                    x:Name="A7"
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="A7" />
+                <controls:UC_Slot
+                    x:Name="B7"
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    UcClick="UC_Slot_Click"
+                    slotID="B7" />
+                <controls:UC_Slot
+                    x:Name="C7"
+                    Grid.Row="7"
+                    Grid.Column="2"
+                    UcClick="UC_Slot_Click"
+                    slotID="C7" />
+                <controls:UC_Slot
+                    x:Name="D7"
+                    Grid.Row="7"
+                    Grid.Column="3"
+                    UcClick="UC_Slot_Click"
+                    slotID="D7" />
+                <controls:UC_Slot
+                    x:Name="E7"
+                    Grid.Row="7"
+                    Grid.Column="5"
+                    UcClick="UC_Slot_Click"
+                    slotID="E7" />
+                <controls:UC_Slot
+                    x:Name="F7"
+                    Grid.Row="7"
+                    Grid.Column="6"
+                    UcClick="UC_Slot_Click"
+                    slotID="F7" />
+                <controls:UC_Slot
+                    x:Name="G7"
+                    Grid.Row="7"
+                    Grid.Column="7"
+                    UcClick="UC_Slot_Click"
+                    slotID="G7" />
+                <controls:UC_Slot
+                    x:Name="H7"
+                    Grid.Row="7"
+                    Grid.Column="8"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="H7" />
+                <!--  hàng 8  -->
+                <controls:UC_Slot
+                    x:Name="A8"
+                    Grid.Row="8"
+                    Grid.Column="0"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="A8" />
+                <controls:UC_Slot
+                    x:Name="B8"
+                    Grid.Row="8"
+                    Grid.Column="1"
+                    UcClick="UC_Slot_Click"
+                    slotID="B8" />
+                <controls:UC_Slot
+                    x:Name="C8"
+                    Grid.Row="8"
+                    Grid.Column="2"
+                    UcClick="UC_Slot_Click"
+                    slotID="C8" />
+                <controls:UC_Slot
+                    x:Name="D8"
+                    Grid.Row="8"
+                    Grid.Column="3"
+                    UcClick="UC_Slot_Click"
+                    slotID="D8" />
+                <controls:UC_Slot
+                    x:Name="E8"
+                    Grid.Row="8"
+                    Grid.Column="5"
+                    UcClick="UC_Slot_Click"
+                    slotID="E8" />
+                <controls:UC_Slot
+                    x:Name="F8"
+                    Grid.Row="8"
+                    Grid.Column="6"
+                    UcClick="UC_Slot_Click"
+                    slotID="F8" />
+                <controls:UC_Slot
+                    x:Name="G8"
+                    Grid.Row="8"
+                    Grid.Column="7"
+                    UcClick="UC_Slot_Click"
+                    slotID="G8" />
+                <controls:UC_Slot
+                    x:Name="H8"
+                    Grid.Row="8"
+                    Grid.Column="8"
+                    UcClick="UC_Slot_Click"
+                    isSlotReserved="True"
+                    slotID="H8" />
             </Grid>
         </Border>
     </Grid>

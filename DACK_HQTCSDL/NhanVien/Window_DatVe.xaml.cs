@@ -24,6 +24,7 @@ namespace DACK_HQTCSDL
     {
         private SuatChieuBUS suatChieuBUS = new SuatChieuBUS();
         private VeXemPhimBUS veXemPhimBUS = new VeXemPhimBUS();
+        private KhachHangBUS khachHangBUS = new KhachHangBUS();
         List<String> List_DS_Ve = new List<String>();
         int soLuongVe = 0;
 
@@ -37,45 +38,14 @@ namespace DACK_HQTCSDL
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             SUATCHIEU suatChieu = suatChieuBUS.LaySuatChieuTheoMa(maSuatChieu);
-            //List<VEXEMPHIM> dsVeTrongXuatChieu = veXemPhimBUS.LayDSVeXemPhim
+            if (suatChieu == null) throw new Exception("Loi: Khong tim thay suat chieu");
+
+
         }
 
         private void CheckBox_MaKhachHang_Checked(object sender, RoutedEventArgs e)
         {
-            this.textbox_MaKhachHang.IsEnabled = true;
-            this.textbox_TenKhachHang.IsEnabled = false;
-            this.textbox_SoDienThoai.IsEnabled = false;
-            this.textbox_NgaySinh.IsEnabled = false;
-            this.textbox_CMND.IsEnabled = false;
-            this.radioButton_GioiTinhNam.IsEnabled = false;
-            this.radioButton_GioiTinhNu.IsEnabled = false;
-
-            this.textbox_TenKhachHang.Visibility = Visibility.Visible;
-            this.textbox_NgaySinh.Visibility = Visibility.Visible;
-            this.textbox_CMND.Visibility = Visibility.Visible;
-            this.radioButton_GioiTinhNam.Visibility = Visibility.Visible;
-            this.radioButton_GioiTinhNu.Visibility = Visibility.Visible;
-
-            this.Label_CMND.Visibility = Visibility.Visible;
-            this.Label_GioiTinh.Visibility = Visibility.Visible;
-            this.Label_HoVaTen.Visibility = Visibility.Visible;
-            this.Label_NgaySinh.Visibility = Visibility.Visible;
-        }
-
-        private void CheckBox_MaKhachHang_Unchecked(object sender, RoutedEventArgs e)
-        {
-            this.textbox_MaKhachHang.IsEnabled = false;
-            this.textbox_TenKhachHang.Visibility = Visibility.Hidden;
-            this.textbox_SoDienThoai.IsEnabled = true;
-            this.textbox_NgaySinh.Visibility = Visibility.Hidden;
-            this.textbox_CMND.Visibility = Visibility.Hidden;
-            this.radioButton_GioiTinhNam.Visibility = Visibility.Hidden;
-            this.radioButton_GioiTinhNu.Visibility = Visibility.Hidden;
-
-            this.Label_CMND.Visibility = Visibility.Hidden;
-            this.Label_GioiTinh.Visibility = Visibility.Hidden;
-            this.Label_HoVaTen.Visibility = Visibility.Hidden;
-            this.Label_NgaySinh.Visibility = Visibility.Hidden;
+            //panel_ThongTinKhachHang.Visibility = Visibility.Visible;
         }
 
         private void button_DatVe_Click(object sender, RoutedEventArgs e)
@@ -106,7 +76,7 @@ namespace DACK_HQTCSDL
                 soLuongVe--;
             }
 
-            this.Label_SoLuongVe.Content = soLuongVe;
+            //this.Label_SoLuongVe.Content = soLuongVe;
             //  Để debug
             //Debug.WriteLine(" ");
 
@@ -114,6 +84,45 @@ namespace DACK_HQTCSDL
             //{
             //    Debug.WriteLine(item);
             //}
+        }
+
+        private void textbox_MaKhachHang_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!(bool)cbb_MaKhachHang.IsChecked) return;
+
+            if(e.Key == Key.Return)
+            {
+                panel_ThongTinKhachHang.Visibility = Visibility.Collapsed;
+                lb_Error_MaKhachHang.Visibility = Visibility.Collapsed;
+                // Lay thong tin ma khach hang, bao loi neu khong tim thay
+                var khachHangTim = khachHangBUS.LayKhachHangTheoMa(textbox_MaKhachHang.Text);
+                if(khachHangTim == null)
+                {
+                    lb_Error_MaKhachHang.Visibility = Visibility.Visible;
+                    return;
+                }
+
+                FetchThongTinKhachHang(khachHangTim);
+                panel_ThongTinKhachHang.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void FetchThongTinKhachHang(KHACHHANG khachHang)
+        {
+            textbox_TenKhachHang.Text = khachHang.HoTen;
+            radioButton_GioiTinhNam.IsChecked = khachHang.GioiTinh;
+            datePicker_NgaySinh.SelectedDate = khachHang.NgaySinh;
+            textbox_CMND.Text = khachHang.CMND;
+        }
+
+        private void cbb_SoDienThoai_Checked(object sender, RoutedEventArgs e)
+        {
+            panel_ThongTinKhachHang.Visibility = Visibility.Collapsed;
+        }
+
+        private void textbox_MaKhachHang_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            panel_ThongTinKhachHang.Visibility = Visibility.Collapsed;
         }
     }
 }
