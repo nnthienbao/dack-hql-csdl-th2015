@@ -58,7 +58,10 @@ namespace DACK_HQTCSDL
 
         private void Button_DatVe_Click(object sender, RoutedEventArgs e)
         {
-            Window_DatVe wd = new Window_DatVe();
+            SUATCHIEU suatChieuDangChon = cbb_ChonSuatChieu.SelectedItem as SUATCHIEU;
+            if (suatChieuDangChon == null) return;
+
+            Window_DatVe wd = new Window_DatVe(suatChieuDangChon.MaSuatChieu);
             if (wd.ShowDialog() == true)
             {
                 //pageDSLoaiSach.RefreshDanhSach();

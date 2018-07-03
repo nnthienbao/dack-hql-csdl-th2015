@@ -19,5 +19,10 @@ namespace BUS
         {
             return suatChieuDAO.TraCuuSuatChieu(ngay, ngay, null, null, maPhim, null, dsThietBi);
         }
+
+        public SUATCHIEU LaySuatChieuTheoMa(string maSuatChieu)
+        {
+            return suatChieuDAO.LaySuatChieuTheoMa(maSuatChieu);
+        }
     }
 }

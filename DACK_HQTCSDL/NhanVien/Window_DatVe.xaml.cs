@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BUS;
+using DAO;
 
 namespace DACK_HQTCSDL
 {
@@ -20,17 +22,22 @@ namespace DACK_HQTCSDL
     /// </summary>
     public partial class Window_DatVe : Window
     {
+        private SuatChieuBUS suatChieuBUS = new SuatChieuBUS();
+        private VeXemPhimBUS veXemPhimBUS = new VeXemPhimBUS();
         List<String> List_DS_Ve = new List<String>();
         int soLuongVe = 0;
 
-        public Window_DatVe()
+        private string maSuatChieu;
+        public Window_DatVe(string maSuatChieu)
         {
+            this.maSuatChieu = maSuatChieu;
             InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            SUATCHIEU suatChieu = suatChieuBUS.LaySuatChieuTheoMa(maSuatChieu);
+            //List<VEXEMPHIM> dsVeTrongXuatChieu = veXemPhimBUS.LayDSVeXemPhim
         }
 
         private void CheckBox_MaKhachHang_Checked(object sender, RoutedEventArgs e)
